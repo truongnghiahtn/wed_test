@@ -104,7 +104,7 @@ const Header = () => {
                   </li>
                   <li className="nav-item">
                     <NavLink to="/Mau-thiet-ke" className="nav-link">
-                      Projects <i className="fa fa-plus" />
+                      Dự án <i className="fa fa-plus" />
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li className="nav-item">
@@ -207,7 +207,7 @@ const Header = () => {
                   </li>
                   <li className="nav-item">
                     <NavLink to="/Lien-he" className="nav-link">
-                      Contact
+                      Liện hệ
                     </NavLink>
                   </li>
                 </ul>

@@ -4,9 +4,11 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "owl.carousel/dist/assets/owl.carousel.css";
 
 import "popper.js/dist/umd/popper.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 import "./scss/index.scss";
 //Import redux

@@ -74,8 +74,7 @@ const Blog = () => {
                 <div className="blog-content">
                   <a href="#">
                     <h3>
-                      Làm thế nào để tăng cường cơ quan tiếp thị kỹ thuật số của
-                      bạn
+                      Làm thế nào để tăng cơ quan tiếp thị kỹ thuật số của bạn
                     </h3>
                   </a>
                   <p>
