@@ -1,116 +1,101 @@
-import React from "react";
-import loadjs from "loadjs";
-import mixitup from "mixitup";
-import $ from "jquery";
-/* import "./style.scss"; */
-
-const Project = () => {
-  React.useEffect(() => {
-    /*     loadjsFunction(); */
-    /* var mixer = mixitup(".Container"); */
-    jsload();
-  }, []);
-
-  const loadjsFunction = () => {
-    loadjs("../../../public/assets/js/jquery.min.js");
-    loadjs("../../../public/assets/js/jquery.mixitup.min.js", () => {
-      window.$("#Container").mixItUp();
+import React, { Component } from "react";
+import classnames from "classnames";
+import { NavLink } from "react-router-dom";
+import * as $ from "jquery";
+import AOS from "aos";
+export default class Project extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: [
+        { text: "Tất cả", name: "all" },
+        { text: "Trẻ em", name: "treem" },
+        { text: "Khách sạn", name: "khachsan" },
+        { text: "Cà phê", name: "caphe" },
+        { text: "Du lịch", name: "dulich" }
+      ],
+      data: [
+        { hinhAnh: "assets/img/project/1.jpg", name: "Treem" },
+        { hinhAnh: "assets/img/project/2.jpg", name: "khachsan" },
+        { hinhAnh: "assets/img/project/3.jpg", name: "caphe" },
+        { hinhAnh: "assets/img/project/4.jpg", name: "dulich" },
+        { hinhAnh: "assets/img/project/5.jpg", name: "treem" },
+        { hinhAnh: "assets/img/project/6.jpg", name: "khachsan" }
+      ],
+      dataShow: []
+    };
+  }
+  componentDidMount() {
+    AOS.init();
+    this.setState({
+      dataShow: [...this.state.data]
+    });
+  }
+  renderFilterMenu = () => {
+    return this.state.filter.map((item, index) => {
+      return (
+        <li
+          className={classnames(`filter ${item.name}`, {
+            show: index === 0
+          })}
+          key={index}
+          onClick={() => {
+            this.handleOnSelect(item.name);
+          }}
+        >
+          {item.text}
+        </li>
+      );
     });
   };
-
-  const jsload = () => {
-    window.$("#Container").mixItUp();
+  handleOnSelect = name => {
+    $(".filter").removeClass("show");
+    $(`.${name}`).addClass("show");
+    if (name === "all") {
+      this.setState({
+        dataShow: [...this.state.data]
+      });
+    } else {
+      let dataShow = this.state.data.filter(item => item.name === name);
+      this.setState({
+        dataShow
+      });
+    }
   };
-
-  return (
-    <section className="project-section">
-      <div className="container">
-        <div className="section-title">
-          <span>Dự án</span>
-          <h3>Dự án của chúng tôi cho khách hàng</h3>
-        </div>
-        <ul className="filter-menu">
-          <li className="filter active" data-filter="all">
-            Tất Cả
-          </li>
-          <li className="filter" data-filter=".branding">
-            Xây Dựng Thương Hiệu
-          </li>
-          <li className="filter" data-filter=".marketting">
-            Marketing
-          </li>
-          <li className="filter" data-filter=".seo">
-            SEO
-          </li>
-          <li className="filter" data-filter=".web">
-            Web
-          </li>
-        </ul>
-        <div id="Container" className="row">
-          <div className="col-lg-4 col-md-6 mix branding">
-            <div className="single-project-box">
-              <img src="assets/img/project/1.jpg" alt="image" />
-              <div className="project-hover-content">
-                <h3>
-                  <a> Tối ưu hóa công cụ tìm kiếm</a>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 mix marketting">
-            <div className="single-project-box">
-              <img src="assets/img/project/2.jpg" alt="image" />
-              <div className="project-hover-content">
-                <h3>
-                  <a> Tối ưu hóa công cụ tìm kiếm</a>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 mix seo">
-            <div className="single-project-box">
-              <img src="assets/img/project/3.jpg" alt="image" />
-              <div className="project-hover-content">
-                <h3>
-                  <a> Tối ưu hóa công cụ tìm kiếm</a>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 mix web">
-            <div className="single-project-box">
-              <img src="assets/img/project/4.jpg" alt="image" />
-              <div className="project-hover-content">
-                <h3>
-                  <a> Tối ưu hóa công cụ tìm kiếm</a>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 mix branding">
-            <div className="single-project-box">
-              <img src="assets/img/project/5.jpg" alt="image" />
-              <div className="project-hover-content">
-                <h3>
-                  <a> Tối ưu hóa công cụ tìm kiếm</a>
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 mix marketting">
-            <div className="single-project-box">
-              <img src="assets/img/project/6.jpg" alt="image" />
-              <div className="project-hover-content">
-                <h3>
-                  <a> Tối ưu hóa công cụ tìm kiếm</a>
-                </h3>
-              </div>
+  renderDataFilter = () => {
+    return this.state.dataShow.map((item, index) => {
+      return (
+        <div
+          key={index}
+          className={classnames("col-lg-4 col-md-6")}
+          data-aos="zoom-in"
+        >
+          <div className="single-project-box">
+            <img src={item.hinhAnh} alt="image" />
+            <div className="project-hover-content">
+              <h3>
+                <NavLink to="/Chi-tiet-mau-thiet-ke/123"> Xem chi tiết</NavLink>
+              </h3>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
-
-export default Project;
+      );
+    });
+  };
+  render() {
+    return (
+      <section className="project-section pt-100">
+        <div className="container">
+          <div className="section-title">
+            <span>Dự án</span>
+            <h3>Dự án của chúng tôi</h3>
+          </div>
+          <ul className="filter-menu">{this.renderFilterMenu()}</ul>
+          <div id="Container" className="row">
+            {this.renderDataFilter()}
+          </div>
+        </div>
+      </section>
+    );
+  }
+}
