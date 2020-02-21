@@ -48,12 +48,6 @@ export default class TrangChu extends Component {
         {/* Start Subscribe Section */}
         <Subscribe />
         {/* End Subscribe Section */}
-        {/* Start Footer Section */}
-        <Footer />
-        {/* End Footer Section */}
-        {/* Start CopyRight Section */}
-        <CopyRight />
-        {/* End CopyRight Section */}
         {/* Start Go Top Section  */}
         <GoTop />
         {/* End Go Top Section */}

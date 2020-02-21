@@ -1,10 +1,27 @@
 import React from "react";
+import loadjs from "loadjs";
+import mixitup from "mixitup";
+import $ from "jquery";
 /* import "./style.scss"; */
 
 const Project = () => {
   React.useEffect(() => {
-    window.$("#Container").mixItUp();
+    /*     loadjsFunction(); */
+    /* var mixer = mixitup(".Container"); */
+    jsload();
   }, []);
+
+  const loadjsFunction = () => {
+    loadjs("../../../public/assets/js/jquery.min.js");
+    loadjs("../../../public/assets/js/jquery.mixitup.min.js", () => {
+      window.$("#Container").mixItUp();
+    });
+  };
+
+  const jsload = () => {
+    window.$("#Container").mixItUp();
+  };
+
   return (
     <section className="project-section">
       <div className="container">
@@ -35,7 +52,7 @@ const Project = () => {
               <img src="assets/img/project/1.jpg" alt="image" />
               <div className="project-hover-content">
                 <h3>
-                  <a href="#"> Tối ưu hóa công cụ tìm kiếm</a>
+                  <a> Tối ưu hóa công cụ tìm kiếm</a>
                 </h3>
               </div>
             </div>
@@ -45,7 +62,7 @@ const Project = () => {
               <img src="assets/img/project/2.jpg" alt="image" />
               <div className="project-hover-content">
                 <h3>
-                  <a href="#"> Tối ưu hóa công cụ tìm kiếm</a>
+                  <a> Tối ưu hóa công cụ tìm kiếm</a>
                 </h3>
               </div>
             </div>
@@ -55,7 +72,7 @@ const Project = () => {
               <img src="assets/img/project/3.jpg" alt="image" />
               <div className="project-hover-content">
                 <h3>
-                  <a href="#"> Tối ưu hóa công cụ tìm kiếm</a>
+                  <a> Tối ưu hóa công cụ tìm kiếm</a>
                 </h3>
               </div>
             </div>
@@ -65,7 +82,7 @@ const Project = () => {
               <img src="assets/img/project/4.jpg" alt="image" />
               <div className="project-hover-content">
                 <h3>
-                  <a href="#"> Tối ưu hóa công cụ tìm kiếm</a>
+                  <a> Tối ưu hóa công cụ tìm kiếm</a>
                 </h3>
               </div>
             </div>
@@ -75,7 +92,7 @@ const Project = () => {
               <img src="assets/img/project/5.jpg" alt="image" />
               <div className="project-hover-content">
                 <h3>
-                  <a href="#"> Tối ưu hóa công cụ tìm kiếm</a>
+                  <a> Tối ưu hóa công cụ tìm kiếm</a>
                 </h3>
               </div>
             </div>
@@ -85,7 +102,7 @@ const Project = () => {
               <img src="assets/img/project/6.jpg" alt="image" />
               <div className="project-hover-content">
                 <h3>
-                  <a href="#"> Tối ưu hóa công cụ tìm kiếm</a>
+                  <a> Tối ưu hóa công cụ tìm kiếm</a>
                 </h3>
               </div>
             </div>

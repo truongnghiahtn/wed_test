@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Sidebar from "../../components/Sidebar/index";
 import { NavLink } from "react-router-dom";
+import loadjs from "loadjs";
 import $ from "jquery";
 
 const Header = () => {
@@ -40,7 +41,7 @@ const Header = () => {
   return (
     <Fragment>
       {/* Start Navbar Area */}
-      <div className="navbar-area">
+      <div className="navbar-area navbar-two">
         <div className="crimso-responsive-nav">
           <div className="container">
             <div className="crimso-responsive-menu">
