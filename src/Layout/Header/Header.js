@@ -80,13 +80,13 @@ const Header = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <NavLink to="/Chung-toi" className="nav-link">
                       Về chúng tôi
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
-                    <NavLink to="/Dich-vu" className="nav-link">
+                    <NavLink to="/Thiet-ke-web" className="nav-link">
                       Dịch vụ <i className="fa fa-plus" />
                     </NavLink>
                     <ul className="dropdown-menu">
@@ -141,7 +141,7 @@ const Header = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <a href="#" className="nav-link">
                       Pages <i className="fa fa-plus" />
                     </a>
@@ -204,7 +204,7 @@ const Header = () => {
                         </a>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                     <NavLink to="/Lien-he" className="nav-link">
                       Liện hệ

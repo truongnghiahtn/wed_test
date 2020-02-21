@@ -41,7 +41,7 @@ export default class TrangMauThietKe extends Component {
 	renderDataFilter = () => {
 		return this.state.data.map((item, index) => {
 			return (
-				<div className={classnames(`col-lg-4 col-md-6 mix ${item.category}`)} key={index}>
+				<div key={index} className={classnames(`col-lg-4 col-md-6 mix ${item.category}`)} >
 					<div className="single-project-box">
 						<img src={item.hinhAnh} alt="image" />
 						<div className="project-hover-content">
