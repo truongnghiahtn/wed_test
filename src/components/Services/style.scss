@@ -1,0 +1,112 @@
+/*================================================
+Services Section CSS
+=================================================*/
+.services-section {
+  padding-top: 100px;
+  padding-bottom: 70px;
+  background-color: #f6f5fb;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.single-services-box {
+  position: relative;
+  background: #ffffff;
+  border-radius: 2px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  text-align: center;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+}
+
+.single-services-box h3 {
+  font-size: 20px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  color: #202647;
+  font-weight: 600;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  text-transform: capitalize;
+}
+
+.single-services-box p {
+  font-size: 14px;
+  color: #6a6c72;
+  font-weight: 400;
+  margin: 0 0 0 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.single-services-box .icon {
+  text-align: center;
+  width: 65px;
+  height: 65px;
+  line-height: 65px;
+  border-radius: 50%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  display: inline-block;
+}
+
+.single-services-box .icon.bg-faddd4 {
+  color: #fa9979;
+  background: #faddd4;
+}
+
+.single-services-box .icon.bg-cafbf1 {
+  color: #23b396;
+  background: #cafbf1;
+}
+
+.single-services-box .icon.bg-ddd5fb {
+  color: #8973d9;
+  background: #ddd5fb;
+}
+
+.single-services-box .icon.bg-fcdeee {
+  color: #ef52a6;
+  background: #fcdeee;
+}
+
+.single-services-box .icon.bg-c5ebf9 {
+  color: #37acd7;
+  background: #c5ebf9;
+}
+
+.single-services-box .icon.bg-f8fbd5 {
+  color: #eddf39;
+  background: #f8fbd5;
+}
+
+.single-services-box .icon i::before {
+  font-size: 30px;
+}
+
+.single-services-box:hover {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  -webkit-box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.08);
+  background-color: #f20791;
+}
+
+.single-services-box:hover .icon {
+  background: #ffffff;
+  color: #f20791;
+}
+
+.single-services-box:hover .icon.bg-faddd4 {
+  background: #ffffff;
+}
+
+.single-services-box:hover h3 {
+  color: #ffffff;
+}
+
+.single-services-box:hover p {
+  color: #ffffff;
+}

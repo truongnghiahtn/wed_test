@@ -1,0 +1,170 @@
+/*================================================
+Blog Section CSS
+=================================================*/
+.blog-section {
+  padding-bottom: 70px;
+}
+
+.blog-item {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.blog-item .single-blog-item {
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-top: none;
+  padding: 20px 25px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.blog-item .single-blog-item .date {
+  padding-left: 0;
+  position: absolute;
+  top: -40px;
+  right: 10px;
+  margin-bottom: 0;
+  text-align: center;
+  background-color: #e4045e;
+  padding: 8px;
+}
+
+.blog-item .single-blog-item .date li {
+  list-style-type: none;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.blog-item .single-blog-item .blog-list {
+  padding-left: 0;
+  margin-bottom: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.blog-item .single-blog-item .blog-list li {
+  list-style-type: none;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 400;
+  margin-right: 18px;
+  color: #93908f;
+}
+
+.blog-item .single-blog-item .blog-list li:last-child {
+  margin-right: 0;
+}
+
+.blog-item .single-blog-item .blog-list li i::before {
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.blog-item .single-blog-item .blog-list a {
+  color: #93908f;
+  text-decoration: none;
+}
+
+.blog-item .single-blog-item .blog-list i::before {
+  font-size: 14px;
+  color: #93908f;
+  margin-right: 5px;
+}
+
+.blog-item .single-blog-item .blog-content {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.blog-item .single-blog-item .blog-content h3 {
+  color: #343846;
+  font-size: 20px;
+  margin: 10px 0px 10px 0;
+  line-height: 25px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.blog-item .single-blog-item .blog-content h3:hover {
+  color: #f20791;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-transition: 0.5s;
+  text-decoration: none;
+}
+
+.blog-item .single-blog-item .blog-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #6a6c72;
+  font-weight: 400;
+}
+
+.blog-item .single-blog-item .blog-content a {
+  text-decoration: none;
+}
+
+.blog-item .single-blog-item .blog-content .blog-btn-one {
+  font-size: 15px;
+  border: 1px solid #f20791;
+  padding: 7px 20px;
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #f20791;
+  color: #ffffff;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  text-transform: uppercase;
+}
+
+.blog-item .single-blog-item .blog-content .blog-btn-one:hover {
+  background-color: #ffffff;
+  color: #f20791;
+}
+
+.blog-item .single-blog-item .blog-content .blog-btn-one i::before {
+  font-size: 12px;
+  position: relative;
+  left: 2px;
+}
+
+.blog-item .single-blog-item .blog-btn {
+  margin-top: 16px;
+}
+
+.blog-item .single-blog-item .blog-btn .blog-btn-one {
+  display: inline-block;
+  padding: 10px 30px;
+  color: #ffffff;
+  text-transform: capitalize;
+  background-color: #f20791;
+  border: 1px solid #f20791;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.blog-item:hover {
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+}
+
+.blog-item:hover .single-blog-item {
+  border: 1px solid #ffffff;
+  border-top: none;
+}
+
+.blog-item:hover .blog-content h3 {
+  color: #f20791;
+}
+
+.blog-item:hover .blog-btn .blog-btn-one {
+  background-color: transparent;
+  color: #f20791;
+}

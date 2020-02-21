@@ -1,0 +1,70 @@
+/*================================================
+Copyright Section CSS
+=================================================*/
+.copyright-area {
+  background-color: #01082d;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.copyright-area p {
+  color: #d9d3d3;
+  font-size: 14px;
+}
+
+.copyright-area p a {
+  color: #d9d3d3;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.copyright-area p a:hover {
+  color: #f20791;
+}
+
+.copyright-area ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  text-align: right;
+}
+
+.copyright-area ul li {
+  display: inline-block;
+  color: #d9d3d3;
+  font-size: 14px;
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.copyright-area ul li a {
+  display: inline-block;
+  color: #d9d3d3;
+}
+
+.copyright-area ul li a:hover {
+  color: #f20791;
+}
+
+.copyright-area ul li::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: -13px;
+  width: 1px;
+  height: 14px;
+  background-color: #ffffff;
+}
+
+.copyright-area ul li:last-child {
+  margin-right: 0;
+}
+
+.copyright-area ul li:last-child::before {
+  display: none;
+}
+
+.copyright-area ul li:first-child {
+  margin-left: 0;
+}

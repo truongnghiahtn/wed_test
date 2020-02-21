@@ -1,0 +1,86 @@
+/*================================================
+Analysis Section CSS
+=================================================*/
+.analysis-section {
+  padding: 100px 0;
+  position: relative;
+  line-height: 1;
+}
+
+.analysis-area-content span {
+  font-size: 14px;
+  color: #f20791;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.analysis-area-content h3 {
+  font-size: 38px;
+  color: #202647;
+  font-weight: bold;
+  margin: 10px 0 25px 0;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.analysis-area-content h3::before {
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 80px;
+  background-color: #fab4a2;
+  bottom: 0;
+  left: 0;
+}
+
+.analysis-area-content h3::after {
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 32px;
+  background-color: #ff724e;
+  bottom: 0;
+  margin: 0 auto 0;
+  left: 95px;
+}
+
+.analysis-area-content strong {
+  font-size: 16px;
+  color: #6a6c72;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.contactForm {
+  margin-top: 20px;
+}
+
+.contactForm .form-group .form-control {
+  height: 55px;
+  -webkit-box-shadow: unset;
+  box-shadow: unset;
+  border-bottom: 1px solid #dbdbdc;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: unset;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 14px;
+  font-size: 14px;
+  color: #9a9b9f;
+  font-weight: 400;
+}
+
+.contactForm .form-group .form-control:focus {
+  background-color: #fff;
+  border-color: #f20791;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.contactForm .send-btn {
+  margin-top: 14px;
+}

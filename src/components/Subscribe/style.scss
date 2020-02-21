@@ -1,0 +1,89 @@
+/*================================================
+Subscribe Section CSS
+=================================================*/
+.subscribe-area {
+  position: relative;
+  background-color: #f6f5fb;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  line-height: 1;
+}
+
+.subscribe-content {
+  text-align: left;
+}
+
+.subscribe-content .sub-title {
+  color: #6a75b3;
+  display: block;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.subscribe-content h2 {
+  color: #202647;
+  margin-bottom: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.newsletter-form {
+  max-width: 580px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form .input-newsletter {
+  display: block;
+  width: 100%;
+  background-color: #ffffff;
+  border: none;
+  height: 50px;
+  padding-left: 25px;
+  border-radius: 5px;
+  outline: 0;
+  color: #202647;
+}
+
+.newsletter-form .input-newsletter::-webkit-input-placeholder {
+  color: #6a6c72;
+}
+
+.newsletter-form .input-newsletter:-ms-input-placeholder {
+  color: #6a6c72;
+}
+
+.newsletter-form .input-newsletter::-ms-input-placeholder {
+  color: #6a6c72;
+}
+
+.newsletter-form .input-newsletter::placeholder {
+  color: #6a6c72;
+}
+
+.newsletter-form button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #f20791;
+  color: #ffffff;
+  border: none;
+  height: 50px;
+  padding: 0 30px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  line-height: 50px;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.newsletter-form button:hover {
+  background-color: #202647;
+  color: #ffffff;
+}

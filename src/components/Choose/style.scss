@@ -1,0 +1,104 @@
+/*================================================
+Choose Section CSS
+=================================================*/
+.choose-section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  line-height: 1;
+}
+
+.choose-content-area span {
+  font-size: 14px;
+  color: #f20791;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.choose-content-area h3 {
+  font-size: 38px;
+  color: #202647;
+  font-weight: bold;
+  margin: 10px 0 26px 0;
+  position: relative;
+  padding-bottom: 20px;
+  max-width: 600px;
+}
+
+.choose-content-area h3::before {
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 80px;
+  background-color: #fab4a2;
+  bottom: 0;
+  left: 0;
+}
+
+.choose-content-area h3::after {
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 32px;
+  background-color: #ff724e;
+  bottom: 0;
+  margin: 0 auto 0;
+  left: 95px;
+}
+
+.choose-content-area p {
+  font-size: 14px;
+  color: #6a6c72;
+  font-weight: 400;
+  margin: 0 0 0 0;
+}
+
+.choose-content-area .choose-text {
+  margin-top: 20px;
+  position: relative;
+  padding-left: 35px;
+}
+
+.choose-content-area .choose-text i {
+  position: absolute;
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  color: #f20791;
+  border-radius: 50px;
+  top: 4px;
+  left: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.choose-content-area .choose-text i::before {
+  font-size: 12px;
+}
+
+.choose-content-area .choose-text p {
+  margin: 0 0 0 0;
+  font-size: 14px;
+  color: #6a6c72;
+  font-weight: 400;
+}
+
+.choose-content-area .choose-text:hover i {
+  background-color: #f20791;
+  color: #ffffff;
+}
+
+.choose-content-area .choose-text h4 {
+  font-size: 18px;
+  color: #202647;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.choose-content-area .choose-btn {
+  margin-top: 30px;
+}

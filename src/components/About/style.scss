@@ -1,0 +1,84 @@
+/*================================================
+About Section CSS
+=================================================*/
+.about-section {
+  padding-bottom: 100px;
+}
+
+.about-area-content span {
+  font-size: 14px;
+  color: #f20791;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.about-area-content h3 {
+  font-size: 38px;
+  color: #202647;
+  font-weight: bold;
+  margin: 10px 0 25px 0;
+  position: relative;
+  padding-bottom: 25px;
+}
+
+.about-area-content h3::before {
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 80px;
+  background-color: #fab4a2;
+  bottom: 0;
+  left: 0;
+}
+
+.about-area-content h3::after {
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 32px;
+  background-color: #ff724e;
+  bottom: 0;
+  margin: 0 auto 0;
+  left: 95px;
+}
+
+.about-area-content p {
+  font-size: 14px;
+  color: #6a6c72;
+  font-weight: 400;
+  margin: 15px 0 0 0;
+}
+
+.about-area-content strong {
+  font-size: 15px;
+  color: #6a6c72;
+  font-weight: 500;
+}
+
+.single-fun-facts {
+  position: relative;
+  margin-top: 18px;
+}
+
+.single-fun-facts h3 {
+  position: relative;
+  color: #474545;
+  margin-bottom: 0;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.single-fun-facts h3 .sign-icon {
+  display: inline-block;
+  font-size: 35px;
+  margin-left: 5px;
+  color: #ff724e;
+}
+
+.single-fun-facts p {
+  line-height: initial;
+  color: #6a6c72;
+  margin: 6px 0 0 0;
+  font-size: 18px;
+  font-weight: 700;
+}
