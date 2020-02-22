@@ -39,7 +39,7 @@ const routesHome = [
 		component: TrangMauThietKe,
 	},
 	{
-		path: '/Chi-tiet-mau-thiet-ke',
+		path: '/Chi-tiet-mau-thiet-ke/:id',
 		exact: false,
 		component: TrangChiTietMauThietKe,
 	},

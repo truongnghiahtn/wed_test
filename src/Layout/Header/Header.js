@@ -32,9 +32,9 @@ const Header = () => {
     });
 
     // Mean Menu
-    window.jQuery(".mean-menu").meanmenu({
-      meanScreenWidth: "991"
-    });
+    // window.jQuery(".mean-menu").meanmenu({
+    //   meanScreenWidth: "991"
+    // });
   }, []);
 
   return (
