@@ -5,7 +5,7 @@ export default class TrangChiTietMauThietKe extends Component {
 	render() {
 		return (
 			<div>
-				<PageTitleArea title="Chi tiết mẫu thiết kế" />
+				<PageTitleArea title="Chi tiết Dự án" />
 				<section className="project-details-area ptb-100">
 					<div className="container">
 						<div className="row">
