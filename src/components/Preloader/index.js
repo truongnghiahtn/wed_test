@@ -3,10 +3,19 @@ import React from "react";
 import $ from "jquery";
 
 const Preloader = () => {
+  const [state, setstate] = React.useState(false);
+
   React.useEffect(() => {
-    $(".preloader").fadeOut(1000);
+    setTimeout(() => {
+      $(".preloader").fadeOut(450, function() {
+        setstate(true);
+      });
+    }, 500);
   }, []);
-  return (
+
+  return state ? (
+    ""
+  ) : (
     <div className="preloader">
       <div className="loader">
         <div className="shadow" />

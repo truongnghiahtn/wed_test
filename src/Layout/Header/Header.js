@@ -3,8 +3,9 @@ import Sidebar from "../../components/Sidebar/index";
 import { NavLink } from "react-router-dom";
 import $ from "jquery";
 
-const Header = () => {
+const Header = props => {
   const [isShowing, setIsShowing] = React.useState(false);
+  const [isName, setIsName] = React.useState(false);
   const hideSidebar = hide => {
     setIsShowing(hide);
   };
@@ -35,12 +36,16 @@ const Header = () => {
     window.jQuery(".mean-menu").meanmenu({
       meanScreenWidth: "991"
     });
+
+    if (props.componentName === "TrangChu") {
+      setIsName(true);
+    }
   }, []);
 
   return (
     <Fragment>
       {/* Start Navbar Area */}
-      <div className="navbar-area navbar-two">
+      <div className={"navbar-area" + (isName ? "" : " navbar-two")}>
         <div className="crimso-responsive-nav">
           <div className="container">
             <div className="crimso-responsive-menu">
@@ -64,19 +69,32 @@ const Header = () => {
               >
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <NavLink to="/Trangchu" className="nav-link active">
+                    <NavLink
+                      to="/"
+                      activeClassName="active"
+                      className="nav-link"
+                      isActive={(match, location) => {
+                        if (!match) {
+                          return false;
+                        }
+                        return (
+                          location.pathname === "/Trang-chu" ||
+                          location.pathname === "/"
+                        );
+                      }}
+                    >
                       Trang Chủ <i className="fa fa-plus" />
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li className="nav-item">
-                        <a href="#" className="nav-link active">
+                        <NavLink to="/" className="nav-link">
                           Trang Chủ Một
-                        </a>
+                        </NavLink>
                       </li>
                       <li className="nav-item">
-                        <a href="#" className="nav-link">
+                        <NavLink to="/error-404" className="nav-link">
                           Trang Chủ Hai
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </li>
@@ -91,14 +109,14 @@ const Header = () => {
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li className="nav-item">
-                        <a href="services.html" className="nav-link">
+                        <NavLink to="/Thiet-ke-web" className="nav-link">
                           Services
-                        </a>
+                        </NavLink>
                       </li>
                       <li className="nav-item">
-                        <a href="single-services.html" className="nav-link">
+                        <NavLink to="/error-404" className="nav-link">
                           Services Details
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </li>
@@ -108,19 +126,19 @@ const Header = () => {
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li className="nav-item">
-                        <a href="projects.html" className="nav-link">
+                        <NavLink to="/Mau-thiet-ke" className="nav-link">
                           Projects
-                        </a>
+                        </NavLink>
                       </li>
                       <li className="nav-item">
-                        <a href="projects-two.html" className="nav-link">
+                        <NavLink to="/error-404" className="nav-link">
                           Projects Two
-                        </a>
+                        </NavLink>
                       </li>
                       <li className="nav-item">
-                        <a href="single-projects.html" className="nav-link">
+                        <NavLink to="/error-404" className="nav-link">
                           Projects Details
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </li>
@@ -130,14 +148,14 @@ const Header = () => {
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li className="nav-item">
-                        <a href="blog-1.html" className="nav-link">
+                        <NavLink to="/Blog" className="nav-link">
                           Blog
-                        </a>
+                        </NavLink>
                       </li>
                       <li className="nav-item">
-                        <a href="single-blog.html" className="nav-link">
+                        <NavLink to="/error-404" className="nav-link">
                           Blog Details
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </li>
