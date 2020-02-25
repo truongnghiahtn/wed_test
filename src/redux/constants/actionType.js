@@ -1,0 +1,1 @@
+export const GET_LIST_FEATURE = "GET_LIST_FEATURE";
