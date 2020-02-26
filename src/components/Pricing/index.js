@@ -24,7 +24,7 @@ export default class Pricing extends Component {
 					title: 'Cao Cấp',
 					gia: 89,
 					moTa: [
-						'Chọn mẫu và chỉnh sửa',
+						'Chỉnh sửa theo yêu cầu (05 lần)',
 						'Tặng tên miền Quốc tế',
 						'Dung lượng: 4500MB',
 						'Băng thông: Không giới hạn',

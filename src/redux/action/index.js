@@ -1,4 +1,4 @@
-import * as Actiontype from "./../constants/actionType";
+import * as Actiontype from './../constants/actionType';
 import { CallAPI } from "../../utils/CallAPI";
 
 /* export const actGetListFeatureAPI = () => {
@@ -24,3 +24,16 @@ export const actGetListFeatureAPI = () => {
       .catch(err => console.log(err.response.data));
   };
 };
+export const getListService = () => {
+	return dispatch => {
+		CallAPI('service/api/find')
+			.then(rs => {
+				dispatch({
+					type: Actiontype.GET_SERVICES,
+					listService: rs.data.data,
+				});
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};

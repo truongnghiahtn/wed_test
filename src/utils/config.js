@@ -1,1 +1,1 @@
-export const api = "http://api.devfast.net";
+export const api = 'http://api.devfast.net';
