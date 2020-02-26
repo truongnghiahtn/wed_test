@@ -7796,7 +7796,7 @@ Coming Soon Area CSS
 Footer Section CSS
 =================================================*/
 .footer-section {
-	// background-image: url(../img/footer-bg.jpg);
+	background-image: url('/assets/img/footer-bg.jpg');
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -8038,4 +8038,8 @@ Copyright Section CSS
 		opacity: 1;
 		transform: translateY(0);
 	}
+}
+.pricing-tab .nav-item .active {
+	color: #ffffff;
+	background-color: #f20791;
 }

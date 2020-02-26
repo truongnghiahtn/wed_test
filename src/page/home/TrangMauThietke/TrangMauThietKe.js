@@ -6,7 +6,7 @@ export default class TrangMauThietKe extends Component {
 	render() {
 		return (
 			<div>
-				<PageTitleArea title="Mẫu thiết kế" />
+				<PageTitleArea title="Dự án" />
 				<Project />
 				<Subcribe />
 			</div>

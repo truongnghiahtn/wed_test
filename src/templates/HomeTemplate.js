@@ -1,16 +1,39 @@
 import React, { Fragment } from "react";
 import { Route, Redirect } from "react-router-dom";
 import Header from "../Layout/Header/Header";
+import Footer from "../Layout/Footer/Footer";
 import Preloader from "../components/Preloader";
+import CopyRight from "../components/CopyRight";
 
 const HomeLayout = props => {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      if (window.$(".wow").length) {
+        var wow = new window.WOW({
+          boxClass: "wow", // animated element css class (default is wow)
+          animateClass: "animated", // animation css class (default is animated)
+          offset: 20, // distance to the element when triggering the animation (default is 0)
+          mobile: true, // trigger animations on mobile devices (default is true)
+          live: true // act on asynchronously loaded content (default is true)
+        });
+        wow.init();
+      }
+    });
+  }, []);
   return (
     <Fragment>
       {/* Preloader  */}
       <Preloader />
       {/* End Preloader */}
-      <Header />
+      <Header componentName={props.children.type.name} />
       {props.children}
+      {/* Start Footer Section */}
+      <Footer />
+      {/* End Footer Section */}
+      {/* Start CopyRight Section */}
+      <CopyRight />
+      {/* End CopyRight Section */}
     </Fragment>
   );
 };
