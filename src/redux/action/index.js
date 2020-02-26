@@ -1,8 +1,32 @@
 import * as Actiontype from './../constants/actionType';
-import { callApi } from '../../utils/callApi';
+import { CallAPI } from "../../utils/CallAPI";
+
+/* export const actGetListFeatureAPI = () => {
+  return dispatch => {
+    CallAPI("feature/api/find", "GET", null, null).then(res =>
+      dispatch({
+        type: Actiontype.GET_LIST_FEATURE,
+        feature: res.data
+      }).catch(err => console.log(err))
+    );
+  };
+}; */
+
+export const actGetListFeatureAPI = () => {
+  return dispatch => {
+    CallAPI(`feature/api/find`, "GET", null, null)
+      .then(res =>
+        dispatch({
+          type: Actiontype.GET_LIST_FEATURE,
+          feature: res.data
+        })
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
 export const getListService = () => {
 	return dispatch => {
-		callApi('service/api/find')
+		CallAPI('service/api/find')
 			.then(rs => {
 				dispatch({
 					type: Actiontype.GET_SERVICES,
@@ -13,4 +37,3 @@ export const getListService = () => {
 				console.log(err);
 			});
 	};
-};

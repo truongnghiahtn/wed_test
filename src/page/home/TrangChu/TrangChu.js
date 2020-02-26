@@ -7,7 +7,6 @@ import Choose from "../../../components/Choose";
 import Project from "../../../components/Project";
 import Team from "../../../components/Team";
 import Analysis from "../../../components/Analysis";
-import GoTop from "../../../components/GoTop";
 
 export default class TrangChu extends Component {
   render() {
@@ -37,9 +36,6 @@ export default class TrangChu extends Component {
         {/* Start Analysis Section */}
         <Analysis />
         {/* End Analysis Section */}
-        {/* Start Go Top Section  */}
-        <GoTop />
-        {/* End Go Top Section */}
       </React.Fragment>
     );
   }

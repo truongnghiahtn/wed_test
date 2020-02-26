@@ -1,6 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as action from "../../redux/action/index";
 /* import "./style.scss"; */
-const Features = () => {
+const Features = props => {
+  React.useEffect(() => {
+    props.getListFeature();
+  }, []);
+
+  let { listFeature } = props;
+
+  const dataBgStyle = ["bg-f1eff8", "bg-fbe6d4", "bg-f0fffc", "bg-f8e1eb"];
+
+  const renderFeature = key => {
+    return listFeature.slice(0, key).map((item, index) => (
+      <div className="col-lg-6 col-md-6 col-sm-6" key={index}>
+        <div className={"single-features-item " + dataBgStyle[index]}>
+          <div className="icon">
+            <i className={`flaticon-${item.img}`} />
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.content}</p>
+        </div>
+      </div>
+    ));
+  };
   return (
     <section className="features-section">
       <div className="container">
@@ -24,56 +47,7 @@ const Features = () => {
             </div>
           </div>
           <div className="col-lg-7 col-md-12">
-            <div className="row">
-              <div className="col-lg-6 col-md-6 col-sm-6">
-                <div className="single-features-item bg-f1eff8">
-                  <div className="icon">
-                    <i className="flaticon-seo" />
-                  </div>
-                  <h3>Tư vấn Seo</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor
-                  </p>
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-6 col-sm-6">
-                <div className="single-features-item bg-fbe6d4">
-                  <div className="icon">
-                    <i className="flaticon-analytics" />
-                  </div>
-                  <h3>Phân tích đối thủ cạnh tranh</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor
-                  </p>
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-6 col-sm-6">
-                <div className="single-features-item bg-f0fffc">
-                  <div className="icon">
-                    <i className="flaticon-laptop" />
-                  </div>
-                  <h3>Tiếp thị truyền thông xã hội</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor
-                  </p>
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-6 col-sm-6">
-                <div className="single-features-item bg-f8e1eb">
-                  <div className="icon">
-                    <i className="flaticon-analysis-1" />
-                  </div>
-                  <h3>Phân tích đối thủ cạnh tranh</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor
-                  </p>
-                </div>
-              </div>
-            </div>
+            <div className="row">{renderFeature(4)}</div>
           </div>
         </div>
       </div>
@@ -89,4 +63,18 @@ const Features = () => {
   );
 };
 
-export default Features;
+const mapStateToProps = state => {
+  return {
+    listFeature: state.deMoReducer.feature
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getListFeature: () => {
+      dispatch(action.actGetListFeatureAPI());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Features);
