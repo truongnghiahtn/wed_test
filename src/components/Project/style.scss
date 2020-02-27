@@ -102,3 +102,24 @@ Project Section CSS
 #Container .mix {
 	display: none;
 }
+
+.project-section .e-project {
+	&.active {
+		animation: e-p 0.5s linear;
+	}
+}
+
+@keyframes e-p {
+	0% {
+		opacity: 0;
+		transform: translateY(200%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.pricing-tab .nav-item .active {
+	color: #ffffff;
+	background-color: #f20791;
+}

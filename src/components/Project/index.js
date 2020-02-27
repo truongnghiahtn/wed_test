@@ -51,6 +51,10 @@ export default class Project extends Component {
 	handleOnSelect = name => {
 		$('.filter').removeClass('show');
 		$(`.${name}`).addClass('show');
+		$('.e-project').addClass('active');
+		setTimeout(() => {
+			$('.e-project').removeClass('active');
+		}, 500);
 		if (name === 'all') {
 			this.setState({
 				dataShow: [...this.state.data],
@@ -65,7 +69,7 @@ export default class Project extends Component {
 	renderDataFilter = () => {
 		return this.state.dataShow.map((item, index) => {
 			return (
-				<div key={index} className="col-lg-4 col-md-6" data-aos="zoom-in">
+				<div key={index} className="col-lg-4 col-md-6">
 					<div className="single-project-box">
 						<img src={item.hinhAnh} alt="image" />
 						<div className="project-hover-content">
@@ -87,7 +91,7 @@ export default class Project extends Component {
 						<h3>Dự án của chúng tôi</h3>
 					</div>
 					<ul className="filter-menu">{this.renderFilterMenu()}</ul>
-					<div id="Container" className="row">
+					<div id="Container" className="row e-project">
 						{this.renderDataFilter()}
 					</div>
 				</div>
