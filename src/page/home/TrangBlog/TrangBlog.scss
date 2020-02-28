@@ -1,0 +1,16 @@
+.blog-item {
+	&.fix-style {
+		img {
+			width: 100%;
+			height: 100%;
+			background-position: center center;
+			background-size: cover;
+		}
+		.single-blog-item .blog-content {
+			h3,
+			p {
+				height: 50px;
+			}
+		}
+	}
+}

@@ -68,3 +68,18 @@ export const getPricesApi = () => {
 			});
 	};
 };
+
+export const getBlogApi = () => {
+	return dispatch => {
+		CallAPI('blog/api/findAll')
+			.then(rs => {
+				dispatch({
+					type: Actiontype.GET_BLOG,
+					dataBlog: rs.data.data,
+				});
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+};

@@ -5,6 +5,7 @@ let initialState = {
 	feature: [],
 	dataProjects: [],
 	dataPrices: [],
+	dataBlog: [],
 };
 const deMoReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -19,6 +20,9 @@ const deMoReducer = (state = initialState, action) => {
 			return { ...state };
 		case ActionType.GET_PRICES:
 			state.dataPrices = action.dataPrices;
+			return { ...state };
+		case ActionType.GET_BLOG:
+			state.dataBlog = action.dataBlog;
 			return { ...state };
 		default:
 			return { ...state };
