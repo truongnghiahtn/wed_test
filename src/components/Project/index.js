@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import * as $ from 'jquery';
-import AOS from 'aos';
-export default class Project extends Component {
+import { connect } from 'react-redux';
+import * as actions from '../../redux/action/index';
+class Project extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,22 +15,19 @@ export default class Project extends Component {
 				{ text: 'Cà phê', name: 'caphe' },
 				{ text: 'Du lịch', name: 'dulich' },
 			],
-			data: [
-				{ hinhAnh: 'assets/img/project/1.jpg', name: 'Treem' },
-				{ hinhAnh: 'assets/img/project/2.jpg', name: 'khachsan' },
-				{ hinhAnh: 'assets/img/project/3.jpg', name: 'caphe' },
-				{ hinhAnh: 'assets/img/project/4.jpg', name: 'dulich' },
-				{ hinhAnh: 'assets/img/project/5.jpg', name: 'treem' },
-				{ hinhAnh: 'assets/img/project/6.jpg', name: 'khachsan' },
-			],
 			dataShow: [],
 		};
 	}
 	componentDidMount() {
-		AOS.init();
-		this.setState({
-			dataShow: [...this.state.data],
-		});
+		this.props.getProjectsApi();
+	}
+	componentDidUpdate(nextProps) {
+		let { dataProjects } = this.props;
+		if (nextProps.dataProjects !== dataProjects) {
+			this.setState({
+				dataShow: [...this.props.dataProjects],
+			});
+		}
 	}
 	renderFilterMenu = () => {
 		return this.state.filter.map((item, index) => {
@@ -51,9 +49,13 @@ export default class Project extends Component {
 	handleOnSelect = name => {
 		$('.filter').removeClass('show');
 		$(`.${name}`).addClass('show');
+		$('.e-project').addClass('active');
+		setTimeout(() => {
+			$('.e-project').removeClass('active');
+		}, 500);
 		if (name === 'all') {
 			this.setState({
-				dataShow: [...this.state.data],
+				dataShow: [...this.props.dataProjects],
 			});
 		} else {
 			let dataShow = this.state.data.filter(item => item.name === name);
@@ -63,14 +65,22 @@ export default class Project extends Component {
 		}
 	};
 	renderDataFilter = () => {
+		console.log(this.props.dataProjects);
 		return this.state.dataShow.map((item, index) => {
 			return (
-				<div key={index} className="col-lg-4 col-md-6" data-aos="zoom-in">
-					<div className="single-project-box">
-						<img src={item.hinhAnh} alt="image" />
+				<div key={index} className="col-lg-4 col-md-6">
+					<div className="single-project-box fix-style">
+						{/* <img src={item.hinhAnh} alt="image" /> */}
+						<img src="./assets/img/services-details-image/1.jpg" />
+						<div className="project-content">
+							<div>
+								<h3>{item.name_project}</h3>
+								<p>{item.content_project}</p>
+							</div>
+						</div>
 						<div className="project-hover-content">
 							<h3>
-								<NavLink to="/Chi-tiet-mau-thiet-ke/123"> Xem chi tiết</NavLink>
+								<NavLink to={`/Chi-tiet-mau-thiet-ke/${item._id}`}> Xem chi tiết</NavLink>
 							</h3>
 						</div>
 					</div>
@@ -87,7 +97,7 @@ export default class Project extends Component {
 						<h3>Dự án của chúng tôi</h3>
 					</div>
 					<ul className="filter-menu">{this.renderFilterMenu()}</ul>
-					<div id="Container" className="row">
+					<div id="Container" className="row e-project">
 						{this.renderDataFilter()}
 					</div>
 				</div>
@@ -95,3 +105,18 @@ export default class Project extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		dataProjects: state.deMoReducer.dataProjects,
+	};
+};
+
+const mapDispatchToprops = dispatch => {
+	return {
+		getProjectsApi: () => {
+			dispatch(actions.getProjectsApi());
+		},
+	};
+};
+export default connect(mapStateToProps, mapDispatchToprops)(Project);

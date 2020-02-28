@@ -1,6 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as action from "../../redux/action/index";
 
-const Footer = () => {
+const Footer = props => {
+  React.useEffect(() => {
+    props.getInfoCompany();
+  }, []);
+
+  let { infoCompany } = props;
+
   return (
     <section className="footer-section ptb-100">
       <div className="container">
@@ -8,7 +16,7 @@ const Footer = () => {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="footer-area">
               <div className="footer-heading">
-                <h3>Về chúng tôi</h3>
+                <h3>{infoCompany.name_company}</h3>
               </div>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -94,19 +102,19 @@ const Footer = () => {
             <div className="footer-info-contact">
               <i className="flaticon-call-answer" />
               <h3>Điện thoại</h3>
-              <span>882-569-756</span>
+              <span>{infoCompany.tel_company}</span>
             </div>
             <div className="footer-info-contact">
               <i className="flaticon-envelope" />
               <h3>Email</h3>
               <span>
-                <a href="#">hello@crimso.com</a>
+                <a href="#">{infoCompany.email_company}</a>
               </span>
             </div>
             <div className="footer-info-contact">
               <i className="flaticon-placeholder-filled-point" />
               <h3>Địa chỉ</h3>
-              <span>123, Quận 10, TP.HCM</span>
+              <span>{infoCompany.address_company}</span>
             </div>
           </div>
         </div>
@@ -132,4 +140,18 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+const mapStateToProps = state => {
+  return {
+    infoCompany: state.deMoReducer.company
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getInfoCompany: () => {
+      dispatch(action.actGetInfoCompanyAPI());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

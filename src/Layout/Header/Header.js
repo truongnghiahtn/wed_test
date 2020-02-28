@@ -33,13 +33,13 @@ const Header = props => {
 		});
 
 		// Mean Menu
-		window.jQuery('.mean-menu').meanmenu({
-			meanScreenWidth: '991',
-		});
+		// window.jQuery('.mean-menu').meanmenu({
+		// 	meanScreenWidth: '991',
+		// });
 
-		if (props.componentName === 'TrangChu') {
-			setIsName(true);
-		}
+		// if (props.componentName === 'TrangChu') {
+		// 	setIsName(true);
+		// }
 	}, []);
 
 	return (
@@ -77,146 +77,29 @@ const Header = props => {
 												return location.pathname === '/Trang-chu' || location.pathname === '/';
 											}}
 										>
-											Trang Chủ <i className="fa fa-plus" />
+											Trang Chủ
 										</NavLink>
-										<ul className="dropdown-menu">
-											<li className="nav-item">
-												<NavLink to="/" className="nav-link">
-													Trang Chủ Một
-												</NavLink>
-											</li>
-											<li className="nav-item">
-												<NavLink to="/error-404" className="nav-link">
-													Trang Chủ Hai
-												</NavLink>
-											</li>
-										</ul>
 									</li>
-									{/* <li className="nav-item">
-                    <NavLink to="/Chung-toi" className="nav-link">
-                      Về chúng tôi
-                    </NavLink>
-                  </li> */}
 									<li className="nav-item">
 										<NavLink to="/Thiet-ke-web" className="nav-link">
-											Dịch vụ <i className="fa fa-plus" />
+											Dịch vụ
 										</NavLink>
-										<ul className="dropdown-menu">
-											<li className="nav-item">
-												<NavLink to="/Thiet-ke-web" className="nav-link">
-													Services
-												</NavLink>
-											</li>
-											<li className="nav-item">
-												<NavLink to="/Dich-vu" className="nav-link">
-													Services Details
-												</NavLink>
-											</li>
-										</ul>
 									</li>
 									<li className="nav-item">
 										<NavLink to="/Mau-thiet-ke" className="nav-link">
-											Dự án <i className="fa fa-plus" />
+											Dự án
 										</NavLink>
-										<ul className="dropdown-menu">
-											<li className="nav-item">
-												<NavLink to="/Mau-thiet-ke" className="nav-link">
-													Projects
-												</NavLink>
-											</li>
-											<li className="nav-item">
-												<NavLink to="/error-404" className="nav-link">
-													Projects Two
-												</NavLink>
-											</li>
-											<li className="nav-item">
-												<NavLink to="/error-404" className="nav-link">
-													Projects Details
-												</NavLink>
-											</li>
-										</ul>
 									</li>
 									<li className="nav-item">
 										<NavLink to="/Blog" className="nav-link">
-											Blog <i className="fa fa-plus" />
+											Giới thiệu
 										</NavLink>
-										<ul className="dropdown-menu">
-											<li className="nav-item">
-												<NavLink to="/Blog" className="nav-link">
-													Blog
-												</NavLink>
-											</li>
-											<li className="nav-item">
-												<NavLink to="/error-404" className="nav-link">
-													Blog Details
-												</NavLink>
-											</li>
-										</ul>
 									</li>
-									{/* <li className="nav-item">
-                    <a href="#" className="nav-link">
-                      Pages <i className="fa fa-plus" />
-                    </a>
-                    <ul className="dropdown-menu">
-                      <li className="nav-item">
-                        <a href="features.html" className="nav-link">
-                          Features
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a href="team.html" className="nav-link">
-                          Team
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a href="pricing.html" className="nav-link">
-                          Pricing
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a href="#" className="nav-link">
-                          Shop
-                        </a>
-                        <ul className="dropdown-menu">
-                          <li className="nav-item">
-                            <a href="shop.html" className="nav-link">
-                              Shop
-                            </a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="single-product.html" className="nav-link">
-                              Single Products
-                            </a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="cart.html" className="nav-link">
-                              Cart
-                            </a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="checkout.html" className="nav-link">
-                              Checkout
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li className="nav-item">
-                        <a href="error-404.html" className="nav-link">
-                          404 Error
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a href="faq.html" className="nav-link">
-                          FAQ
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a href="coming-soon.html" className="nav-link">
-                          Coming Soon
-                        </a>
-                      </li>
-                    </ul>
-                  </li> */}
+									<li className="nav-item">
+										<NavLink to="/err-404" className="nav-link">
+											Sắp tới
+										</NavLink>
+									</li>
 									<li className="nav-item">
 										<NavLink to="/Lien-he" className="nav-link">
 											Liện hệ
