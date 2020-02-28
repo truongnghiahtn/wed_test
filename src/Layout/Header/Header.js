@@ -98,8 +98,20 @@ const Header = props => {
                   </li>
                   <li className="nav-item">
                     <NavLink to="/Blog" className="nav-link">
-                      Giới thiệu
+                      Giới thiệu <i class="fa fa-plus" aria-hidden="true"></i>
                     </NavLink>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <NavLink to="/Blog" className="nav-link">
+                          Blog
+                        </NavLink>
+                      </li>
+                      <li class="nav-item">
+                        <NavLink to="/Ve-chung-toi" className="nav-link">
+                          Về chúng tôi
+                        </NavLink>
+                      </li>
+                    </ul>
                   </li>
                   <li className="nav-item">
                     <NavLink to="/err-404" className="nav-link">
