@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as action from '../../../redux/action/index';
 class TrangMauThietKe extends Component {
 	componentDidMount() {
-		this.props.getListService();
+		// this.props.getListService();
 	}
 	render() {
 		return (

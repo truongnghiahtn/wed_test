@@ -92,7 +92,7 @@ const Header = props => {
 									</li>
 									<li className="nav-item">
 										<NavLink to="/Blog" className="nav-link">
-											Blog
+											Giới thiệu
 										</NavLink>
 									</li>
 									<li className="nav-item">

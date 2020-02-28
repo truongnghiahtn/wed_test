@@ -123,3 +123,35 @@ Project Section CSS
 	color: #ffffff;
 	background-color: #f20791;
 }
+.single-project-box {
+	&.fix-style {
+		position: relative;
+		height: 300px;
+		width: 100%;
+		img {
+			position: absolute;
+			z-index: 0;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-position: center center;
+			background-size: cover;
+		}
+	}
+	.project-content {
+		background: rgba(0, 0, 0, 0.5);
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		h3 {
+			color: #f20791;
+		}
+		p {
+			color: white;
+		}
+	}
+}

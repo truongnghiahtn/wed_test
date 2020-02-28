@@ -38,3 +38,33 @@ export const getListService = () => {
 			});
 	};
 };
+
+export const getProjectsApi = () => {
+	return dispatch => {
+		CallAPI('project/api/findAll')
+			.then(rs => {
+				dispatch({
+					type: Actiontype.GET_PROJECTS,
+					dataProjects: rs.data.data,
+				});
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+};
+
+export const getPricesApi = () => {
+	return dispatch => {
+		CallAPI('price/api/findAll')
+			.then(rs => {
+				dispatch({
+					type: Actiontype.GET_PRICES,
+					dataPrices: rs.data.data,
+				});
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+};
