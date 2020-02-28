@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import PageTitleArea from '../../../components/PageTitleArea/PageTitleArea';
 import Subcribe from '../../../components/Subcribe/Subcribe';
 import Project from '../../../components/Project';
-export default class TrangMauThietKe extends Component {
+import { connect } from 'react-redux';
+import * as action from '../../../redux/action/index';
+class TrangMauThietKe extends Component {
+	componentDidMount() {
+		this.props.getListService();
+	}
 	render() {
 		return (
 			<div>
@@ -13,3 +18,16 @@ export default class TrangMauThietKe extends Component {
 		);
 	}
 }
+const mapStateToProps = state => {
+	return {
+		listServices: state.deMoReducer.listServices,
+	};
+};
+const mapDispatchToProps = dispatch => {
+	return {
+		getListService: () => {
+			dispatch(action.getListService());
+		},
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TrangMauThietKe);
