@@ -1,0 +1,264 @@
+/*================================================
+Tab Section CSS
+=================================================*/
+.tab-section {
+  padding-top: 100px;
+  padding-bottom: 0px !important;
+  line-height: 1;
+}
+
+.tab .tabs_item {
+  display: none;
+}
+
+.tab .tabs_item:first-child {
+  display: block;
+}
+
+.boosting-list-tab .tabs {
+  padding-left: 0;
+  list-style-type: none;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+  margin-bottom: 20px;
+}
+
+.boosting-list-tab .tabs li {
+  -ms-flex: 0 0 16.6666666667%;
+  -webkit-box-flex: 0;
+  flex: 0 0 16.6666666667%;
+  max-width: 15.6666666667%;
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.boosting-list-tab .tabs li a {
+  display: block;
+  border-radius: 2px;
+  color: #292a2c;
+  -webkit-box-shadow: 0px 10px 40px 0px rgba(107, 125, 179, 0.11);
+  box-shadow: 0px 10px 40px 0px rgba(107, 125, 179, 0.11);
+  padding-right: 18px;
+  padding-top: 15px;
+  padding-bottom: 18px;
+  padding-left: 18px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.boosting-list-tab .tabs li a i {
+  color: #f20791;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.boosting-list-tab .tabs li a span {
+  display: block;
+  margin-top: 10px;
+}
+
+.boosting-list-tab .tabs li.bg-eff7e9 {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#f3fbed),
+    color-stop(#f1f9eb),
+    color-stop(#f0f7e9),
+    color-stop(#eef5e8),
+    to(#ecf3e6)
+  );
+  background: linear-gradient(
+    to right,
+    #f3fbed,
+    #f1f9eb,
+    #f0f7e9,
+    #eef5e8,
+    #ecf3e6
+  );
+}
+
+.boosting-list-tab .tabs li.bg-eff7e9 i {
+  color: #53ba05;
+}
+
+.boosting-list-tab .tabs li.bg-fff8f0 {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#fff8f0),
+    color-stop(#fdf6ee),
+    color-stop(#fbf4ec),
+    color-stop(#f9f2ea),
+    to(#f7f0e8)
+  );
+  background: linear-gradient(
+    to right,
+    #fff8f0,
+    #fdf6ee,
+    #fbf4ec,
+    #f9f2ea,
+    #f7f0e8
+  );
+}
+
+.boosting-list-tab .tabs li.bg-fff8f0 i {
+  color: #e3841a;
+}
+
+.boosting-list-tab .tabs li.bg-ecfaf7 {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#ecfaf7),
+    color-stop(#eaf8f5),
+    color-stop(#e8f6f3),
+    color-stop(#e7f4f1),
+    to(#e5f2ef)
+  );
+  background: linear-gradient(
+    to right,
+    #ecfaf7,
+    #eaf8f5,
+    #e8f6f3,
+    #e7f4f1,
+    #e5f2ef
+  );
+}
+
+.boosting-list-tab .tabs li.bg-ecfaf7 i {
+  color: #04b994;
+}
+
+.boosting-list-tab .tabs li.bg-f2f0fb {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#f2f0fb),
+    color-stop(#f2f0fb),
+    color-stop(#f2f0fb),
+    color-stop(#f2f0fb),
+    to(#f2f0fb)
+  );
+  background: linear-gradient(
+    to right,
+    #f2f0fb,
+    #f2f0fb,
+    #f2f0fb,
+    #f2f0fb,
+    #f2f0fb
+  );
+}
+
+.boosting-list-tab .tabs li.bg-f2f0fb i {
+  color: #775dda;
+}
+
+.boosting-list-tab .tabs li.bg-c5ebf9 {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#c5ebf9),
+    color-stop(#c5ebf9),
+    color-stop(#c5ebf9),
+    color-stop(#c5ebf9),
+    to(#c5ebf9)
+  );
+  background: linear-gradient(
+    to right,
+    #c5ebf9,
+    #c5ebf9,
+    #c5ebf9,
+    #c5ebf9,
+    #c5ebf9
+  );
+}
+
+.boosting-list-tab .tabs li.bg-c5ebf9 i {
+  color: #37acd7;
+}
+
+.boosting-list-tab .tabs li.current a,
+.boosting-list-tab .tabs li:hover a {
+  background-color: #f20791;
+  color: #ffffff;
+  -webkit-box-shadow: 0px 10px 40px 0px rgba(0, 0, 255, 0.22);
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 255, 0.22);
+}
+
+.boosting-list-tab .tabs li.current a i,
+.boosting-list-tab .tabs li:hover a i {
+  color: #ffffff;
+}
+
+.boosting-list-tab .tab_content {
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  padding: 50px 30px;
+  position: relative;
+}
+
+.boosting-list-tab .tab_content .tabs_item .content h2 {
+  font-size: 18px;
+  color: #202647;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+}
+
+.boosting-list-tab .tab_content .tabs_item .content p {
+  font-size: 14px;
+  color: #6a6c72;
+  font-weight: 400;
+  margin: 0 0 0 0;
+}
+
+.boosting-list-tab .tab_content .tabs_item .tab-text-content {
+  margin-top: 20px;
+  position: relative;
+  padding-left: 60px;
+}
+
+.boosting-list-tab .tab_content .tabs_item .tab-text-content i {
+  color: #e84f1c;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.boosting-list-tab .tab_content .tabs_item .tab-text-content i::before {
+  font-size: 40px;
+  line-height: normal;
+}
+
+.boosting-list-tab .tab_content .tabs_item .tab-text-content p {
+  font-size: 14px;
+  color: #6a6c72;
+  font-weight: 400;
+  margin: 0 0 0 0;
+}
+
+.boosting-list-tab .tab_content .tabs_item .tab-btn {
+  margin-top: 25px;
+}
+
+.boosting-list-tab .tab_content .tabs_item .tab-shape {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 165px;
+}

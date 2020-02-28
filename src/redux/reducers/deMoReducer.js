@@ -1,6 +1,8 @@
 import * as ActionType from '../constants/actionType';
 
 let initialState = {
+	team: [],
+	company: {},
 	listService: [],
 	feature: [],
 	dataProjects: [],
@@ -23,6 +25,12 @@ const deMoReducer = (state = initialState, action) => {
 			return { ...state };
 		case ActionType.GET_BLOG:
 			state.dataBlog = action.dataBlog;
+			return { ...state };
+		case ActionType.GET_LIST_TEAM:
+			state.team = action.team.data;
+			return { ...state };
+		case ActionType.GET_INFO_COMPANY:
+			state.company = action.company.data[0];
 			return { ...state };
 		default:
 			return { ...state };
