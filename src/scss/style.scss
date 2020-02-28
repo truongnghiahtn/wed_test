@@ -8026,7 +8026,7 @@ Copyright Section CSS
 
 /*# sourceMappingURL=style.css.map */
 .tab-pane.active {
-	animation: slide-down 1s ease-out;
+	animation: slide-down 0.5s ease-in-out;
 }
 
 @keyframes slide-down {

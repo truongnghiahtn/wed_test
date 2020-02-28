@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-export default class Pricing extends Component {
+import { connect } from 'react-redux';
+import * as actions from '../../redux/action/index';
+class Pricing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -24,7 +26,7 @@ export default class Pricing extends Component {
 					title: 'Cao Cấp',
 					gia: 89,
 					moTa: [
-						'Chọn mẫu và chỉnh sửa',
+						'Chỉnh sửa theo yêu cầu (05 lần)',
 						'Tặng tên miền Quốc tế',
 						'Dung lượng: 4500MB',
 						'Băng thông: Không giới hạn',
@@ -34,7 +36,11 @@ export default class Pricing extends Component {
 			className: ['bg-f6f5fb', 'bg-ed0678', 'bg-edfbf8'],
 		};
 	}
+	componentDidMount() {
+		this.props.getPricesApi();
+	}
 	renderPricingWebsite = isMonth => {
+		console.log(this.props.dataPrices);
 		return this.state.data.map((item, index) => {
 			return (
 				<div className="col-lg-4 col-md-6 col-sm-6" key={index}>
@@ -116,3 +122,19 @@ export default class Pricing extends Component {
 		);
 	}
 }
+
+export const mapStateToProps = state => {
+	return {
+		dataPrices: state.deMoReducer.dataPrices,
+	};
+};
+
+export const mapDispatchToProps = dispatch => {
+	return {
+		getPricesApi: () => {
+			dispatch(actions.getPricesApi());
+		},
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pricing);
