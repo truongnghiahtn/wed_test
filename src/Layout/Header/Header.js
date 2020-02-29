@@ -33,13 +33,13 @@ const Header = props => {
 		});
 
 		// Mean Menu
-		// window.jQuery('.mean-menu').meanmenu({
-		// 	meanScreenWidth: '991',
-		// });
+		window.jQuery('.mean-menu').meanmenu({
+			meanScreenWidth: '991',
+		});
 
-		// if (props.componentName === 'TrangChu') {
-		// 	setIsName(true);
-		// }
+		if (props.componentName === 'TrangChu') {
+			setIsName(true);
+		}
 	}, []);
 
 	return (
@@ -51,7 +51,7 @@ const Header = props => {
 						<div className="crimso-responsive-menu">
 							<div className="logo">
 								<NavLink to="/">
-									<img src="assets/img/logo.png" alt="logo" />
+									<img src="../assets/img/logo.png" alt="logo" />
 								</NavLink>
 							</div>
 						</div>
@@ -61,7 +61,7 @@ const Header = props => {
 					<div className="container">
 						<nav className="navbar navbar-expand-md navbar-light">
 							<NavLink className="navbar-brand" to="/">
-								<img src="assets/img/logo.png" alt="logo" />
+								<img src="../assets/img/logo.png" alt="logo" />
 							</NavLink>
 							<div className="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
 								<ul className="navbar-nav">
@@ -92,15 +92,15 @@ const Header = props => {
 									</li>
 									<li className="nav-item">
 										<NavLink to="/Blog" className="nav-link">
-											Giới thiệu <i className="fa fa-plus" aria-hidden="true"></i>
+											Giới thiệu <i class="fa fa-plus" aria-hidden="true"></i>
 										</NavLink>
-										<ul className="dropdown-menu">
-											<li className="nav-item">
+										<ul class="dropdown-menu">
+											<li class="nav-item">
 												<NavLink to="/Blog" className="nav-link">
 													Blog
 												</NavLink>
 											</li>
-											<li className="nav-item">
+											<li class="nav-item">
 												<NavLink to="/Ve-chung-toi" className="nav-link">
 													Về chúng tôi
 												</NavLink>
