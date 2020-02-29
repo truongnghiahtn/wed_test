@@ -6,6 +6,7 @@ import TrangMauThietKe from './page/home/TrangMauThietke/TrangMauThietKe';
 import Dashboard from './page/admin/Dashboard/Dashboard';
 import TrangChiTietMauThietKe from './page/home/TrangChiTietMauThietKe/TrangChiTietMauThietKe';
 import TrangThietKeWeb from './page/home/TrangThietKeWeb/TrangThietKeWeb';
+import TrangVeChungToi from './page/home/TrangVeChungToi/TrangVeChungToi';
 
 const routesHome = [
 	{
@@ -44,6 +45,7 @@ const routesHome = [
 		component: TrangChiTietMauThietKe,
 	},
 	{ path: '/Thiet-ke-web', exact: false, component: TrangThietKeWeb },
+	{ path: '/Ve-chung-toi', exact: false, component: TrangVeChungToi },
 ];
 
 export { routesHome };

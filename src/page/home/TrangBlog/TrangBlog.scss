@@ -14,3 +14,12 @@
 		}
 	}
 }
+.blog-page-area {
+	.page-numbers {
+		cursor: pointer;
+		&.active {
+			background: #f20791;
+			color: white;
+		}
+	}
+}

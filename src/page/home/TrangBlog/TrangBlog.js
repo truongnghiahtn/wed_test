@@ -3,51 +3,110 @@ import Subcribe from '../../../components/Subcribe/Subcribe';
 import PageTitleArea from '../../../components/PageTitleArea/PageTitleArea';
 import { connect } from 'react-redux';
 import * as actions from '../../../redux/action/index';
+import * as $ from 'jquery';
 class TrangBlog extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			dataBlog: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+			pageNumberCurrent: 1,
+		};
+	}
 	componentDidMount() {
 		this.props.getBlogApi();
 	}
 	renderContentBlog = () => {
-		return this.props.dataBlog.map((item, index) => {
-			return (
-				<div className="col-lg-4 col-md-6" key={index}>
-					<div className="blog-item fix-style">
-						<div className="blog-image">
-							<a href="#">
-								{/* <img src={item.img_blog} alt="image" /> */}
-								<img src="assets/img/blog/2.png" alt="image" />
-							</a>
-						</div>
-						<div className="single-blog-item">
-							<ul className="date">
-								<li>21</li>
-								<li>November</li>
-							</ul>
-							<ul className="blog-list">
-								<li>
-									<a href="#">
-										<i className="fa fa-user-alt" /> By admin
-									</a>
-								</li>
-								<li>
-									<i className="far fa-comments" /> 3 Comments
-								</li>
-							</ul>
-							<div className="blog-content">
+		return this.state.dataBlog
+			.slice(6 * (this.state.pageNumberCurrent - 1), 6 * (this.state.pageNumberCurrent - 1) + 6)
+			.map((item, index) => {
+				return (
+					<div className="col-lg-4 col-md-6" key={index}>
+						<div className="blog-item fix-style">
+							<div className="blog-image">
 								<a href="#">
-									<h3>{item.title_blog}</h3>
+									{/* <img src={item.img_blog} alt="image" /> */}
+									<img src="assets/img/blog/2.png" alt="image" />
 								</a>
-								<p>{item.content_blog}</p>
 							</div>
-							<div className="blog-btn">
-								<a href="#" className="blog-btn-one">
-									Read More
-								</a>
+							<div className="single-blog-item">
+								<ul className="date">
+									<li>21</li>
+									<li>November</li>
+								</ul>
+								<ul className="blog-list">
+									<li>
+										<a href="#">
+											<i className="fa fa-user-alt" /> By admin
+										</a>
+									</li>
+									<li>
+										<i className="far fa-comments" /> 3 Comments
+									</li>
+								</ul>
+								<div className="blog-content">
+									<a href="#">
+										{item}
+										<h3>{item.title_blog}</h3>
+									</a>
+									<p>{item.content_blog}</p>
+								</div>
+								<div className="blog-btn">
+									<a href="#" className="blog-btn-one">
+										Read More
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
+				);
+			});
+	};
+	renderPagination = () => {
+		if (this.state.dataBlog && this.state.dataBlog.length > 6) {
+			return (
+				<div className="col-lg-12 col-md-12">
+					<div className="pagination-area">
+						<a
+							className="prev page-numbers"
+							onClick={() => {
+								this.handlePageNumber(0);
+							}}
+						>
+							<i className="fas fa-angle-double-left" />
+						</a>
+						{this.state.dataBlog.map((item, index) => {
+							return index % 6 === 0 ? (
+								<a
+									className={`page-numbers page-${index} ` + (index === 0 ? 'active' : '')}
+									key={index}
+									onClick={() => {
+										this.handlePageNumber(index);
+									}}
+								>
+									{index / 6 + 1}
+								</a>
+							) : (
+								''
+							);
+						})}
+						<a
+							className="next page-numbers"
+							onClick={() => {
+								this.handlePageNumber(this.state.dataBlog.length - 1);
+							}}
+						>
+							<i className="fas fa-angle-double-right" />
+						</a>
+					</div>
 				</div>
 			);
+		}
+	};
+	handlePageNumber = pageNumberCurrent => {
+		$('.page-numbers').removeClass('active');
+		$(`.page-${pageNumberCurrent}`).addClass('active');
+		this.setState({
+			pageNumberCurrent: pageNumberCurrent / 6 + 1,
 		});
 	};
 	render() {
@@ -62,28 +121,7 @@ class TrangBlog extends Component {
 						</div>
 						<div className="row">
 							{this.renderContentBlog()}
-							<div className="col-lg-12 col-md-12">
-								<div className="pagination-area">
-									<a href="#" className="prev page-numbers">
-										<i className="fas fa-angle-double-left" />
-									</a>
-									<a href="#" className="page-numbers">
-										1
-									</a>
-									<span className="page-numbers current" aria-current="page">
-										2
-									</span>
-									<a href="#" className="page-numbers">
-										3
-									</a>
-									<a href="#" className="page-numbers">
-										4
-									</a>
-									<a href="#" className="next page-numbers">
-										<i className="fas fa-angle-double-right" />
-									</a>
-								</div>
-							</div>
+							{this.renderPagination()}
 						</div>
 					</div>
 				</section>
