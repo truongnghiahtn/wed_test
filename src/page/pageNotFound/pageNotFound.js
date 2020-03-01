@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import Preloader from "../../components/Preloader";
 export default class pageNotFound extends Component {
   render() {
@@ -20,9 +19,16 @@ export default class pageNotFound extends Component {
                     Trang bạn đang tìm kiếm có thể đã bị xóa, có tên đã thay đổi
                     hoặc tạm thời không có.
                   </p>
-                  <NavLink to="/" className="default-btn-one">
+                  <button
+                    onClick={() =>
+                      this.props.history.length > 2
+                        ? this.props.history.goBack()
+                        : this.props.history.push("/")
+                    }
+                    className="default-btn-one"
+                  >
                     Quay trở lại
-                  </NavLink>
+                  </button>
                 </div>
               </div>
             </div>

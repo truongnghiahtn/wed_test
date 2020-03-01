@@ -2,7 +2,7 @@
 Analysis Section CSS
 =================================================*/
 .analysis-section {
-  padding: 100px 0 20px !important;
+  padding: 100px 0;
   position: relative;
   line-height: 1;
 }
@@ -85,23 +85,6 @@ Analysis Section CSS
   margin-top: 14px;
 }
 
-.contactForm .thong-bao {
-  margin-top: 16px;
-  font-size: 16px;
-  color: #ef3b7e;
-  font-weight: 500;
-  line-height: 30px;
-}
-
-.contactForm .notif-mess {
-  margin: 6px 0;
-  font-size: 12px;
-  color: #a92117;
-  &::first-letter {
-    text-transform: uppercase;
-  }
-}
-
-.contactForm .form-group {
+/* .contactForm .form-group {
   margin-bottom: 20px;
-}
+} */
