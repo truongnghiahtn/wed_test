@@ -5,8 +5,6 @@ import Footer from "../Layout/Footer/Footer";
 import Preloader from "../components/Preloader";
 import CopyRight from "../components/CopyRight";
 import GoTop from "../components/GoTop";
-import { connect } from "react-redux";
-import * as action from "../redux/action/index";
 
 const HomeLayout = props => {
   React.useEffect(() => {
@@ -35,10 +33,7 @@ const HomeLayout = props => {
   );
 };
 
-function HomeTemplate({ Component, ...props }) {
-  /*   React.useEffect(() => {
-    props.getInfoCompany();
-  }, []); */
+export default function HomeTemplate({ Component, ...props }) {
   return (
     <Route
       {...props}
@@ -52,13 +47,3 @@ function HomeTemplate({ Component, ...props }) {
     />
   );
 }
-
-/* const mapDispatchToProps = dispatch => {
-  return {
-    getInfoCompany: () => {
-      dispatch(action.actGetInfoCompanyAPI());
-    }
-  };
-}; */
-
-export default connect(null, null)(HomeTemplate);
