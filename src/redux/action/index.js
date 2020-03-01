@@ -34,7 +34,7 @@ export const getProjectsApi = () => {
 			.then(rs => {
 				dispatch({
 					type: Actiontype.GET_PROJECTS,
-					dataProjects: rs.data.data,
+					dataProjects: rs.data,
 				});
 			})
 			.catch(err => {
@@ -49,7 +49,7 @@ export const getPricesApi = () => {
 			.then(rs => {
 				dispatch({
 					type: Actiontype.GET_PRICES,
-					dataPrices: rs.data.data,
+					dataPrices: rs.data,
 				});
 			})
 			.catch(err => {
@@ -64,7 +64,7 @@ export const getBlogApi = () => {
 			.then(rs => {
 				dispatch({
 					type: Actiontype.GET_BLOG,
-					dataBlog: rs.data.data,
+					dataBlog: rs.data,
 				});
 			})
 			.catch(err => {
@@ -78,7 +78,7 @@ export const actGetListTeamAPI = () => {
 			.then(res =>
 				dispatch({
 					type: Actiontype.GET_LIST_TEAM,
-					team: res.data,
+					team: res,
 				})
 			)
 			.catch(err => console.log(err.response.data));
@@ -91,7 +91,7 @@ export const actGetInfoCompanyAPI = () => {
 			.then(res =>
 				dispatch({
 					type: Actiontype.GET_INFO_COMPANY,
-					company: res.data,
+					company: res,
 				})
 			)
 			.catch(err => console.log(err.response.data));
