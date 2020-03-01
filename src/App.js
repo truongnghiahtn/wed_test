@@ -36,12 +36,14 @@ const showMenusAdmin = routes => {
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        {showMenusHome(routesHome)}
-        {showMenusAdmin(routesAdmin)}
-        <Route path="/admin" exact={true} component={Admin} />
-        <Route path="" exact={false} component={PageNotFound} />
-      </Switch>
+      <div>
+        <Switch>
+          {showMenusHome(routesHome)}
+          {showMenusAdmin(routesAdmin)}
+          <Route path="/admin" exact={true} component={Admin} />
+          <Route path="" exact={false} component={PageNotFound} />
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

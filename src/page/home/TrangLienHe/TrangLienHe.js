@@ -7,6 +7,31 @@ import FormContact from "../../../components/FormContact/index";
 class TrangLienHe extends Component {
   render() {
     let { infoCompany } = this.props;
+
+    const renderHTML = info => {
+      return infoCompany.slice(0, 2).map((item, index) => {
+        switch (info) {
+          case "tel":
+            return (
+              <p key={index}>
+                <a href="#">{item.tel_company}</a>
+              </p>
+            );
+          case "email":
+            return (
+              <p key={index}>
+                <a href="#">{item.email_company}</a>
+              </p>
+            );
+          case "address":
+            return <p key={index}>{item.address_company}</p>;
+
+          default:
+            break;
+        }
+      });
+    };
+
     return (
       <div>
         <PageTitleArea title="Liên hệ" />
@@ -20,16 +45,7 @@ class TrangLienHe extends Component {
                   </div>
                   <div className="content">
                     <h4>Số điện thoại / Fax</h4>
-                    <p>
-                      <a href="#">
-                        {infoCompany ? infoCompany.tel_company : "#"}
-                      </a>
-                    </p>
-                    <p>
-                      <a href="#">
-                        {infoCompany ? infoCompany.tel_company : "#"}
-                      </a>
-                    </p>
+                    {infoCompany.length ? renderHTML("tel") : "#"}
                   </div>
                 </div>
               </div>
@@ -40,16 +56,7 @@ class TrangLienHe extends Component {
                   </div>
                   <div className="content">
                     <h4>E-mail</h4>
-                    <p>
-                      <a href="#">
-                        {infoCompany ? infoCompany.email_company : "#"}
-                      </a>
-                    </p>
-                    <p>
-                      <a href="#">
-                        {infoCompany ? infoCompany.email_company : "#"}
-                      </a>
-                    </p>
+                    {infoCompany.length > 0 ? renderHTML("email") : "#"}
                   </div>
                 </div>
               </div>
@@ -60,10 +67,7 @@ class TrangLienHe extends Component {
                   </div>
                   <div className="content">
                     <h4>Địa chỉ</h4>
-                    <p>
-                      {infoCompany ? infoCompany.address_company : "#"} Việt Nam
-                      Number 1
-                    </p>
+                    {infoCompany.length ? renderHTML("address") : "#"}
                   </div>
                 </div>
               </div>

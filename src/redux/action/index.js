@@ -1,5 +1,6 @@
 import * as Actiontype from "./../constants/actionType";
 import { CallAPI } from "../../utils/callApi";
+import swal from "sweetalert";
 
 export const actGetListFeatureAPI = () => {
   return dispatch => {
@@ -27,6 +28,34 @@ export const getListService = () => {
       });
   };
 };
+// admin login
+export const actloginAdmin = (user, history) => {
+  return dispatch => {
+    if (user.taiKhoan === "admin1531999" && user.matKhau === "00000000") {
+      localStorage.setItem("userAdmin", JSON.stringify(user));
+      history.push("/admin-Dashboard");
+      dispatch({
+        type: Actiontype.ADMIN_LOGIN,
+        ADMIN_LOGIN: ""
+      });
+    } else {
+      dispatch({
+        type: Actiontype.ADMIN_LOGIN,
+        ADMIN_LOGIN: "Dang nhap khong thanh cong"
+      });
+      setTimeout(() => {
+        swal({
+          title: "The account or password is incorrect!",
+          text: "See you again!",
+          icon: "error",
+          buttons: false,
+          timer: 1500
+        });
+      }, 150);
+    }
+  };
+};
+// end admin login
 
 export const getProjectsApi = () => {
   return dispatch => {
@@ -85,12 +114,12 @@ export const actGetListTeamAPI = () => {
   };
 };
 
-export const actGetInfoCompanyAPI = () => {
+export const actGetListCompanyAPI = () => {
   return dispatch => {
     CallAPI(`company/api/findAll`, "GET", null, null)
       .then(res =>
         dispatch({
-          type: Actiontype.GET_INFO_COMPANY,
+          type: Actiontype.GET_LIST_COMPANY,
           company: res
         })
       )
@@ -109,6 +138,61 @@ export const actPostInfoCustomerAPI = data => {
           },
           console.log(data)
         )
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
+// admin team
+export const editTeam = data => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDITTEAM, userTeam: data });
+  };
+};
+export const actOnEdit = () => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDITTEAM, userTeam: null });
+  };
+};
+export const actPostTeam = data => {
+  return dispatch => {
+    CallAPI(`team/api/create`, "POST", data, null)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err.response.data));
+  };
+};
+export const actPutTeam = data => {
+  return dispatch => {
+    CallAPI(`team/api/update`, "PUT", data, null)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err.response.data));
+  };
+};
+// customer
+export const actGetCustomer = () => {
+  return dispatch => {
+    CallAPI(`customer/api/findAll`, "GET", null, null)
+      .then(res =>
+        dispatch({
+          type: Actiontype.GETCUSTOMER,
+          customer1: res.data
+        })
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
+//Company
+export const actPostCompany = data => {
+  return dispatch => {
+    CallAPI(`company/api/create`, "POST", data, null)
+      .then(res =>
+        dispatch({
+          type: Actiontype.POST_COMPANY,
+          company: data
+        })
       )
       .catch(err => console.log(err.response.data));
   };

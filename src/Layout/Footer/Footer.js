@@ -4,10 +4,17 @@ import * as action from "../../redux/action/index";
 
 const Footer = props => {
   React.useEffect(() => {
-    props.getInfoCompany();
+    props.getListCompany();
   }, []);
 
-  let { infoCompany } = props;
+  let infoCompany = props.listCompany.length
+    ? props.listCompany[0]
+    : {
+        name_company: "I",
+        tel_company: "N",
+        email_company: "F",
+        address_company: "O"
+      };
 
   return (
     <section className="footer-section ptb-100">
@@ -142,14 +149,14 @@ const Footer = props => {
 
 const mapStateToProps = state => {
   return {
-    infoCompany: state.deMoReducer.company
+    listCompany: state.deMoReducer.company
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getInfoCompany: () => {
-      dispatch(action.actGetInfoCompanyAPI());
+    getListCompany: () => {
+      dispatch(action.actGetListCompanyAPI());
     }
   };
 };
