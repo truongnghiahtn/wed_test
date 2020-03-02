@@ -7,7 +7,9 @@ let initialState = {
   feature: [],
   ADMIN_LOGIN: "",
   dataProjects: [],
-  dataPrices: []
+  dataPrices: [],
+  edit: null,
+  customer: []
 };
 const deMoReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -27,10 +29,16 @@ const deMoReducer = (state = initialState, action) => {
       state.dataPrices = action.dataPrices;
       return { ...state };
     case ActionType.GET_LIST_TEAM:
-      state.team = action.team.data;
+      state.team = action.team;
       return { ...state };
     case ActionType.GET_INFO_COMPANY:
       state.company = action.company.data[0];
+      return { ...state };
+    case ActionType.EDITTEAM:
+      state.edit = action.userTeam;
+      return { ...state };
+    case ActionType.GETCUSTOMER:
+      state.customer = action.customer1;
       return { ...state };
     default:
       return { ...state };

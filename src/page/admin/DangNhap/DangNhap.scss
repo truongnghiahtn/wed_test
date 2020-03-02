@@ -10,18 +10,7 @@
       left: 0;
       z-index: 1000;
     }
-    .Form_err {
-      color: red;
-      font-size: 12px;
-      margin-top: -16px;
-      position: absolute;
-      left: 100px;
-      left: 50%;
-      font-weight: 600;
-      transform: translateX(-50%);
-  
-      width: 350px;
-    }
+
   
     .Form_Overlay {
       background: rgba(121, 188, 253, 0.4);
@@ -309,5 +298,21 @@
         transform: translateY(-700px) rotate(600deg);
       }
     }
+  }
+  .Form_err {
+    color: red;
+    font-size: 12px;
+    margin-top: -16px;
+    position: absolute;
+    left: 100px;
+    left: 50%;
+    font-weight: 600;
+    transform: translateX(-50%);
+
+    width: 350px;
+  }
+  .errform{
+    margin-top: 2px;
+    transform: translateX(-66%);
   }
   

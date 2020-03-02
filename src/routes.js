@@ -50,7 +50,7 @@ export { routesHome };
 
 const routesAdmin = [
   {
-    path: "/admin/dashboard",
+    path: "/admin-Dashboard",
     exact: false,
     component: Dashboard
   }

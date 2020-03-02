@@ -9,3 +9,7 @@ export const POST_INFO_CUSTOMER = "POST_INFO_CUSTOMER";
 export const GET_SERVICES = "GET_SERVICES";
 export const GET_PROJECTS = "GET_PROJECTS";
 export const GET_PRICES = "GET_PRICES";
+export const EDITTEAM="EDITTEAM";
+export const POSTTEAM="POSTTEAM";
+export const GETCUSTOMER="GETCUSTOMER";
+

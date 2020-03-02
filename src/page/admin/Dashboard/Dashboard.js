@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import Dashboard2 from "./../Dashboard/Dashboard_2/Dashboard2";
+import Project from "./../ProjectAdmin/projectadmin"
+import Teamadmin from "./../TeamAdmin/teamadmin"
 import AdminDelay from "./../adminDelay/adminDelay";
+import Customer from "./../Customeradmin/custommeradmin";
 import $ from "jquery";
+
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -165,7 +169,7 @@ export default class Dashboard extends Component {
                         >
                           <a href="#" onClick={this.delay1}>
                             <i className="fa fa-users" aria-hidden="true"></i>
-                            <span>User management</span>
+                            <span>Project management</span>
                             <span className="badge badge-pill badge-danger">3</span>
                           </a>
                         </li>
@@ -199,7 +203,7 @@ export default class Dashboard extends Component {
                         >
                           <a href="#">
                             <i className="fa fa-line-chart" aria-hidden="true"></i>
-                            <span>Charts</span>
+                            <span>Customer</span>
                           </a>
                         </li>
                         <li className="sidebar-dropdown">
@@ -312,10 +316,10 @@ export default class Dashboard extends Component {
                   )}
     
                   <div className="row">
-                    {this.state.data === "Dashboard" ? <Dashboard2 /> : ""}
-                    {this.state.data === "User" ? "menu1"  : ""}
-                    {this.state.data === "Course" ? "menu2" : ""}
-                    {this.state.data === "chart" ? "menu3" : ""}
+                    {this.state.data === "Dashboard" ? <Dashboard2/>   : ""}
+                    {this.state.data === "User" ? <Project/>  : ""}
+                    {this.state.data === "Course" ? <Teamadmin/> : ""}
+                    {this.state.data === "chart" ? <Customer/> : ""}
                   </div>
                 </main>
               </div>
