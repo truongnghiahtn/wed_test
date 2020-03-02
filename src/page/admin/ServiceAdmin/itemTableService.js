@@ -52,9 +52,9 @@ class itemTable extends Component {
           <Button
             variant="contained"
             color="secondary"
-            // onClick={() => {
-            //   props.deleteCourse(course.maKhoaHoc);
-            // }}
+            onClick={() => {
+              this.props.deleteServiceApi(course._id);
+            }}
           >
             <DeleteIcon />
           </Button>
@@ -68,6 +68,9 @@ const mapDispatchToProps = dispatch => {
   return {
     editService: data => {
       dispatch(action.editService(data));
+    },
+    deleteServiceApi: id => {
+      dispatch(action.deleteServiceApi());
     }
   };
 };

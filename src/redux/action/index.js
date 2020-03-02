@@ -296,3 +296,19 @@ export const editServiceApi = data => {
       .catch(err => console.log("ko dc"));
   };
 };
+
+export const deleteServiceApi = _id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI("service/api/delete", "DELETE", _id, headers)
+      .then(rs => {
+        console.log(rs);
+      })
+      .catch(err => {
+        console.log("fail");
+      });
+  };
+};
