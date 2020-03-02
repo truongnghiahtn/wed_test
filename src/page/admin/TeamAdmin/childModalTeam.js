@@ -6,7 +6,7 @@ import * as action from "./../../../redux/action/index";
   constructor(props) {
     super(props);
     this.state = {
-      values: { _id:"",name: "", position: "", img: "",createdAt:"",updatedAt:"",__v:0 },
+      values: { id:"",name: "", position: "", img: "",createdAt:"",updatedAt:"",__v:0 },
       errors: { name: "", position: "", img: "" },
       formValid: false,
       namevalid: false,
@@ -86,7 +86,7 @@ import * as action from "./../../../redux/action/index";
             name:nextProps.userEdit.name,
             position:nextProps.userEdit.position,
             img:nextProps.userEdit.img,
-            _id:nextProps.userEdit._id,
+            id:nextProps.userEdit._id,
             createdAt:nextProps.userEdit.createdAt,
             updatedAt:nextProps.userEdit.updatedAt
 

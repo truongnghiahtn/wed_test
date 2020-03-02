@@ -14,7 +14,7 @@ export const actGetListFeatureAPI = () => {
       .catch(err => console.log(err.response.data));
   };
 };
-export const getListService = () => {
+export const getListServiceApi = () => {
   return dispatch => {
     CallAPI("service/api/find")
       .then(rs => {
@@ -394,5 +394,93 @@ export const actDeleteBlogAPI = id => {
           });
         }, 150)
       );
+  };
+};
+
+export const getCategoryProjectsApi = () => {
+  return dispatch => {
+    CallAPI(`category-project/api/findAll`, "GET", null, null)
+      .then(res =>
+        dispatch({
+          type: Actiontype.GET_CATEGORY_PROJECTS,
+          dataCategoryProjects: res.data
+        })
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const editCategoryProjects = data => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDIT_CATEGORY_PROJECTS, editCate: data });
+  };
+};
+
+export const editCategoryProjectsApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`category-project/api/update`, "PUT", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
+  };
+};
+
+export const editService = data => {
+  return dispatch => {
+    dispatch({
+      type: Actiontype.EDIT_SERVICE,
+      editService: data
+    });
+  };
+};
+
+export const addServiceApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI(`service/api/create`, "POST", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const editServiceApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  console.log(headers);
+  return dispatch => {
+    CallAPI(`service/api/update`, "PUT", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
+  };
+};
+
+export const deleteServiceApi = _id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI("service/api/delete", "DELETE", _id, headers)
+      .then(rs => {
+        console.log(rs);
+      })
+      .catch(err => {
+        console.log("fail");
+      });
   };
 };

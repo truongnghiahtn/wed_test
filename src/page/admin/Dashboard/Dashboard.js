@@ -7,6 +7,8 @@ import Customer from "./../Customeradmin/custommeradmin";
 import Blog from "./../BlogAdmin/BlogAdmin";
 import Company from "./../Company/CompanyAdmin";
 import { NavLink } from "react-router-dom";
+import Category from "./../CategoryAdmin/CategoryAdmin";
+import Service from "./../ServiceAdmin/serviceAdmin";
 import $ from "jquery";
 
 export default class Dashboard extends Component {
@@ -62,6 +64,12 @@ export default class Dashboard extends Component {
         break;
       case "company":
         dulieu = "company";
+        break;
+      case "category":
+        dulieu = "category";
+        break;
+      case "service":
+        dulieu = "service";
         break;
     }
     this.setState(
@@ -247,6 +255,36 @@ export default class Dashboard extends Component {
                         <span>Company</span>
                       </a>
                     </li>
+                    <li
+                      className={
+                        this.state.data === "category"
+                          ? "sidebar-dropdown active"
+                          : "sidebar-dropdown"
+                      }
+                      onClick={() => {
+                        this.nextPage("category");
+                      }}
+                    >
+                      <a href="#">
+                        <i className="fa fa-line-chart" aria-hidden="true"></i>
+                        <span>category</span>
+                      </a>
+                    </li>
+                    <li
+                      className={
+                        this.state.data === "service"
+                          ? "sidebar-dropdown active"
+                          : "sidebar-dropdown"
+                      }
+                      onClick={() => {
+                        this.nextPage("service");
+                      }}
+                    >
+                      <a href="#">
+                        <i className="fa fa-line-chart" aria-hidden="true"></i>
+                        <span>service</span>
+                      </a>
+                    </li>
                     <li className="sidebar-dropdown">
                       <a href="#">
                         <i className="fa fa-globe" />
@@ -363,6 +401,8 @@ export default class Dashboard extends Component {
                 {this.state.data === "chart" ? <Customer /> : ""}
                 {this.state.data === "blog" ? <Blog /> : ""}
                 {this.state.data === "company" ? <Company /> : ""}
+                {this.state.data === "category" ? <Category /> : ""}
+                {this.state.data === "service" ? <Service /> : ""}
               </div>
             </main>
           </div>
