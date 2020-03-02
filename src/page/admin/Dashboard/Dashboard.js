@@ -4,8 +4,9 @@ import Project from "./../ProjectAdmin/projectadmin";
 import Teamadmin from "./../TeamAdmin/teamadmin";
 import AdminDelay from "./../adminDelay/adminDelay";
 import Customer from "./../Customeradmin/custommeradmin";
-import Blog from "./../BlogAdmin/Blogadmin";
+import Blog from "./../BlogAdmin/BlogAdmin";
 import Company from "./../Company/CompanyAdmin";
+import { NavLink } from "react-router-dom";
 import $ from "jquery";
 
 export default class Dashboard extends Component {
@@ -296,9 +297,9 @@ export default class Dashboard extends Component {
                   <i className="fa fa-cog" />
                   <span className="badge-sonar" />
                 </a>
-                <a href="/home">
+                <NavLink to="/Trang-chu">
                   <i className="fa fa-power-off" />
-                </a>
+                </NavLink>
               </div>
             </nav>
             <main className="page-content">

@@ -121,7 +121,7 @@ const Header = props => {
                   </li>
                   <li className="nav-item">
                     <NavLink to="/Lien-he" className="nav-link">
-                      Liên hệ
+                      Liện hệ
                     </NavLink>
                   </li>
                 </ul>

@@ -5,29 +5,26 @@ import { connect } from "react-redux";
 //icon
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import ChildModal from "./childModalCompany";
-import Modalfather from "./../../../components/modal/fatherModal";
+import ChildModal from "./childModalBlog";
+import Modalfather from "../../../components/modal/fatherModal";
 const Modal = Modalfather(ChildModal);
 
 class itemTable extends Component {
   render() {
-    let { company } = this.props;
+    let { blog } = this.props;
     return (
       <tr>
         <td className="admin-coursesItem ">
-          <p className="hidden">{company.name_company}</p>
+          <p className="hidden">{blog.title_blog}</p>
         </td>
         <td className="admin-coursesItem ">
-          <p className="hidden content"> {company.tel_company}</p>
+          <p className="hidden content"> {blog.content_blog}</p>
         </td>
         <td className="admin-coursesItem">
-          <p className="hidden"> {company.email_company}</p>
+          <p className="hidden"> {blog.img_blog}</p>
         </td>
         <td className="admin-coursesItem">
-          <p className="hidden"> {company.address_company}</p>
-        </td>
-        <td className="admin-coursesItem">
-          <p className="hidden"> {company.createdAt}</p>
+          <p className="hidden"> {blog.createdAt}</p>
         </td>
         <td className="admin-coursesItem">
           <Button
@@ -36,7 +33,7 @@ class itemTable extends Component {
             data-toggle="modal"
             data-target="#modelId"
             onClick={() => {
-              this.props.editCompany(company);
+              this.props.editBlog(blog);
             }}
           >
             <EditIcon />
@@ -46,7 +43,7 @@ class itemTable extends Component {
             variant="contained"
             color="secondary"
             onClick={() => {
-              this.props.deleteCompany(company._id);
+              this.props.deleteBlog(blog._id);
             }}
           >
             <DeleteIcon />
@@ -58,10 +55,10 @@ class itemTable extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    editCompany: data => {
-      dispatch(action.actGetEditCompany(data));
+    editBlog: data => {
+      dispatch(action.actGetEditBlog(data));
     },
-    deleteCompany: id => dispatch(action.actDeleteCompanyAPI(id))
+    deleteBlog: id => dispatch(action.actDeleteBlogAPI(id))
   };
 };
 export default connect(null, mapDispatchToProps)(itemTable);

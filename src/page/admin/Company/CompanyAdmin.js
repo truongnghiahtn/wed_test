@@ -7,22 +7,44 @@ import AddIcon from "@material-ui/icons/Add";
 import ItemTable from "./itemTableCompany";
 import ChildModal from "./childModalCompany";
 import Modalfather from "./../../../components/modal/fatherModal";
+import SearchAdmin from "./../../../components/SearchAdmin/index";
 const Modal = Modalfather(ChildModal);
 
 //component
 
 class CompanyAdmin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listCompany: []
+    };
+  }
   componentDidMount() {
     this.props.getListCompany();
   }
 
-  renderTbody = () => {
-    let listCompany = [...this.props.listCompany];
+  componentWillReceiveProps(nextProps) {
+    if (nextProps && nextProps.listCompany) {
+      this.setState({
+        listCompany: nextProps.listCompany
+      });
+    }
+  }
 
-    return listCompany.map((item, index) => (
+  renderTbody = () => {
+    return this.state.listCompany.map((item, index) => (
       <ItemTable company={item} key={index} />
     ));
   };
+
+  handleFilter = keyword => {
+    let listCompany = this.props.listCompany.filter(
+      item =>
+        item.name_company.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+    );
+    this.setState({ listCompany });
+  };
+
   render() {
     return (
       <div className="container">
@@ -33,19 +55,14 @@ class CompanyAdmin extends Component {
             color="primary"
             data-toggle="modal"
             data-target="#modelId"
+            onClick={() => {
+              this.props.onEditCompany();
+            }}
           >
             <AddIcon /> Add Company
           </Button>
           <Modal />
-          <div>
-            <i className="fa fa-search" aria-hidden="true"></i>{" "}
-            <input
-              className="input-search"
-              type="text"
-              name="Search"
-              placeholder="Search"
-            />
-          </div>
+          <SearchAdmin onFilter={this.handleFilter} />
         </div>
         <div className="admin-content">
           <table className="table table-striped table-inverse">
@@ -74,6 +91,9 @@ const MapDispatchToProps = Dispatch => {
   return {
     getListCompany: () => {
       Dispatch(action.actGetListCompanyAPI());
+    },
+    onEditCompany: () => {
+      Dispatch(action.actOnEditCompany());
     }
   };
 };

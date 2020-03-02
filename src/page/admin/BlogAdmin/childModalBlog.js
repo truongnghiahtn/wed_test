@@ -2,31 +2,28 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../../../redux/action/index";
 
-class childModalCompany extends Component {
+class childModalBlog extends Component {
   constructor(props) {
     super(props);
     this.state = {
       values: {
         id: "",
-        name_company: "",
-        tel_company: "",
-        email_company: "",
-        address_company: "",
-        createdAt: "",
-        updatedAt: "",
+        img_blog: "",
+        title_blog: "",
+        content_blog: "",
+        created_at: "",
+        updated_at: "",
         __v: 0
       },
       errors: {
-        name_company: "",
-        tel_company: "",
-        email_company: "",
-        address_company: ""
+        img_blog: "",
+        title_blog: "",
+        content_blog: ""
       },
       formValid: false,
-      name_companyValid: false,
-      tel_companyValid: false,
-      email_companyValid: false,
-      address_companyValid: false
+      img_blogValid: false,
+      title_blogValid: false,
+      content_blogValid: false
     };
   }
   handdleonchange = event => {
@@ -46,23 +43,23 @@ class childModalCompany extends Component {
     let { name, value } = event.target;
     let message = value === "" ? "Do not be empty" : "";
     let {
-      name_companyValid,
-      tel_companyValid,
-      email_companyValid,
-      address_companyValid
+      img_blogValid,
+      title_blogValid,
+      content_blogValid,
+      Valid
     } = this.state;
     switch (name) {
-      case "name_company":
-        name_companyValid = message !== "" ? false : true;
+      case "img_blog":
+        img_blogValid = message !== "" ? false : true;
         break;
-      case "tel_company":
-        tel_companyValid = message !== "" ? false : true;
+      case "title_blog":
+        title_blogValid = message !== "" ? false : true;
         break;
-      case "email_company":
-        email_companyValid = message !== "" ? false : true;
+      case "content_blog":
+        content_blogValid = message !== "" ? false : true;
         break;
-      case "address_company":
-        address_companyValid = message !== "" ? false : true;
+      case "":
+        Valid = message !== "" ? false : true;
         break;
       default:
         break;
@@ -70,10 +67,10 @@ class childModalCompany extends Component {
     this.setState(
       {
         errors: { ...this.state.errors, [name]: message },
-        name_companyValid,
-        tel_companyValid,
-        email_companyValid,
-        address_companyValid
+        img_blogValid,
+        title_blogValid,
+        content_blogValid,
+        Valid
       },
       () => {
         this.FormValidation();
@@ -83,53 +80,49 @@ class childModalCompany extends Component {
   FormValidation = () => {
     this.setState({
       formValid:
-        this.state.name_companyValid &&
-        this.state.tel_companyValid &&
-        this.state.email_companyValid &&
-        this.state.address_companyValid
+        this.state.img_blogValid &&
+        this.state.title_blogValid &&
+        this.state.content_blogValid
     });
   };
   handleSubmit = event => {
     event.preventDefault();
 
-    if (this.props.editInfoCompany === null) {
-      this.props.addCompany(this.state.values);
+    if (this.props.editInfoBlog === null) {
+      this.props.addBlog(this.state.values);
       console.log("add");
       console.log(this.state.values);
     } else {
-      this.props.editCompany(this.state.values);
+      this.props.editBlog(this.state.values);
       console.log(this.state.values);
       console.log("update");
     }
   };
   componentWillReceiveProps(nextProps) {
-    if (nextProps && nextProps.editInfoCompany) {
+    if (nextProps && nextProps.editInfoBlog) {
       //Update
-      console.log(nextProps.editInfoCompany);
+      console.log(nextProps.editInfoBlog);
 
       this.setState({
         values: {
           ...this.state.values,
-          name_company: nextProps.editInfoCompany.name_company,
-          tel_company: nextProps.editInfoCompany.tel_company,
-          email_company: nextProps.editInfoCompany.email_company,
-          address_company: nextProps.editInfoCompany.address_company,
-          id: nextProps.editInfoCompany._id,
-          createdAt: nextProps.editInfoCompany.createdAt,
-          updatedAt: nextProps.editInfoCompany.updatedAt
+          img_blog: nextProps.editInfoBlog.img_blog,
+          title_blog: nextProps.editInfoBlog.title_blog,
+          content_blog: nextProps.editInfoBlog.content_blog,
+          id: nextProps.editInfoBlog._id,
+          created_at: nextProps.editInfoBlog.created_at,
+          updated_at: nextProps.editInfoBlog.updated_at
         },
         errors: {
           ...this.state.errors,
-          name_company: "",
-          tel_company: "",
-          email_company: "",
-          address_company: ""
+          img_blog: "",
+          title_blog: "",
+          content_blog: ""
         },
 
-        name_companyValid: true,
-        tel_companyValid: true,
-        email_companyValid: true,
-        address_companyValid: true,
+        img_blogValid: true,
+        title_blogValid: true,
+        content_blogValid: true,
         formValid: true
       });
     } else {
@@ -137,15 +130,13 @@ class childModalCompany extends Component {
       this.setState({
         values: {
           ...this.state.values,
-          name_company: "",
-          tel_company: "",
-          email_company: "",
-          address_company: ""
+          img_blog: "",
+          title_blog: "",
+          content_blog: ""
         },
-        name_companyValid: false,
-        tel_companyValid: false,
-        email_companyValid: false,
-        address_companyValid: false,
+        img_blogValid: false,
+        title_blogValid: false,
+        content_blogValid: false,
         formValid: false
       });
     }
@@ -155,10 +146,10 @@ class childModalCompany extends Component {
     return (
       <div>
         <div className="modal-header">
-          {this.props.editInfoCompany === null ? (
-            <h5 className="modal-title">ADD COMPANY</h5>
+          {this.props.editInfoBlog === null ? (
+            <h5 className="modal-title">ADD Blog</h5>
           ) : (
-            <h5 className="modal-title">EDIT COMPANY</h5>
+            <h5 className="modal-title">EDIT Blog</h5>
           )}
           <button
             type="button"
@@ -172,87 +163,67 @@ class childModalCompany extends Component {
         <div className="modal-body">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label>Tên công ty</label>
+              <label>Tiêu đề</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Tên công ty"
+                placeholder="Tiêu đề"
                 onChange={this.handdleonchange}
                 onBlur={this.handleErrors}
                 onKeyUp={this.handleErrors}
-                name="name_company"
-                value={this.state.values.name_company}
+                name="title_blog"
+                value={this.state.values.title_blog}
               />
-              {this.state.errors.name_company !== "" ? (
+              {this.state.errors.title_blog !== "" ? (
                 <div className="Form_err errform">
-                  (*) {this.state.errors.name_company}
+                  (*) {this.state.errors.title_blog}
                 </div>
               ) : (
                 ""
               )}
             </div>
             <div className="form-group">
-              <label>Số điện thoại</label>
+              <label>Nội dung</label>
 
               <input
                 type="text"
                 className="form-control"
-                placeholder="Số điện thoại"
+                placeholder="Nội dung"
                 onChange={this.handdleonchange}
                 onBlur={this.handleErrors}
                 onKeyUp={this.handleErrors}
-                name="tel_company"
-                value={this.state.values.tel_company}
+                name="content_blog"
+                value={this.state.values.content_blog}
               />
-              {this.state.errors.tel_company !== "" ? (
+              {this.state.errors.content_blog !== "" ? (
                 <div className="Form_err errform">
-                  (*) {this.state.errors.tel_company}
+                  (*) {this.state.errors.content_blog}
                 </div>
               ) : (
                 ""
               )}
             </div>
             <div className="form-group m-0">
-              <label>Email</label>
+              <label>Hình ảnh</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Email"
+                placeholder="Hình ảnh"
                 onChange={this.handdleonchange}
                 onBlur={this.handleErrors}
                 onKeyUp={this.handleErrors}
-                name="email_company"
-                value={this.state.values.email_company}
+                name="img_blog"
+                value={this.state.values.img_blog}
               />
             </div>
-            {this.state.errors.email_company !== "" ? (
+            {this.state.errors.img_blog !== "" ? (
               <div className="Form_err errform">
-                (*) {this.state.errors.email_company}
+                (*) {this.state.errors.img_blog}
               </div>
             ) : (
               ""
             )}
-            <div className="form-group m-0">
-              <label>Địa chỉ</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Địa chỉ"
-                onChange={this.handdleonchange}
-                onBlur={this.handleErrors}
-                onKeyUp={this.handleErrors}
-                name="address_company"
-                value={this.state.values.address_company}
-              />
-            </div>
-            {this.state.errors.address_company !== "" ? (
-              <div className="Form_err errform">
-                (*) {this.state.errors.address_company}
-              </div>
-            ) : (
-              ""
-            )}
-            {this.props.editInfoCompany === null ? (
+            {this.props.editInfoBlog === null ? (
               ""
             ) : (
               <div>
@@ -262,7 +233,7 @@ class childModalCompany extends Component {
                     type="text"
                     className="form-control"
                     placeholder="Thời gian"
-                    value={this.state.values.createdAt}
+                    value={this.state.values.created_at}
                     disabled
                   />
                 </div>
@@ -272,18 +243,18 @@ class childModalCompany extends Component {
                     type="text"
                     className="form-control"
                     placeholder="Thời gian Update"
-                    value={this.state.values.updatedAt}
+                    value={this.state.values.updated_at}
                     disabled
                   />
                 </div>
               </div>
             )}
-            {/* {this.props.editCompany===null?(<button
+            {/* {this.props.editBlog===null?(<button
               type="submit"
               className="btn btn-success mt-4"
               
               disabled={!this.state.formValid}
-              onClick={()=>this.props.addCompany(this.state.values)}
+              onClick={()=>this.props.addBlog(this.state.values)}
             >
               Submit
             </button>):(<button
@@ -291,7 +262,7 @@ class childModalCompany extends Component {
               className="btn btn-success mt-4"
               
               disabled={!this.state.formValid}
-              onClick={()=>this.props.editCompany(this.state.values)}
+              onClick={()=>this.props.editBlog(this.state.values)}
             >
               Update
             </button>)} */}
@@ -310,20 +281,20 @@ class childModalCompany extends Component {
 }
 const mapStateToProps = state => {
   return {
-    editInfoCompany: state.deMoReducer.editCompany
+    editInfoBlog: state.deMoReducer.editBlog
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    addCompany: data => {
-      dispatch(action.actAddCompanyAPI(data));
+    addBlog: data => {
+      dispatch(action.actAddBlogAPI(data));
     },
-    editCompany: data => {
-      dispatch(action.actEditCompanyAPI(data));
+    editBlog: data => {
+      dispatch(action.actEditBlogAPI(data));
     },
-    getListCompany: () => {
-      dispatch(action.actGetListCompanyAPI());
+    getListBlog: () => {
+      dispatch(action.getBlogApi());
     }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(childModalCompany);
+export default connect(mapStateToProps, mapDispatchToProps)(childModalBlog);

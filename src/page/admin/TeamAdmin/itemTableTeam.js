@@ -12,7 +12,7 @@ const Modal = Modalfather(ChildModal);
  class itemTable extends Component {
   render() {
     let { course } = this.props;
-    console.log(course);
+
     return (
       <tr>
         <td className="admin-coursesItem ">

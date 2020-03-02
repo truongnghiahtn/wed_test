@@ -3,7 +3,11 @@ export const ADMIN_LOGIN = "ADMIN_LOGIN";
 export const GET_LIST_TEAM = "GET_LIST_TEAM";
 
 export const GET_LIST_COMPANY = "GET_LIST_COMPANY";
-export const POST_COMPANY = "POST_COMPANY";
+export const ADD_COMPANY_API = "ADD_COMPANY_API";
+export const EDIT_COMPANY_API = "EDIT_COMPANY_API";
+export const EDIT_COMPANY = "EDIT_COMPANY";
+export const EDITCOMPANY = "EDITCOMPANY";
+export const DELETE_COMPANY_API = "DELETE_COMPANY_API";
 
 export const GET_LIST_CUSTOMER = "GET_LIST_CUSTOMER";
 export const POST_INFO_CUSTOMER = "POST_INFO_CUSTOMER";
@@ -15,3 +19,8 @@ export const EDITTEAM = "EDITTEAM";
 export const POSTTEAM = "POSTTEAM";
 export const GETCUSTOMER = "GETCUSTOMER";
 export const GET_BLOG = "GET_BLOG";
+export const ADD_BLOG_API = "ADD_BLOG_API";
+export const EDIT_BLOG_API = "EDIT_BLOG_API";
+export const EDIT_BLOG = "EDIT_BLOG";
+export const EDITBLOG = "EDITBLOG";
+export const DELETE_BLOG_API = "DELETE_BLOG_API";

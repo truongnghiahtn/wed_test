@@ -31,28 +31,58 @@ export const getListService = () => {
 // admin login
 export const actloginAdmin = (user, history) => {
   return dispatch => {
-    if (user.taiKhoan === "admin1531999" && user.matKhau === "00000000") {
-      localStorage.setItem("userAdmin", JSON.stringify(user));
-      history.push("/admin-Dashboard");
-      dispatch({
-        type: Actiontype.ADMIN_LOGIN,
-        ADMIN_LOGIN: ""
+    // if (user.taiKhoan === "admin1531999" && user.matKhau === "00000000") {
+    //   localStorage.setItem("userAdmin", JSON.stringify(user));
+    //   history.push("/admin-Dashboard");
+    //   dispatch({
+    //     type: Actiontype.ADMIN_LOGIN,
+    //     ADMIN_LOGIN: ""
+    //   });
+    // } else {
+    //   dispatch({
+    //     type: Actiontype.ADMIN_LOGIN,
+    //     ADMIN_LOGIN: "Dang nhap khong thanh cong"
+    //   });
+    //   setTimeout(() => {
+    //     swal({
+    //       title: "The account or password is incorrect!",
+    //       text: "See you again!",
+    //       icon: "error",
+    //       buttons: false,
+    //       timer: 1500
+    //     });
+    //   }, 150);
+    // }
+    CallAPI(`api/login`, "POST", user, null)
+      .then(result => {
+        if (result.data.code === 201) {
+          localStorage.setItem("userAdmin", JSON.stringify(result.data));
+          history.push("admin/dashboard");
+          console.log(result.data);
+          dispatch({
+            type: Actiontype.ADMIN_LOGIN,
+            ADMIN_LOGIN: ""
+          });
+        } else {
+          localStorage.removeItem("userAdmin");
+          dispatch({
+            type: Actiontype.ADMIN_LOGIN,
+            ADMIN_LOGIN: "Dang nhap khong thanh cong"
+          });
+          setTimeout(() => {
+            swal({
+              title: "The account or password is incorrect!",
+              text: "See you again!",
+              icon: "error",
+              buttons: false,
+              timer: 1500
+            });
+          }, 150);
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
-    } else {
-      dispatch({
-        type: Actiontype.ADMIN_LOGIN,
-        ADMIN_LOGIN: "Dang nhap khong thanh cong"
-      });
-      setTimeout(() => {
-        swal({
-          title: "The account or password is incorrect!",
-          text: "See you again!",
-          icon: "error",
-          buttons: false,
-          timer: 1500
-        });
-      }, 150);
-    }
   };
 };
 // end admin login
@@ -163,12 +193,19 @@ export const actPostTeam = data => {
   };
 };
 export const actPutTeam = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  console.log(data);
+  console.log(headers);
+
   return dispatch => {
-    CallAPI(`team/api/update`, "PUT", data, null)
+    CallAPI(`team/api/update`, "PUT", data, headers)
       .then(res => {
         console.log(res);
       })
-      .catch(err => console.log(err.response.data));
+      .catch(err => console.log("ko dc"));
   };
 };
 // customer
@@ -185,15 +222,177 @@ export const actGetCustomer = () => {
   };
 };
 //Company
-export const actPostCompany = data => {
+export const actAddCompanyAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
   return dispatch => {
-    CallAPI(`company/api/create`, "POST", data, null)
+    CallAPI(`company/api/create`, "POST", data, headers)
       .then(res =>
         dispatch({
-          type: Actiontype.POST_COMPANY,
+          type: Actiontype.ADD_COMPANY_API,
           company: data
         })
       )
       .catch(err => console.log(err.response.data));
+  };
+};
+
+export const actGetEditCompany = company => {
+  return {
+    type: Actiontype.EDIT_COMPANY,
+    editCompany: company
+  };
+};
+
+export const actOnEditCompany = () => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDITCOMPANY, company: null });
+  };
+};
+
+export const actEditCompanyAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`company/api/update`, "PUT", data, headers)
+      .then(res => {
+        dispatch({
+          type: Actiontype.EDIT_COMPANY_API,
+          company: data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+export const actDeleteCompanyAPI = id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI(`company/api/delete`, "DELETE", { id }, headers)
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch({
+          type: Actiontype.DELETE_COMPANY_API,
+          id: res.data._id
+        });
+      })
+      .catch(err =>
+        setTimeout(() => {
+          swal({
+            title: "Error",
+            text: `${err.response.data}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150)
+      );
+  };
+};
+
+//Blog
+export const actAddBlogAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`blog/api/create`, "POST", data, headers)
+      .then(res =>
+        dispatch({
+          type: Actiontype.ADD_BLOG_API,
+          blog: data
+        })
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const actGetEditBlog = blog => {
+  return {
+    type: Actiontype.EDIT_BLOG,
+    editBlog: blog
+  };
+};
+
+export const actOnEditBlog = () => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDITBLOG, blog: null });
+  };
+};
+
+export const actEditBlogAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`blog/api/update`, "PUT", data, headers)
+      .then(res => {
+        dispatch({
+          type: Actiontype.EDIT_BLOG_API,
+          blog: data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+export const actDeleteBlogAPI = id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`blog/api/delete`, "DELETE", { id }, headers)
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch(
+          {
+            type: Actiontype.DELETE_BLOG_API,
+            id: res.data._id
+          },
+          console.log(res)
+        );
+      })
+      .catch(err =>
+        setTimeout(() => {
+          swal({
+            title: "Error",
+            text: `${err.response.data}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150)
+      );
   };
 };
