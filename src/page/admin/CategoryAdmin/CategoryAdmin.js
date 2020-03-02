@@ -7,6 +7,12 @@ import Modalfather from "./../../../components/modal/fatherModal";
 const Modal = Modalfather(ChildModal);
 
 class CategoryAdmin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      keyword: ""
+    };
+  }
   componentDidMount() {
     this.props.getCategoryProjectsApi();
   }
@@ -15,9 +21,15 @@ class CategoryAdmin extends Component {
     let { dataCategoryProjects } = this.props;
 
     console.log(dataCategoryProjects);
-    return dataCategoryProjects.map((item, index) => (
-      <ItemTable course={item} key={index} />
-    ));
+    return dataCategoryProjects
+      .filter(item => {
+        return (
+          item.name_category_project
+            .toLowerCase()
+            .indexOf(this.state.keyword.toLowerCase()) !== -1
+        );
+      })
+      .map((item, index) => <ItemTable course={item} key={index} />);
   };
   render() {
     console.log(this.props);
@@ -32,6 +44,11 @@ class CategoryAdmin extends Component {
               type="text"
               name="Search"
               placeholder="Search"
+              onChange={event => {
+                this.setState({
+                  keyword: event.target.value
+                });
+              }}
             />
           </div>
         </div>
