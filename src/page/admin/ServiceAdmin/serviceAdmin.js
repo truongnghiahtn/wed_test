@@ -10,6 +10,12 @@ import Modalfather from "./../../../components/modal/fatherModal";
 const Modal = Modalfather(ChildModal);
 
 class serviceAdmin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      keyword: ""
+    };
+  }
   componentDidMount() {
     this.props.getListServiceApi();
   }
@@ -18,9 +24,15 @@ class serviceAdmin extends Component {
     let listService = [...this.props.listService];
 
     console.log(listService);
-    return listService.map((item, index) => (
-      <ItemTable course={item} key={index} />
-    ));
+    return listService
+      .filter(item => {
+        return (
+          item.name_service
+            .toLowerCase()
+            .indexOf(this.state.keyword.toLowerCase()) !== -1
+        );
+      })
+      .map((item, index) => <ItemTable course={item} key={index} />);
   };
   render() {
     return (
@@ -46,6 +58,11 @@ class serviceAdmin extends Component {
               type="text"
               name="Search"
               placeholder="Search"
+              onChange={event => {
+                this.setState({
+                  keyword: event.target.value
+                });
+              }}
             />
           </div>
         </div>
