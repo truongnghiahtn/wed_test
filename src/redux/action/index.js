@@ -14,15 +14,15 @@ export const actGetListFeatureAPI = () => {
       .catch(err => console.log(err.response.data));
   };
 };
-export const getListService = () => {
+export const getListServiceApi = () => {
   return dispatch => {
-    CallAPI("service/api/find")
-      .then(rs => {
+    CallAPI("service/api/findAll")
+      .then(rs =>
         dispatch({
           type: Actiontype.GET_SERVICES,
-          listService: rs.data.data
-        });
-      })
+          listService: rs.data
+        })
+      )
       .catch(err => {
         console.log(err);
       });
@@ -55,19 +55,16 @@ export const actloginAdmin = (user, history) => {
     // }
     CallAPI(`api/login`, "POST", user, null)
       .then(result => {
-         
-        if(result.data.code===201)
-        {
+        if (result.data.code === 201) {
           localStorage.setItem("userAdmin", JSON.stringify(result.data));
           history.push("admin/dashboard");
-          console.log(result.data)
-        dispatch({
-          type: Actiontype.ADMIN_LOGIN,
-          ADMIN_LOGIN: ""
-        });
-        }
-        else{
-          localStorage.removeItem("userAdmin")
+          console.log(result.data);
+          dispatch({
+            type: Actiontype.ADMIN_LOGIN,
+            ADMIN_LOGIN: ""
+          });
+        } else {
+          localStorage.removeItem("userAdmin");
           dispatch({
             type: Actiontype.ADMIN_LOGIN,
             ADMIN_LOGIN: "Dang nhap khong thanh cong"
@@ -84,7 +81,7 @@ export const actloginAdmin = (user, history) => {
         }
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       });
   };
 };
@@ -205,15 +202,19 @@ export const actPutTeam = data => {
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
+<<<<<<< HEAD
   
+=======
+  console.log(data);
+  console.log(headers);
+
+>>>>>>> 251d1d3a7730597f3e82d42d53d3f723fc7b31f8
   return dispatch => {
     CallAPI(`team/api/update`, "PUT", data, headers)
       .then(res => {
         console.log(res);
-       
       })
       .catch(err => console.log("ko dc"));
-     
   };
 };
 // customer
@@ -224,6 +225,19 @@ export const actGetCustomer = () => {
         dispatch({
           type: Actiontype.GETCUSTOMER,
           customer1: res.data
+        })
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const getCategoryProjectsApi = () => {
+  return dispatch => {
+    CallAPI(`category-project/api/findAll`, "GET", null, null)
+      .then(res =>
+        dispatch({
+          type: Actiontype.GET_CATEGORY_PROJECTS,
+          dataCategoryProjects: res.data
         })
       )
       .catch(err => console.log(err.response.data));
