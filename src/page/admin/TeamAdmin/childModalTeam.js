@@ -23,7 +23,7 @@ import * as action from "./../../../redux/action/index";
         }
       },
       () => {
-        console.log(this.state);
+   
       }
     );
   };
@@ -68,13 +68,11 @@ import * as action from "./../../../redux/action/index";
    
     if(this.props.userEdit===null){
       this.props.addUser(this.state.values)
-      console.log("add")
-      console.log(this.state.values)
+   
     }
     else{
       this.props.editUser(this.state.values)
-      console.log(this.state.values)
-      console.log("update")
+     
       
     }
   };

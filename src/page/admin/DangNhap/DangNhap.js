@@ -7,11 +7,11 @@ import { connect } from "react-redux";
 constructor(props) {
     super(props);
     this.state = {
-      values: { taiKhoan: "", matKhau: "" },
-      errors: { taiKhoan: "", matKhau: "", taiKhoan_1: "" },
+      values: { username: "", password: "" },
+      errors: { username: "", password: "", username_1: "" },
       formValid: false,
-      taiKhoanValid: false,
-      matKhauValid: false
+      usernameValid: false,
+      passwordValid: false
     };
   }
   handleOnchanle = event => {
@@ -29,14 +29,14 @@ constructor(props) {
     let { name, value } = event.target;
 
     let message = value === "" ? " Do not be empty" : "";
-    let { taiKhoanValid, matKhauValid } = this.state;
+    let { usernameValid, passwordValid } = this.state;
     switch (name) {
-      case "taiKhoan":
-        taiKhoanValid = message !== "" ? false : true;
+      case "username":
+        usernameValid = message !== "" ? false : true;
         break;
 
-      case "matKhau":
-        matKhauValid = message !== "" ? false : true;
+      case "password":
+        passwordValid = message !== "" ? false : true;
         break;
       default:
         break;
@@ -44,8 +44,8 @@ constructor(props) {
     this.setState(
       {
         errors: { ...this.state.errors, [name]: message },
-        taiKhoanValid,
-        matKhauValid
+        usernameValid,
+        passwordValid
       },
       () => {
         this.FormValidation();
@@ -54,7 +54,7 @@ constructor(props) {
   };
   FormValidation = () => {
     this.setState({
-      formValid: this.state.taiKhoanValid && this.state.matKhauValid
+      formValid: this.state.usernameValid && this.state.passwordValid
     });
   };
   handleSubmit = event => {
@@ -76,28 +76,28 @@ constructor(props) {
               >
                 <input
                   type="text"
-                  name="taiKhoan"
+                  name="username"
                   onChange={this.handleOnchanle}
                   onBlur={this.handleErrors}
                   onKeyUp={this.handleErrors}
                   placeholder="Username"
                 />
-                {this.state.errors.taiKhoan !== "" ? (
+                {this.state.errors.username !== "" ? (
                   <div className="Form_err">
-                    (*) {this.state.errors.taiKhoan}
+                    (*) {this.state.errors.username}
                   </div>
                 ) : (
                   ""
                 )}
                 <input
                   type="password"
-                  name="matKhau"
+                  name="password"
                   onChange={this.handleOnchanle}
                   onBlur={this.handleErrors}
                   onKeyUp={this.handleErrors}
                   placeholder="Password"
                 />
-                {this.state.errors.matKhau !== "" &&
+                {this.state.errors.password !== "" &&
                 this.props.adminLogin === "" ? (
                   <div className="Form_err">
                     (*) The account or password is incorrect!

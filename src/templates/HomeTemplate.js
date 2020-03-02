@@ -9,6 +9,7 @@ import GoTop from "../components/GoTop";
 const HomeLayout = props => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    localStorage.clear();
   }, [props.location]);
 
   return (
