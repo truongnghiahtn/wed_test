@@ -184,7 +184,7 @@ export const actOnEdit = () => {
   };
 };
 export const actPostTeam = data => {
-  console.log(data)
+  console.log(data);
   let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
@@ -202,13 +202,7 @@ export const actPutTeam = data => {
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-<<<<<<< HEAD
-  
-=======
-  console.log(data);
-  console.log(headers);
 
->>>>>>> 251d1d3a7730597f3e82d42d53d3f723fc7b31f8
   return dispatch => {
     CallAPI(`team/api/update`, "PUT", data, headers)
       .then(res => {
@@ -241,5 +235,64 @@ export const getCategoryProjectsApi = () => {
         })
       )
       .catch(err => console.log(err.response.data));
+  };
+};
+
+export const editCategoryProjects = data => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDIT_CATEGORY_PROJECTS, editCate: data });
+  };
+};
+
+export const editCategoryProjectsApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`category-project/api/update`, "PUT", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
+  };
+};
+
+export const editService = data => {
+  return dispatch => {
+    dispatch({
+      type: Actiontype.EDIT_SERVICE,
+      editService: data
+    });
+  };
+};
+
+export const addServiceApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI(`service/api/create`, "POST", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const editServiceApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  console.log(headers);
+  return dispatch => {
+    CallAPI(`service/api/update`, "PUT", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
   };
 };

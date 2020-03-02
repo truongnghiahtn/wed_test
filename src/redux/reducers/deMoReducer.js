@@ -11,7 +11,9 @@ let initialState = {
   dataBlog: [],
   edit: null,
   customer: [],
-  dataCategoryProjects: []
+  dataCategoryProjects: [],
+  editCate: "",
+  editService: ""
 };
 const deMoReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -49,6 +51,13 @@ const deMoReducer = (state = initialState, action) => {
     case ActionType.GET_CATEGORY_PROJECTS:
       console.log(action);
       state.dataCategoryProjects = action.dataCategoryProjects;
+      return { ...state };
+    case ActionType.EDIT_CATEGORY_PROJECTS:
+      console.log(action);
+      state.editCate = action.editCate;
+      return { ...state };
+    case ActionType.EDIT_SERVICE:
+      state.editService = action.editService;
       return { ...state };
     default:
       return { ...state };
