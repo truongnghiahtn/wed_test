@@ -187,8 +187,13 @@ export const actOnEdit = () => {
   };
 };
 export const actPostTeam = data => {
+  console.log(data)
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
   return dispatch => {
-    CallAPI(`team/api/create`, "POST", data, null)
+    CallAPI(`team/api/create`, "POST", data, headers)
       .then(res => {
         console.log(res);
       })
@@ -200,8 +205,6 @@ export const actPutTeam = data => {
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  console.log(data)
-  console.log(headers)
   
   return dispatch => {
     CallAPI(`team/api/update`, "PUT", data, headers)
