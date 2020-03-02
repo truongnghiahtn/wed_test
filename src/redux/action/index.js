@@ -31,28 +31,58 @@ export const getListServiceApi = () => {
 // admin login
 export const actloginAdmin = (user, history) => {
   return dispatch => {
-    if (user.taiKhoan === "admin1531999" && user.matKhau === "00000000") {
-      localStorage.setItem("userAdmin", JSON.stringify(user));
-      history.push("/admin-Dashboard");
-      dispatch({
-        type: Actiontype.ADMIN_LOGIN,
-        ADMIN_LOGIN: ""
+    // if (user.taiKhoan === "admin1531999" && user.matKhau === "00000000") {
+    //   localStorage.setItem("userAdmin", JSON.stringify(user));
+    //   history.push("/admin-Dashboard");
+    //   dispatch({
+    //     type: Actiontype.ADMIN_LOGIN,
+    //     ADMIN_LOGIN: ""
+    //   });
+    // } else {
+    //   dispatch({
+    //     type: Actiontype.ADMIN_LOGIN,
+    //     ADMIN_LOGIN: "Dang nhap khong thanh cong"
+    //   });
+    //   setTimeout(() => {
+    //     swal({
+    //       title: "The account or password is incorrect!",
+    //       text: "See you again!",
+    //       icon: "error",
+    //       buttons: false,
+    //       timer: 1500
+    //     });
+    //   }, 150);
+    // }
+    CallAPI(`api/login`, "POST", user, null)
+      .then(result => {
+        if (result.data.code === 201) {
+          localStorage.setItem("userAdmin", JSON.stringify(result.data));
+          history.push("admin/dashboard");
+          console.log(result.data);
+          dispatch({
+            type: Actiontype.ADMIN_LOGIN,
+            ADMIN_LOGIN: ""
+          });
+        } else {
+          localStorage.removeItem("userAdmin");
+          dispatch({
+            type: Actiontype.ADMIN_LOGIN,
+            ADMIN_LOGIN: "Dang nhap khong thanh cong"
+          });
+          setTimeout(() => {
+            swal({
+              title: "The account or password is incorrect!",
+              text: "See you again!",
+              icon: "error",
+              buttons: false,
+              timer: 1500
+            });
+          }, 150);
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
-    } else {
-      dispatch({
-        type: Actiontype.ADMIN_LOGIN,
-        ADMIN_LOGIN: "Dang nhap khong thanh cong"
-      });
-      setTimeout(() => {
-        swal({
-          title: "The account or password is incorrect!",
-          text: "See you again!",
-          icon: "error",
-          buttons: false,
-          timer: 1500
-        });
-      }, 150);
-    }
   };
 };
 // end admin login
@@ -163,12 +193,19 @@ export const actPostTeam = data => {
   };
 };
 export const actPutTeam = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  console.log(data);
+  console.log(headers);
+
   return dispatch => {
-    CallAPI(`team/api/update`, "PUT", data, null)
+    CallAPI(`team/api/update`, "PUT", data, headers)
       .then(res => {
         console.log(res);
       })
-      .catch(err => console.log(err.response.data));
+      .catch(err => console.log("ko dc"));
   };
 };
 // customer
