@@ -8,6 +8,7 @@ let initialState = {
   ADMIN_LOGIN: "",
   dataProjects: [],
   dataPrices: [],
+  dataBlog: [],
   edit: null,
   customer: []
 };
@@ -19,17 +20,17 @@ const deMoReducer = (state = initialState, action) => {
     case ActionType.GET_SERVICES:
       state.listService = action.listService;
       return { ...state };
-    case ActionType.ADMIN_LOGIN:
-      state.ADMIN_LOGIN = action.ADMIN_LOGIN;
-      console.log(state.ADMIN_LOGIN);
     case ActionType.GET_PROJECTS:
       state.dataProjects = action.dataProjects;
       return { ...state };
     case ActionType.GET_PRICES:
       state.dataPrices = action.dataPrices;
       return { ...state };
+    case ActionType.GET_BLOG:
+      state.dataBlog = action.dataBlog;
+      return { ...state };
     case ActionType.GET_LIST_TEAM:
-      state.team = action.team;
+      state.team = action.team.data;
       return { ...state };
     case ActionType.GET_INFO_COMPANY:
       state.company = action.company.data[0];
@@ -39,6 +40,10 @@ const deMoReducer = (state = initialState, action) => {
       return { ...state };
     case ActionType.GETCUSTOMER:
       state.customer = action.customer1;
+      return { ...state };
+    case ActionType.ADMIN_LOGIN:
+      state.ADMIN_LOGIN = action.ADMIN_LOGIN;
+      console.log(state.ADMIN_LOGIN);
       return { ...state };
     default:
       return { ...state };

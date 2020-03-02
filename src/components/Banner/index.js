@@ -11,6 +11,7 @@ const Banner = () => {
       preloader: false,
       fixedContentPos: false
     });
+
     if (window.$(".wow").length) {
       var wow = new window.WOW({
         boxClass: "wow", // animated element css class (default is wow)

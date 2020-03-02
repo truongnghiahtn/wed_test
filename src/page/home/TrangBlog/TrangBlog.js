@@ -1,274 +1,147 @@
-import React, { Component } from 'react';
-import Blog from '../../../components/Blog/index';
-export default class TrangBlog extends Component {
-	render() {
-		return (
-			<section className="blog-page-area ptb-100">
-				<div className="container">
-					<div className="section-title">
-						<span>Blog</span>
-						<h3>Xem dự án mới nhất của chúng tôi</h3>
+import React, { Component, Fragment } from 'react';
+import Subcribe from '../../../components/Subcribe/Subcribe';
+import PageTitleArea from '../../../components/PageTitleArea/PageTitleArea';
+import { connect } from 'react-redux';
+import * as actions from '../../../redux/action/index';
+import * as $ from 'jquery';
+class TrangBlog extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			dataBlog: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+			pageNumberCurrent: 1,
+		};
+	}
+	componentDidMount() {
+		this.props.getBlogApi();
+	}
+	renderContentBlog = () => {
+		return this.state.dataBlog
+			.slice(6 * (this.state.pageNumberCurrent - 1), 6 * (this.state.pageNumberCurrent - 1) + 6)
+			.map((item, index) => {
+				return (
+					<div className="col-lg-4 col-md-6" key={index}>
+						<div className="blog-item fix-style">
+							<div className="blog-image">
+								<a href="#">
+									{/* <img src={item.img_blog} alt="image" /> */}
+									<img src="assets/img/blog/2.png" alt="image" />
+								</a>
+							</div>
+							<div className="single-blog-item">
+								<ul className="date">
+									<li>21</li>
+									<li>November</li>
+								</ul>
+								<ul className="blog-list">
+									<li>
+										<a href="#">
+											<i className="fa fa-user-alt" /> By admin
+										</a>
+									</li>
+									<li>
+										<i className="far fa-comments" /> 3 Comments
+									</li>
+								</ul>
+								<div className="blog-content">
+									<a href="#">
+										{item}
+										<h3>{item.title_blog}</h3>
+									</a>
+									<p>{item.content_blog}</p>
+								</div>
+								<div className="blog-btn">
+									<a href="#" className="blog-btn-one">
+										Read More
+									</a>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div className="row">
-						<div className="col-lg-4 col-md-6">
-							<div className="blog-item">
-								<div className="blog-image">
-									<a href="#">
-										<img src="assets/img/blog/1.png" alt="image" />
-									</a>
-								</div>
-								<div className="single-blog-item">
-									<ul className="date">
-										<li>21</li>
-										<li>November</li>
-									</ul>
-									<ul className="blog-list">
-										<li>
-											<a href="#">
-												<i className="fa fa-user-alt" /> By admin
-											</a>
-										</li>
-										<li>
-											<i className="far fa-comments" /> 3 Comments
-										</li>
-									</ul>
-									<div className="blog-content">
-										<a href="#">
-											<h3>Startup Marketing Solution for Business Owner</h3>
-										</a>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-											incididunt slice
-										</p>
-									</div>
-									<div className="blog-btn">
-										<a href="#" className="blog-btn-one">
-											Read More
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<div className="blog-item">
-								<div className="blog-image">
-									<a href="#">
-										<img src="assets/img/blog/2.png" alt="image" />
-									</a>
-								</div>
-								<div className="single-blog-item">
-									<ul className="date">
-										<li>21</li>
-										<li>November</li>
-									</ul>
-									<ul className="blog-list">
-										<li>
-											<a href="#">
-												<i className="fa fa-user-alt" /> By admin
-											</a>
-										</li>
-										<li>
-											<i className="far fa-comments" /> 3 Comments
-										</li>
-									</ul>
-									<div className="blog-content">
-										<a href="#">
-											<h3>How To Boost Your Digital Marketing Agency</h3>
-										</a>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-											incididunt slice
-										</p>
-									</div>
-									<div className="blog-btn">
-										<a href="#" className="blog-btn-one">
-											Read More
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<div className="blog-item">
-								<div className="blog-image">
-									<a href="#">
-										<img src="assets/img/blog/3.png" alt="image" />
-									</a>
-								</div>
-								<div className="single-blog-item">
-									<ul className="date">
-										<li>21</li>
-										<li>November</li>
-									</ul>
-									<ul className="blog-list">
-										<li>
-											<a href="#">
-												<i className="fa fa-user-alt" /> By admin
-											</a>
-										</li>
-										<li>
-											<i className="far fa-comments" /> 3 Comments
-										</li>
-									</ul>
-									<div className="blog-content">
-										<a href="#">
-											<h3>Creative solutions to improve your business!</h3>
-										</a>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-											incididunt slice
-										</p>
-									</div>
-									<div className="blog-btn">
-										<a href="#" className="blog-btn-one">
-											Read More
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<div className="blog-item">
-								<div className="blog-image">
-									<a href="#">
-										<img src="assets/img/blog/1.png" alt="image" />
-									</a>
-								</div>
-								<div className="single-blog-item">
-									<ul className="date">
-										<li>21</li>
-										<li>November</li>
-									</ul>
-									<ul className="blog-list">
-										<li>
-											<a href="#">
-												<i className="fa fa-user-alt" /> By admin
-											</a>
-										</li>
-										<li>
-											<i className="far fa-comments" /> 3 Comments
-										</li>
-									</ul>
-									<div className="blog-content">
-										<a href="#">
-											<h3>Startup Marketing Solution for Business Owner</h3>
-										</a>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-											incididunt slice
-										</p>
-									</div>
-									<div className="blog-btn">
-										<a href="#" className="blog-btn-one">
-											Read More
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<div className="blog-item">
-								<div className="blog-image">
-									<a href="#">
-										<img src="assets/img/blog/2.png" alt="image" />
-									</a>
-								</div>
-								<div className="single-blog-item">
-									<ul className="date">
-										<li>21</li>
-										<li>November</li>
-									</ul>
-									<ul className="blog-list">
-										<li>
-											<a href="#">
-												<i className="fa fa-user-alt" /> By admin
-											</a>
-										</li>
-										<li>
-											<i className="far fa-comments" /> 3 Comments
-										</li>
-									</ul>
-									<div className="blog-content">
-										<a href="#">
-											<h3>How To Boost Your Digital Marketing Agency</h3>
-										</a>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-											incididunt slice
-										</p>
-									</div>
-									<div className="blog-btn">
-										<a href="#" className="blog-btn-one">
-											Read More
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<div className="blog-item">
-								<div className="blog-image">
-									<a href="#">
-										<img src="assets/img/blog/3.png" alt="image" />
-									</a>
-								</div>
-								<div className="single-blog-item">
-									<ul className="date">
-										<li>21</li>
-										<li>November</li>
-									</ul>
-									<ul className="blog-list">
-										<li>
-											<a href="#">
-												<i className="fa fa-user-alt" /> By admin
-											</a>
-										</li>
-										<li>
-											<i className="far fa-comments" /> 3 Comments
-										</li>
-									</ul>
-									<div className="blog-content">
-										<a href="#">
-											<h3>Creative solutions to improve your business!</h3>
-										</a>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-											incididunt slice
-										</p>
-									</div>
-									<div className="blog-btn">
-										<a href="#" className="blog-btn-one">
-											Read More
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-12 col-md-12">
-							<div className="pagination-area">
-								<a href="#" className="prev page-numbers">
-									<i className="fas fa-angle-double-left" />
+				);
+			});
+	};
+	renderPagination = () => {
+		if (this.state.dataBlog && this.state.dataBlog.length > 6) {
+			return (
+				<div className="col-lg-12 col-md-12">
+					<div className="pagination-area">
+						<a
+							className="prev page-numbers"
+							onClick={() => {
+								this.handlePageNumber(0);
+							}}
+						>
+							<i className="fas fa-angle-double-left" />
+						</a>
+						{this.state.dataBlog.map((item, index) => {
+							return index % 6 === 0 ? (
+								<a
+									className={`page-numbers page-${index} ` + (index === 0 ? 'active' : '')}
+									key={index}
+									onClick={() => {
+										this.handlePageNumber(index);
+									}}
+								>
+									{index / 6 + 1}
 								</a>
-								<a href="#" className="page-numbers">
-									1
-								</a>
-								<span className="page-numbers current" aria-current="page">
-									2
-								</span>
-								<a href="#" className="page-numbers">
-									3
-								</a>
-								<a href="#" className="page-numbers">
-									4
-								</a>
-								<a href="#" className="next page-numbers">
-									<i className="fas fa-angle-double-right" />
-								</a>
-							</div>
-						</div>
+							) : (
+								''
+							);
+						})}
+						<a
+							className="next page-numbers"
+							onClick={() => {
+								this.handlePageNumber(this.state.dataBlog.length - 1);
+							}}
+						>
+							<i className="fas fa-angle-double-right" />
+						</a>
 					</div>
 				</div>
-			</section>
+			);
+		}
+	};
+	handlePageNumber = pageNumberCurrent => {
+		$('.page-numbers').removeClass('active');
+		$(`.page-${pageNumberCurrent}`).addClass('active');
+		this.setState({
+			pageNumberCurrent: pageNumberCurrent / 6 + 1,
+		});
+	};
+	render() {
+		return (
+			<Fragment>
+				<PageTitleArea title="Blog" />
+				<section className="blog-page-area ptb-100">
+					<div className="container">
+						<div className="section-title">
+							<span>Blog</span>
+							<h3>Xem dự án mới nhất của chúng tôi</h3>
+						</div>
+						<div className="row">
+							{this.renderContentBlog()}
+							{this.renderPagination()}
+						</div>
+					</div>
+				</section>
+				<Subcribe />
+			</Fragment>
 		);
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		dataBlog: state.deMoReducer.dataBlog,
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		getBlogApi: () => {
+			dispatch(actions.getBlogApi());
+		},
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TrangBlog);

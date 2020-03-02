@@ -12,4 +12,5 @@ export const GET_PRICES = "GET_PRICES";
 export const EDITTEAM="EDITTEAM";
 export const POSTTEAM="POSTTEAM";
 export const GETCUSTOMER="GETCUSTOMER";
+export const GET_BLOG="GET_BLOG";
 

@@ -21,11 +21,4 @@ export default function fatherModal(Component) {
   };
 }
 
-{/* <button
-  type="button"
-  class="btn btn-primary btn-lg"
-  data-toggle="modal"
-  data-target="#modelId"
->
-  Launch
-</button>; */}
+

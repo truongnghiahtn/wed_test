@@ -6,7 +6,7 @@ export default class childModalProject extends Component {
     render() {
         return (
             <div>
-                
+                helo moi nguoi
             </div>
         )
     }
