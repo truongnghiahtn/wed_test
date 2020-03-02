@@ -10,7 +10,8 @@ let initialState = {
   dataPrices: [],
   dataBlog: [],
   edit: null,
-  customer: []
+  customer: [],
+  dataCategoryProjects: []
 };
 const deMoReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -44,6 +45,10 @@ const deMoReducer = (state = initialState, action) => {
     case ActionType.ADMIN_LOGIN:
       state.ADMIN_LOGIN = action.ADMIN_LOGIN;
       console.log(state.ADMIN_LOGIN);
+      return { ...state };
+    case ActionType.GET_CATEGORY_PROJECTS:
+      console.log(action);
+      state.dataCategoryProjects = action.dataCategoryProjects;
       return { ...state };
     default:
       return { ...state };
