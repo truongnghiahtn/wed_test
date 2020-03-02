@@ -52,10 +52,10 @@ export { routesHome };
 
 const routesAdmin = [
 	{
-		path: '/admin/dashboard',
+		path: '/admin-dashboard',
 		exact: false,
 		component: Dashboard,
 	},
 ];
 
-export { routesAdmin };
+export { routesAdmin }
