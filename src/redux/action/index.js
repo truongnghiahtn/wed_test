@@ -17,12 +17,12 @@ export const actGetListFeatureAPI = () => {
 export const getListServiceApi = () => {
   return dispatch => {
     CallAPI("service/api/findAll")
-      .then(rs =>
+      .then(rs => {
         dispatch({
           type: Actiontype.GET_SERVICES,
           listService: rs.data
-        })
-      )
+        });
+      })
       .catch(err => {
         console.log(err);
       });
@@ -144,12 +144,12 @@ export const actGetListTeamAPI = () => {
   };
 };
 
-export const actGetInfoCompanyAPI = () => {
+export const actGetListCompanyAPI = () => {
   return dispatch => {
     CallAPI(`company/api/findAll`, "GET", null, null)
       .then(res =>
         dispatch({
-          type: Actiontype.GET_INFO_COMPANY,
+          type: Actiontype.GET_LIST_COMPANY,
           company: res
         })
       )
@@ -184,13 +184,8 @@ export const actOnEdit = () => {
   };
 };
 export const actPostTeam = data => {
-  console.log(data)
-  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
-  let headers = {
-    Authorization: `jwt ${userLocal.message.access_token}`
-  };
   return dispatch => {
-    CallAPI(`team/api/create`, "POST", data, headers)
+    CallAPI(`team/api/create`, "POST", data, null)
       .then(res => {
         console.log(res);
       })
@@ -242,6 +237,181 @@ export const actGetCustomer = () => {
       .catch(err => console.log(err.response.data));
   };
 };
+//Company
+export const actAddCompanyAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`company/api/create`, "POST", data, headers)
+      .then(res =>
+        dispatch({
+          type: Actiontype.ADD_COMPANY_API,
+          company: data
+        })
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const actGetEditCompany = company => {
+  return {
+    type: Actiontype.EDIT_COMPANY,
+    editCompany: company
+  };
+};
+
+export const actOnEditCompany = () => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDITCOMPANY, company: null });
+  };
+};
+
+export const actEditCompanyAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`company/api/update`, "PUT", data, headers)
+      .then(res => {
+        dispatch({
+          type: Actiontype.EDIT_COMPANY_API,
+          company: data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+export const actDeleteCompanyAPI = id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI(`company/api/delete`, "DELETE", { id }, headers)
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch({
+          type: Actiontype.DELETE_COMPANY_API,
+          id: res.data._id
+        });
+      })
+      .catch(err =>
+        setTimeout(() => {
+          swal({
+            title: "Error",
+            text: `${err.response.data}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150)
+      );
+  };
+};
+
+//Blog
+export const actAddBlogAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`blog/api/create`, "POST", data, headers)
+      .then(res =>
+        dispatch({
+          type: Actiontype.ADD_BLOG_API,
+          blog: data
+        })
+      )
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const actGetEditBlog = blog => {
+  return {
+    type: Actiontype.EDIT_BLOG,
+    editBlog: blog
+  };
+};
+
+export const actOnEditBlog = () => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDITBLOG, blog: null });
+  };
+};
+
+export const actEditBlogAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`blog/api/update`, "PUT", data, headers)
+      .then(res => {
+        dispatch({
+          type: Actiontype.EDIT_BLOG_API,
+          blog: data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+export const actDeleteBlogAPI = id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`blog/api/delete`, "DELETE", { id }, headers)
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch(
+          {
+            type: Actiontype.DELETE_BLOG_API,
+            id: res.data._id
+          },
+          console.log(res)
+        );
+      })
+      .catch(err =>
+        setTimeout(() => {
+          swal({
+            title: "Error",
+            text: `${err.response.data}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150)
+      );
+  };
+};
 
 export const getCategoryProjectsApi = () => {
   return dispatch => {
@@ -255,6 +425,81 @@ export const getCategoryProjectsApi = () => {
       .catch(err => console.log(err.response.data));
   };
 };
+export const editCategoryProjects = data => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDIT_CATEGORY_PROJECTS, editCate: data });
+  };
+};
+
+export const editCategoryProjectsApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`category-project/api/update`, "PUT", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
+  };
+};
+
+export const editService = data => {
+  return dispatch => {
+    dispatch({
+      type: Actiontype.EDIT_SERVICE,
+      editService: data
+    });
+  };
+};
+
+export const addServiceApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI(`service/api/create`, "POST", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err.response.data));
+  };
+};
+
+export const editServiceApi = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  console.log(headers);
+  return dispatch => {
+    CallAPI(`service/api/update`, "PUT", data, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
+  };
+};
+
+export const deleteServiceApi = _id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  return dispatch => {
+    CallAPI("service/api/delete", "DELETE", _id, headers)
+      .then(rs => {
+        console.log(rs);
+      })
+      .catch(err => {
+        console.log("fail");
+      });
+  };
+};
+
 // project
 export const actPostProject=(data)=>{
   console.log(data)

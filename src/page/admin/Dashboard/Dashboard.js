@@ -6,6 +6,7 @@ import AdminDelay from "./../adminDelay/adminDelay";
 import Customer from "./../Customeradmin/custommeradmin";
 import Blog from "./../BlogAdmin/Blogadmin";
 import Company from "./../Company/CompanyAdmin";
+import { NavLink } from "react-router-dom";
 import Category from "./../CategoryAdmin/CategoryAdmin";
 import Service from "./../ServiceAdmin/serviceAdmin";
 import $ from "jquery";
@@ -334,9 +335,9 @@ export default class Dashboard extends Component {
                   <i className="fa fa-cog" />
                   <span className="badge-sonar" />
                 </a>
-                <a href="/home">
+                <NavLink to="/Trang-chu">
                   <i className="fa fa-power-off" />
-                </a>
+                </NavLink>
               </div>
             </nav>
             <main className="page-content">
