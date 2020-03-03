@@ -15,3 +15,8 @@ export const GETCUSTOMER = "GETCUSTOMER";
 export const GET_BLOG = "GET_BLOG";
 
 export const GET_CATEGORY_PROJECTS = "GET_CATEGORY_PROJECTS";
+
+
+
+// 
+export const LOADDINGADMIN ="LOADDINGADMIN"

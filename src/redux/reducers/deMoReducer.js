@@ -11,7 +11,8 @@ let initialState = {
   dataBlog: [],
   edit: null,
   customer: [],
-  dataCategoryProjects: []
+  dataCategoryProjects: [],
+  loading: null
 };
 const deMoReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -38,6 +39,9 @@ const deMoReducer = (state = initialState, action) => {
       return { ...state };
     case ActionType.EDITTEAM:
       state.edit = action.userTeam;
+      return { ...state };
+    case ActionType.LOADDINGADMIN:
+      state.loading = action.loadding;
       return { ...state };
     case ActionType.GETCUSTOMER:
       state.customer = action.customer1;

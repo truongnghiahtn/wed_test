@@ -40,9 +40,9 @@ import Modalfather from "./../../../components/modal/fatherModal";
           <Button
             variant="contained"
             color="secondary"
-            // onClick={() => {
-            //   props.deleteCourse(course.maKhoaHoc);
-            // }}
+            onClick={() => {
+              this.props.deleteproject(course._id);
+            }}
           >
             <DeleteIcon />
           </Button>
@@ -55,6 +55,9 @@ const mapDispatchToProps =dispatch=>{
   return{
     editProject:(data)=>{
       dispatch(action.editTeam(data))
+    },
+    deleteproject:(data)=>{
+      dispatch(action.deleteProject(data))
     }
   }
 }

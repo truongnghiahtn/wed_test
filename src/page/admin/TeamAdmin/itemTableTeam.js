@@ -10,6 +10,7 @@ import Modalfather from "./../../../components/modal/fatherModal";
 const Modal = Modalfather(ChildModal);
 
  class itemTable extends Component {
+
   render() {
     let { course } = this.props;
 
@@ -34,15 +35,19 @@ const Modal = Modalfather(ChildModal);
             <EditIcon />
           </Button>
           <Modal/>
-          <Button
+          {/* <Button
             variant="contained"
             color="secondary"
-            // onClick={() => {
-            //   props.deleteCourse(course.maKhoaHoc);
-            // }}
+            onClick={this.delete}
+            onClick={()=>this.props.loading()}
           >
             <DeleteIcon />
-          </Button>
+          </Button> */}
+   
+          <button className="btn btn-danger delete" onClick={()=>{this.props.deleteTeamAd(course)}} >
+          <DeleteIcon onClick={()=>this.props.loading()} />
+          </button>
+     
         </td>
       </tr>
     );
@@ -52,6 +57,12 @@ const mapDispatchToProps =dispatch=>{
   return{
     editTeam:(user)=>{
       dispatch(action.editTeam(user))
+    },
+    deleteTeamAd:(data)=>{
+     dispatch(action.deleteTeam(data))
+   },
+    loading:()=>{
+      dispatch(action.getloading());
     }
   }
 }

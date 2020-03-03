@@ -4,7 +4,8 @@ import PageTitleArea from "../../../components/PageTitleArea/PageTitleArea";
 import { connect } from "react-redux";
 import * as actions from "../../../redux/action/index";
 import * as $ from "jquery";
-import Moment from "react-moment";
+// import Moment from "react-moment";
+
 class TrangBlog extends Component {
   constructor(props) {
     super(props);
@@ -33,14 +34,14 @@ class TrangBlog extends Component {
                 </a>
               </div>
               <div className="single-blog-item">
-                <ul className="date">
+                {/* <ul className="date">
                   <li>
                     <Moment format="DD">{this.props.date}</Moment>
                   </li>
                   <li>
                     <Moment format="MMMM">{this.props.date}</Moment>
                   </li>
-                </ul>
+                </ul> */}
                 <ul className="blog-list">
                   <li>
                     <i className="fa fa-user-alt" /> By admin

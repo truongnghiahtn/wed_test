@@ -202,13 +202,7 @@ export const actPutTeam = data => {
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-<<<<<<< HEAD
   
-=======
-  console.log(data);
-  console.log(headers);
-
->>>>>>> 251d1d3a7730597f3e82d42d53d3f723fc7b31f8
   return dispatch => {
     CallAPI(`team/api/update`, "PUT", data, headers)
       .then(res => {
@@ -217,6 +211,24 @@ export const actPutTeam = data => {
       .catch(err => console.log("ko dc"));
   };
 };
+export const deleteTeam=(data)=>{
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  console.log(data)
+  let data1={
+    id:data._id
+  }
+
+  return dispatch => {
+    CallAPI(`team/api/delete`, "DELETE", data1, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
+  };
+}
 // customer
 export const actGetCustomer = () => {
   return dispatch => {
@@ -243,3 +255,43 @@ export const getCategoryProjectsApi = () => {
       .catch(err => console.log(err.response.data));
   };
 };
+// project
+export const actPostProject=(data)=>{
+  console.log(data)
+}
+
+export const actPutProject=(data)=>{
+  console.log(data)
+}
+
+export const deleteProject=(data)=>{
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+  console.log(data)
+  let data1={
+    id:data
+  }
+
+  return dispatch => {
+    CallAPI(`project/api/delete`, "DELETE", data1, headers)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log("ko dc"));
+  };
+}
+// 
+export const setloading = () => {
+  return dispatch => {
+    dispatch({ type: Actiontype.LOADDINGADMIN, loadding: null });
+  };
+};
+export const getloading = () => {
+  console.log("memay")
+  return dispatch => {
+    dispatch({ type: Actiontype.LOADDINGADMIN, loadding: "ok" });
+  };
+};
+

@@ -34,6 +34,7 @@ class projectadmin extends Component {
             color="primary"
             data-toggle="modal"
             data-target="#modelId"
+            onClick={()=>{this.props.onEdit()}}
           >
             <AddIcon /> Add Courses
           </Button>
@@ -75,7 +76,10 @@ const MapDispatchToProps = Dispatch => {
   return {
     getProjects: () => {
       Dispatch(action.getProjectsApi());
-    }
+    },
+    onEdit:()=>{
+      Dispatch(action.actOnEdit());
+    },
   };
 };
 export default connect(MapStateToProps, MapDispatchToProps)(projectadmin);

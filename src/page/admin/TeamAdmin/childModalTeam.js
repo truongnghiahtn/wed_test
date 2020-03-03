@@ -14,6 +14,7 @@ import * as action from "./../../../redux/action/index";
       imgvalid: false
     };
   }
+
   handdleonchange = event => {
     this.setState(
       {
@@ -64,8 +65,7 @@ import * as action from "./../../../redux/action/index";
   };
   handleSubmit = event => {
     event.preventDefault();
-   
-   
+    this.props.getTeam();
     if(this.props.userEdit===null){
       this.props.addUser(this.state.values)
    
@@ -231,6 +231,7 @@ import * as action from "./../../../redux/action/index";
               className="btn btn-success mt-4"
               
               disabled={!this.state.formValid}
+              onClick={()=>this.props.loading()}
             >
               Submit
             </button>
@@ -256,7 +257,11 @@ const mapDispatchToProps =dispatch=>{
     },
     getTeam: () => {
       dispatch(action.actGetListTeamAPI());
+    },
+    loading:()=>{
+      dispatch(action.getloading());
     }
+    
   }
 }
   export default connect(

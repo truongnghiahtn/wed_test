@@ -17,11 +17,17 @@ class teamadmin extends Component {
   renderTbody = () => {
     let ListTeam = [...this.props.listteam];
 
-    console.log(ListTeam);
     return ListTeam.map((item, index) => (
       <ItemTable course={item} key={index} />
     ));
   };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps && nextProps.load) {
+      //Update
+      this.props.getTeam();
+      this.props.setloading();
+    } 
+  }
   render() {
     return (
       <div className="container">
@@ -67,7 +73,8 @@ class teamadmin extends Component {
 }
 const MapStateToProps = state => {
   return {
-    listteam: state.deMoReducer.team
+    listteam: state.deMoReducer.team,
+    load:state.deMoReducer.loading
   };
 };
 const MapDispatchToProps = Dispatch => {
@@ -77,6 +84,9 @@ const MapDispatchToProps = Dispatch => {
     },
     onEdit:()=>{
       Dispatch(action.actOnEdit());
+    },
+    setloading:()=>{
+      Dispatch(action.setloading());
     }
   };
 };
