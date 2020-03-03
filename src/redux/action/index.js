@@ -16,11 +16,11 @@ export const actGetListFeatureAPI = () => {
 };
 export const getListServiceApi = () => {
   return dispatch => {
-    CallAPI("service/api/find")
+    CallAPI("service/api/findAll")
       .then(rs => {
         dispatch({
           type: Actiontype.GET_SERVICES,
-          listService: rs.data.data
+          listService: rs.data
         });
       })
       .catch(err => {

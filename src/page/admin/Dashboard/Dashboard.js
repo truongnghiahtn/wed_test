@@ -4,7 +4,7 @@ import Project from "./../ProjectAdmin/projectadmin";
 import Teamadmin from "./../TeamAdmin/teamadmin";
 import AdminDelay from "./../adminDelay/adminDelay";
 import Customer from "./../Customeradmin/custommeradmin";
-import Blog from "./../BlogAdmin/BlogAdmin";
+import Blog from "./../BlogAdmin/Blogadmin";
 import Company from "./../Company/CompanyAdmin";
 import { NavLink } from "react-router-dom";
 import Category from "./../CategoryAdmin/CategoryAdmin";
