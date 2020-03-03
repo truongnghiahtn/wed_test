@@ -425,6 +425,15 @@ export const editCategoryProjectsApi = data => {
   return dispatch => {
     CallAPI(`category-project/api/update`, "PUT", data, headers)
       .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
         dispatch({
           type: Actiontype.UPDATE_CATEGORY_PROJECTS,
           data: res.data
@@ -451,6 +460,15 @@ export const addServiceApi = data => {
   return dispatch => {
     CallAPI(`service/api/create`, "POST", data, headers)
       .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
         dispatch({
           type: Actiontype.ADD_SERVICE,
           service: res.data
@@ -468,6 +486,15 @@ export const editServiceApi = data => {
   return dispatch => {
     CallAPI(`service/api/update`, "PUT", { ...data, id: data._id }, headers)
       .then(rs => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${rs.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
         dispatch({
           type: Actiontype.UPDATE_SERVICE,
           service: rs.data
@@ -484,7 +511,15 @@ export const deleteServiceApi = id => {
   };
   return dispatch => {
     CallAPI("service/api/delete", "DELETE", { id }, headers).then(rs => {
-      console.log(rs);
+      setTimeout(() => {
+        swal({
+          title: "Good job!",
+          text: `${rs.statusText}!`,
+          icon: "success",
+          buttons: false,
+          timer: 1500
+        });
+      }, 150);
       dispatch({
         type: Actiontype.DELETE_SERVICE,
         _id: rs.data._id
