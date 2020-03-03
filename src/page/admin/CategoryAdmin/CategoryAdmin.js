@@ -19,17 +19,16 @@ class CategoryAdmin extends Component {
 
   renderTbody = () => {
     let { dataCategoryProjects } = this.props;
-
     console.log(dataCategoryProjects);
-    return dataCategoryProjects
-      .filter(item => {
-        return (
-          item.name_category_project
-            .toLowerCase()
-            .indexOf(this.state.keyword.toLowerCase()) !== -1
-        );
-      })
-      .map((item, index) => <ItemTable course={item} key={index} />);
+    let dataShow = dataCategoryProjects.filter(
+      item =>
+        item.name_category_project
+          .toLowerCase()
+          .indexOf(this.state.keyword.toLowerCase()) !== -1
+    );
+    return dataShow.map((item, index) => (
+      <ItemTable course={item} key={index} />
+    ));
   };
   render() {
     console.log(this.props);

@@ -440,7 +440,19 @@ export const editCategoryProjectsApi = data => {
   return dispatch => {
     CallAPI(`category-project/api/update`, "PUT", data, headers)
       .then(res => {
-        console.log(res);
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch({
+          type: Actiontype.UPDATE_CATEGORY_PROJECTS,
+          data: res.data
+        });
       })
       .catch(err => console.log("ko dc"));
   };
@@ -463,7 +475,19 @@ export const addServiceApi = data => {
   return dispatch => {
     CallAPI(`service/api/create`, "POST", data, headers)
       .then(res => {
-        console.log(res);
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch({
+          type: Actiontype.ADD_SERVICE,
+          service: res.data
+        });
       })
       .catch(err => console.log(err.response.data));
   };
@@ -474,29 +498,48 @@ export const editServiceApi = data => {
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  console.log(headers);
   return dispatch => {
-    CallAPI(`service/api/update`, "PUT", data, headers)
-      .then(res => {
-        console.log(res);
+    CallAPI(`service/api/update`, "PUT", { ...data, id: data._id }, headers)
+      .then(rs => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${rs.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch({
+          type: Actiontype.UPDATE_SERVICE,
+          service: rs.data
+        });
       })
       .catch(err => console.log("ko dc"));
   };
 };
 
-export const deleteServiceApi = _id => {
+export const deleteServiceApi = id => {
   let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
   return dispatch => {
-    CallAPI("service/api/delete", "DELETE", _id, headers)
-      .then(rs => {
-        console.log(rs);
-      })
-      .catch(err => {
-        console.log("fail");
+    CallAPI("service/api/delete", "DELETE", { id }, headers).then(rs => {
+      setTimeout(() => {
+        swal({
+          title: "Good job!",
+          text: `${rs.statusText}!`,
+          icon: "success",
+          buttons: false,
+          timer: 1500
+        });
+      }, 150);
+      dispatch({
+        type: Actiontype.DELETE_SERVICE,
+        _id: rs.data._id
       });
+    });
   };
 };
 

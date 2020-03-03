@@ -16,10 +16,16 @@ class childModal extends Component {
         updatedAt: "",
         __v: 0
       },
-      errors: { name_service: "", content_service: "", category_service: "" },
+      errors: {
+        name_service: "",
+        content_service: "",
+        category_service: "",
+        img_service: ""
+      },
       formValid: false,
       nameValid: false,
       contentValid: false,
+      imgValid: false,
       cateValid: false
     };
   }
@@ -43,12 +49,14 @@ class childModal extends Component {
           ...this.state.errors,
           name_service: "",
           content_service: "",
-          category_service: ""
+          category_service: "",
+          img_service: ""
         },
-        namevalid: true,
+        formValid: true,
         nameValid: true,
         contentValid: true,
-        cateValid: true
+        cateValid: true,
+        imgValid: true
       });
     } else {
       //ADD
@@ -66,23 +74,29 @@ class childModal extends Component {
         nameValid: false,
         contentValid: false,
         cateValid: false,
+        imgValid: false,
         formValid: false
       });
     }
   }
   handdleonchange = event => {
-    this.setState({
-      values: {
-        ...this.state.values,
-        [event.target.name]: event.target.value
+    this.setState(
+      {
+        values: {
+          ...this.state.values,
+          [event.target.name]: event.target.value
+        }
+      },
+      () => {
+        console.log(this.state);
       }
-    });
+    );
   };
 
   handleErrors = event => {
     let { name, value } = event.target;
     let message = value === "" ? "Do not be empty" : "";
-    let { namevalid, contentValid, cateValid } = this.state;
+    let { namevalid, contentValid, cateValid, imgValid } = this.state;
     switch (name) {
       case "name_service":
         namevalid = message !== "" ? false : true;
@@ -93,6 +107,9 @@ class childModal extends Component {
       case "content_service":
         contentValid = message !== "" ? false : true;
         break;
+      case "img_service":
+        imgValid = message !== "" ? false : true;
+        break;
       default:
         break;
     }
@@ -101,7 +118,8 @@ class childModal extends Component {
         errors: { ...this.state.errors, [name]: message },
         namevalid,
         contentValid,
-        cateValid
+        cateValid,
+        imgValid
       },
       () => {
         this.FormValidation();
@@ -111,7 +129,10 @@ class childModal extends Component {
   FormValidation = () => {
     this.setState({
       formValid:
-        this.state.namevalid && this.state.contentValid && this.state.cateValid
+        this.state.namevalid &&
+        this.state.contentValid &&
+        this.state.cateValid &&
+        this.state.imgValid
     });
   };
   handleSubmit = event => {
@@ -177,6 +198,27 @@ class childModal extends Component {
               {this.state.errors.content_service !== "" ? (
                 <div className="Form_err errform">
                   (*) {this.state.errors.content_service}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="form-group">
+              <label>Hình Ảnh</label>
+
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Hình Ảnh"
+                onChange={this.handdleonchange}
+                onBlur={this.handleErrors}
+                onKeyUp={this.handleErrors}
+                name="img_service"
+                value={this.state.values.img_service}
+              />
+              {this.state.errors.img_service !== "" ? (
+                <div className="Form_err errform">
+                  (*) {this.state.errors.img_service}
                 </div>
               ) : (
                 ""

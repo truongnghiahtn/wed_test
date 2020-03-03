@@ -11,7 +11,6 @@ const Modal = Modalfather(ChildModal);
 class itemTable extends Component {
   render() {
     let { course } = this.props;
-
     return (
       <tr>
         <td className="admin-coursesItem ">
@@ -70,7 +69,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(action.editService(data));
     },
     deleteServiceApi: id => {
-      dispatch(action.deleteServiceApi());
+      dispatch(action.deleteServiceApi(id));
     }
   };
 };
