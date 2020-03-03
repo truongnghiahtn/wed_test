@@ -118,6 +118,40 @@ const deMoReducer = (state = initialState, action) => {
     case ActionType.EDIT_SERVICE:
       state.editService = action.editService;
       return { ...state };
+    case ActionType.ADD_SERVICE:
+      state.listService = [...state.listService, action.service];
+      return { ...state };
+    case ActionType.DELETE_SERVICE:
+      let listService = [...state.listService];
+      let iindex = state.listService.findIndex(item => {
+        return item._id === action._id;
+      });
+      listService.splice(iindex, 1);
+      state.listService = listService;
+      return { ...state };
+    case ActionType.UPDATE_SERVICE:
+      let iService = state.listService.findIndex(
+        item => item._id === action.service._id
+      );
+      let listServiceUpdate = state.listService;
+      if (iService !== -1) {
+        listServiceUpdate[iService] = action.service;
+      }
+
+      state.listService = [...listServiceUpdate];
+      return { ...state };
+    case ActionType.UPDATE_CATEGORY_PROJECTS:
+      console.log(action);
+      let iCateProject = state.dataCategoryProjects.findIndex(
+        item => item._id === action.data._id
+      );
+      let dataCategoryProjectsUpdate = state.dataCategoryProjects;
+      if (iCateProject !== -1) {
+        dataCategoryProjectsUpdate[iCateProject] = action.data;
+      }
+
+      state.dataCategoryProjects = [...dataCategoryProjectsUpdate];
+      return { ...state };
     default:
       return { ...state };
   }
