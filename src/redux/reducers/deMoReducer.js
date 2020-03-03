@@ -17,6 +17,7 @@ let initialState = {
   editBlog: null,
   editCate: "",
   editService: "",
+  editPrice: null
 };
 const deMoReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -67,7 +68,9 @@ const deMoReducer = (state = initialState, action) => {
       return { ...state };
 
     case ActionType.EDIT_COMPANY_API:
-      let stt = state.company.findIndex(item => item._id === action.company.id);
+      let stt = state.company.findIndex(
+        item => item._id === action.company._id
+      );
       let listCompanyUpdate = state.company;
       if (stt !== -1) {
         listCompanyUpdate[stt] = action.company;
@@ -82,13 +85,12 @@ const deMoReducer = (state = initialState, action) => {
       return { ...state };
 
     case ActionType.DELETE_COMPANY_API:
-      let company = state.company.filter(item => action.id !== item._id);
+      let company = state.company.filter(item => action._id !== item._id);
       state.company = company;
       return { ...state };
     //Blog
     case ActionType.ADD_BLOG_API:
       state.dataBlog = [...state.dataBlog, action.blog];
-
       return { ...state };
 
     case ActionType.EDIT_BLOG:
@@ -96,7 +98,9 @@ const deMoReducer = (state = initialState, action) => {
       return { ...state };
 
     case ActionType.EDIT_BLOG_API:
-      let index = state.dataBlog.findIndex(item => item._id === action.blog.id);
+      let index = state.dataBlog.findIndex(
+        item => item._id === action.blog._id
+      );
       let listBlogUpdate = state.dataBlog;
       if (index !== -1) {
         listBlogUpdate[index] = action.blog;
@@ -109,8 +113,9 @@ const deMoReducer = (state = initialState, action) => {
       return { ...state };
 
     case ActionType.DELETE_BLOG_API:
-      let blog = state.dataBlog.filter(item => action.id !== item._id);
-      state.dataBlog = blog;
+      let blog = state.dataBlog.filter(item => action._id !== item._id);
+      state.dataBlog = [...blog];
+      return { ...state };
     case ActionType.GET_CATEGORY_PROJECTS:
       console.log(action);
       state.dataCategoryProjects = action.dataCategoryProjects;
@@ -121,6 +126,32 @@ const deMoReducer = (state = initialState, action) => {
       return { ...state };
     case ActionType.EDIT_SERVICE:
       state.editService = action.editService;
+      return { ...state };
+    //Price
+    case ActionType.ADD_PRICE_API:
+      state.dataPrices = [...state.dataPrices, action.price];
+      return { ...state };
+
+    case ActionType.EDIT_PRICE:
+      state.editPrice = action.editPrice;
+      return { ...state };
+
+    case ActionType.EDIT_PRICE_API:
+      let i = state.dataPrices.findIndex(item => item._id === action.price._id);
+      let listPriceUpdate = state.dataPrices;
+      if (i !== -1) {
+        listPriceUpdate[i] = action.price;
+      }
+
+      state.dataPrices = [...listPriceUpdate];
+      return { ...state };
+    case ActionType.EDITPRICE:
+      state.editPrice = action.price;
+      return { ...state };
+
+    case ActionType.DELETE_PRICE_API:
+      let price = state.dataPrices.filter(item => action._id !== item._id);
+      state.dataPrices = [...price];
       return { ...state };
     default:
       return { ...state };

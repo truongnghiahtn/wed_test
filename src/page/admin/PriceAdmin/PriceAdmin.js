@@ -4,52 +4,58 @@ import * as action from "../../../redux/action/index";
 import Button from "@material-ui/core/Button";
 //icon
 import AddIcon from "@material-ui/icons/Add";
-import ItemTable from "./itemTableBlog";
-import ChildModal from "./childModalBlog";
+import ItemTable from "./itemTablePrice";
+import ChildModal from "./childModalPrice";
 import Modalfather from "../../../components/modal/fatherModal";
 import SearchAdmin from "../../../components/SearchAdmin/index";
 const Modal = Modalfather(ChildModal);
 
 //component
 
-class BlogAdmin extends Component {
+class PriceAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listBlog: []
+      listPrice: []
     };
   }
 
   componentDidMount() {
-    this.props.getListBlog();
+    this.props.getListPrice();
+    this.props.getListService();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps && nextProps.listBlog) {
+    if (nextProps && nextProps.listPrice) {
       this.setState({
-        listBlog: nextProps.listBlog
+        listPrice: nextProps.listPrice
       });
     }
   }
 
   renderTbody = () => {
-    return this.state.listBlog.map((item, index) => (
-      <ItemTable blog={item} key={index} />
+    return this.state.listPrice.map((item, index) => (
+      <ItemTable price={item} key={index} />
     ));
   };
 
   handleFilter = keyword => {
-    let listBlog = this.props.listBlog.filter(
-      item => item.title_blog.toLowerCase().indexOf(keyword.toLowerCase()) > -1
-    );
+    if (this.props.listPrice) {
+      let listPrice = this.props.listPrice.filter(
+        item =>
+          item.name_service.name_service
+            .toLowerCase()
+            .indexOf(keyword.toLowerCase()) > -1
+      );
 
-    this.setState({ listBlog });
+      this.setState({ listPrice });
+    }
   };
 
   render() {
     return (
       <div className="container">
-        <div className="title">Blog Management</div>
+        <div className="title">Price Management</div>
         <div className="admin-top">
           <Button
             variant="contained"
@@ -57,10 +63,10 @@ class BlogAdmin extends Component {
             data-toggle="modal"
             data-target="#modelId"
             onClick={() => {
-              this.props.onEditBlog();
+              this.props.onEditPrice();
             }}
           >
-            <AddIcon /> Add Blog
+            <AddIcon /> Add Price
           </Button>
           <Modal />
           <SearchAdmin onFilter={this.handleFilter} />
@@ -69,9 +75,10 @@ class BlogAdmin extends Component {
           <table className="table table-striped table-inverse">
             <thead className="thead-inverse">
               <tr>
-                <th>Tiêu đề</th>
+                <th>Tên dịch vụ</th>
                 <th>Nội dung</th>
-                <th>Hình ảnh</th>
+                <th>Giá</th>
+                <th>Ngày tạo</th>
               </tr>
             </thead>
             <tbody>{this.renderTbody()}</tbody>
@@ -83,17 +90,20 @@ class BlogAdmin extends Component {
 }
 const MapStateToProps = state => {
   return {
-    listBlog: state.deMoReducer.dataBlog
+    listPrice: state.deMoReducer.dataPrices
   };
 };
 const MapDispatchToProps = Dispatch => {
   return {
-    getListBlog: () => {
-      Dispatch(action.getBlogApi());
+    getListPrice: () => {
+      Dispatch(action.getPricesApi());
     },
-    onEditBlog: () => {
-      Dispatch(action.actOnEditBlog());
+    onEditPrice: () => {
+      Dispatch(action.actOnEditPrice());
+    },
+    getListService: () => {
+      Dispatch(action.getListServiceApi());
     }
   };
 };
-export default connect(MapStateToProps, MapDispatchToProps)(BlogAdmin);
+export default connect(MapStateToProps, MapDispatchToProps)(PriceAdmin);

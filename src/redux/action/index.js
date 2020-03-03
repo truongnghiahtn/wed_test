@@ -197,7 +197,7 @@ export const actPutTeam = data => {
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  
+
   return dispatch => {
     CallAPI(`team/api/update`, "PUT", data, headers)
       .then(res => {
@@ -206,15 +206,15 @@ export const actPutTeam = data => {
       .catch(err => console.log("ko dc"));
   };
 };
-export const deleteTeam=(data)=>{
+export const deleteTeam = data => {
   let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  console.log(data)
-  let data1={
-    id:data._id
-  }
+  console.log(data);
+  let data1 = {
+    id: data._id
+  };
 
   return dispatch => {
     CallAPI(`team/api/delete`, "DELETE", data1, headers)
@@ -223,7 +223,7 @@ export const deleteTeam=(data)=>{
       })
       .catch(err => console.log("ko dc"));
   };
-}
+};
 // customer
 export const actGetCustomer = () => {
   return dispatch => {
@@ -246,13 +246,32 @@ export const actAddCompanyAPI = data => {
 
   return dispatch => {
     CallAPI(`company/api/create`, "POST", data, headers)
-      .then(res =>
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
         dispatch({
           type: Actiontype.ADD_COMPANY_API,
-          company: data
-        })
-      )
-      .catch(err => console.log(err.response.data));
+          company: res.data
+        });
+      })
+      .catch(err =>
+        setTimeout(() => {
+          swal({
+            title: "Err",
+            text: `${err.response.data.error}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150)
+      );
   };
 };
 
@@ -278,12 +297,31 @@ export const actEditCompanyAPI = data => {
   return dispatch => {
     CallAPI(`company/api/update`, "PUT", data, headers)
       .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
         dispatch({
           type: Actiontype.EDIT_COMPANY_API,
-          company: data
+          company: res.data
         });
       })
-      .catch(err => console.log(err));
+      .catch(err =>
+        setTimeout(() => {
+          swal({
+            title: "Creation failed",
+            text: `${err.response.data.error}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150)
+      );
   };
 };
 
@@ -306,14 +344,14 @@ export const actDeleteCompanyAPI = id => {
         }, 150);
         dispatch({
           type: Actiontype.DELETE_COMPANY_API,
-          id: res.data._id
+          _id: res.data._id
         });
       })
       .catch(err =>
         setTimeout(() => {
           swal({
-            title: "Error",
-            text: `${err.response.data}!`,
+            title: "Delete failed",
+            text: `${err.response.data.error}!`,
             icon: "error",
             buttons: false,
             timer: 1500
@@ -332,13 +370,32 @@ export const actAddBlogAPI = data => {
 
   return dispatch => {
     CallAPI(`blog/api/create`, "POST", data, headers)
-      .then(res =>
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
         dispatch({
           type: Actiontype.ADD_BLOG_API,
-          blog: data
-        })
-      )
-      .catch(err => console.log(err.response.data));
+          blog: res.data
+        });
+      })
+      .catch(err => {
+        setTimeout(() => {
+          swal({
+            title: "Creation failed",
+            text: `${err.response.data.error}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+      });
   };
 };
 
@@ -364,12 +421,31 @@ export const actEditBlogAPI = data => {
   return dispatch => {
     CallAPI(`blog/api/update`, "PUT", data, headers)
       .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
         dispatch({
           type: Actiontype.EDIT_BLOG_API,
-          blog: data
+          blog: res.data
         });
       })
-      .catch(err => console.log(err));
+      .catch(err =>
+        setTimeout(() => {
+          swal({
+            title: "Error",
+            text: `${err.response.data.error}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150)
+      );
   };
 };
 
@@ -382,34 +458,33 @@ export const actDeleteBlogAPI = id => {
   return dispatch => {
     CallAPI(`blog/api/delete`, "DELETE", { id }, headers)
       .then(res => {
-        setTimeout(() => {
-          swal({
-            title: "Good job!",
-            text: `${res.statusText}!`,
-            icon: "success",
-            buttons: false,
-            timer: 1500
-          });
-        }, 150);
-        dispatch(
-          {
-            type: Actiontype.DELETE_BLOG_API,
-            id: res.data._id
-          },
-          console.log(res)
-        );
+        console.log(res, "abc");
+        if (res)
+          setTimeout(() => {
+            swal({
+              title: "Good job!",
+              text: `${res.statusText}!`,
+              icon: "success",
+              buttons: false,
+              timer: 1500
+            });
+          }, 150);
+        dispatch({
+          type: Actiontype.DELETE_BLOG_API,
+          _id: res.data._id
+        });
       })
-      .catch(err =>
+      .catch(err => {
         setTimeout(() => {
           swal({
             title: "Error",
-            text: `${err.response.data}!`,
+            text: `${err.response.data.error}!`,
             icon: "error",
             buttons: false,
             timer: 1500
           });
-        }, 150)
-      );
+        }, 150);
+      });
   };
 };
 
@@ -501,23 +576,23 @@ export const deleteServiceApi = _id => {
 };
 
 // project
-export const actPostProject=(data)=>{
-  console.log(data)
-}
+export const actPostProject = data => {
+  console.log(data);
+};
 
-export const actPutProject=(data)=>{
-  console.log(data)
-}
+export const actPutProject = data => {
+  console.log(data);
+};
 
-export const deleteProject=(data)=>{
+export const deleteProject = data => {
   let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  console.log(data)
-  let data1={
-    id:data
-  }
+  console.log(data);
+  let data1 = {
+    id: data
+  };
 
   return dispatch => {
     CallAPI(`project/api/delete`, "DELETE", data1, headers)
@@ -526,17 +601,143 @@ export const deleteProject=(data)=>{
       })
       .catch(err => console.log("ko dc"));
   };
-}
-// 
+};
+//
 export const setloading = () => {
   return dispatch => {
     dispatch({ type: Actiontype.LOADDINGADMIN, loadding: null });
   };
 };
 export const getloading = () => {
-  console.log("memay")
+  console.log("memay");
   return dispatch => {
     dispatch({ type: Actiontype.LOADDINGADMIN, loadding: "ok" });
   };
 };
 
+//Price
+export const actAddPriceAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`price/api/create`, "POST", data, headers)
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch({
+          type: Actiontype.ADD_PRICE_API,
+          price: res.data
+        });
+      })
+      .catch(err => {
+        setTimeout(() => {
+          swal({
+            title: "Creation failed",
+            text: `${err.response.data.error}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+      });
+  };
+};
+
+export const actGetEditPrice = price => {
+  return {
+    type: Actiontype.EDIT_PRICE,
+    editPrice: price
+  };
+};
+
+export const actOnEditPrice = () => {
+  return dispatch => {
+    dispatch({ type: Actiontype.EDITPRICE, price: null });
+  };
+};
+
+export const actEditPriceAPI = data => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`price/api/update`, "PUT", data, headers)
+      .then(res => {
+        setTimeout(() => {
+          swal({
+            title: "Good job!",
+            text: `${res.statusText}!`,
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+        dispatch({
+          type: Actiontype.EDIT_PRICE_API,
+          price: res.data
+        });
+      })
+      .catch(err => {
+        setTimeout(() => {
+          swal({
+            title: "Error",
+            text: `${err.response.data.error}!`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+      });
+  };
+};
+
+export const actDeletePriceAPI = id => {
+  let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
+  let headers = {
+    Authorization: `jwt ${userLocal.message.access_token}`
+  };
+
+  return dispatch => {
+    CallAPI(`price/api/delete`, "DELETE", { id }, headers)
+      .then(res => {
+        if (res)
+          //fix
+          setTimeout(() => {
+            swal({
+              title: "Good job!",
+              text: `${res.statusText}!`,
+              icon: "success",
+              buttons: false,
+              timer: 1500
+            });
+          }, 150);
+        dispatch({
+          type: Actiontype.DELETE_PRICE_API,
+          _id: res.data._id
+        });
+      })
+      .catch(err => {
+        setTimeout(() => {
+          swal({
+            title: "Error",
+            text: ` ${err.response.data.error} !`,
+            icon: "error",
+            buttons: false,
+            timer: 1500
+          });
+        }, 150);
+      });
+  };
+};

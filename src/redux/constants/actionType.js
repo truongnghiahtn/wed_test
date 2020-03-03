@@ -24,13 +24,16 @@ export const EDIT_BLOG_API = "EDIT_BLOG_API";
 export const EDIT_BLOG = "EDIT_BLOG";
 export const EDITBLOG = "EDITBLOG";
 export const DELETE_BLOG_API = "DELETE_BLOG_API";
+export const ADD_PRICE_API = "ADD_PRICE_API";
+export const EDIT_PRICE_API = "EDIT_PRICE_API";
+export const EDIT_PRICE = "EDIT_PRICE";
+export const EDITPRICE = "EDITPRICE";
+export const DELETE_PRICE_API = "DELETE_PRICE_API";
 
 export const GET_CATEGORY_PROJECTS = "GET_CATEGORY_PROJECTS";
 
-
-
-// 
-export const LOADDINGADMIN ="LOADDINGADMIN"
+//
+export const LOADDINGADMIN = "LOADDINGADMIN";
 export const EDIT_CATEGORY_PROJECTS = "EDIT_CATEGORY_PROJECTS";
 export const EDIT_SERVICE = "EDIT_SERVICE";
 export const DELETE_SERVICE = "DELETE_SERVICE";

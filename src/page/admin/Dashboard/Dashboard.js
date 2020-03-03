@@ -4,11 +4,12 @@ import Project from "./../ProjectAdmin/projectadmin";
 import Teamadmin from "./../TeamAdmin/teamadmin";
 import AdminDelay from "./../adminDelay/adminDelay";
 import Customer from "./../Customeradmin/custommeradmin";
-import Blog from "./../BlogAdmin/Blogadmin";
+import Blog from "./../BlogAdmin/BlogAdmin";
 import Company from "./../Company/CompanyAdmin";
 import { NavLink } from "react-router-dom";
 import Category from "./../CategoryAdmin/CategoryAdmin";
 import Service from "./../ServiceAdmin/serviceAdmin";
+import Price from "./../PriceAdmin/PriceAdmin";
 import $ from "jquery";
 
 export default class Dashboard extends Component {
@@ -70,6 +71,8 @@ export default class Dashboard extends Component {
         break;
       case "service":
         dulieu = "service";
+      case "price":
+        dulieu = "price";
         break;
     }
     this.setState(
@@ -285,6 +288,21 @@ export default class Dashboard extends Component {
                         <span>service</span>
                       </a>
                     </li>
+                    <li
+                      className={
+                        this.state.data === "price"
+                          ? "sidebar-dropdown active"
+                          : "sidebar-dropdown"
+                      }
+                      onClick={() => {
+                        this.nextPage("price");
+                      }}
+                    >
+                      <a href="#">
+                        <i className="fa fa-line-chart" aria-hidden="true"></i>
+                        <span>Price</span>
+                      </a>
+                    </li>
                     <li className="sidebar-dropdown">
                       <a href="#">
                         <i className="fa fa-globe" />
@@ -403,6 +421,7 @@ export default class Dashboard extends Component {
                 {this.state.data === "company" ? <Company /> : ""}
                 {this.state.data === "category" ? <Category /> : ""}
                 {this.state.data === "service" ? <Service /> : ""}
+                {this.state.data === "price" ? <Price /> : ""}
               </div>
             </main>
           </div>
