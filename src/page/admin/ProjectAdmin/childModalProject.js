@@ -21,40 +21,41 @@ class childModalProject extends Component {
         name_project: "",
         content_project: "",
         img_project: "",
-        link_project: ""
+        link_project: "",
+        category_project: ""
       },
       formValid: false,
       name_projectvalid: false,
       content_projectvalid: false,
       img_projectvalid: false,
-      link_projectvalid: false
+      link_projectvalid: false,
+      category_projectValid: false
     };
   }
   componentDidMount() {
     this.props.getcategory();
   }
   handdleonchange = event => {
-    console.log(event.target.name);
-    this.setState(
-      {
-        values: {
-          ...this.state.values,
-          [event.target.name]: event.target.value
-        }
-      },
-      () => {
-        console.log(this.state.values);
+    this.setState({
+      values: {
+        ...this.state.values,
+        [event.target.name]: event.target.value
       }
-    );
+    });
+    if (event.target.name === "category_project") {
+      this.handleErrors(event);
+    }
   };
   handleErrors = event => {
     let { name, value } = event.target;
     let message = value === "" ? "Do not be empty" : "";
+    console.log(value);
     let {
       name_projectvalid,
       content_projectvalid,
       img_projectvalid,
-      link_projectvalid
+      link_projectvalid,
+      category_projectValid
     } = this.state;
     switch (name) {
       case "name_project":
@@ -69,6 +70,8 @@ class childModalProject extends Component {
       case "link_project":
         link_projectvalid = message !== "" ? false : true;
         break;
+      case "category_project":
+        category_projectValid = message !== "" ? false : true;
       default:
         break;
     }
@@ -78,7 +81,8 @@ class childModalProject extends Component {
         name_projectvalid,
         content_projectvalid,
         img_projectvalid,
-        link_projectvalid
+        link_projectvalid,
+        category_projectValid
       },
       () => {
         this.FormValidation();
@@ -91,7 +95,8 @@ class childModalProject extends Component {
         this.state.name_projectvalid &&
         this.state.content_projectvalid &&
         this.state.img_projectvalid &&
-        this.state.link_projectvalid
+        this.state.link_projectvalid &&
+        this.state.category_projectValid
     });
   };
   handleSubmit = event => {
@@ -125,7 +130,8 @@ class childModalProject extends Component {
           name_project: "",
           content_project: "",
           img_project: "",
-          link_project: ""
+          link_project: "",
+          category_project: ""
         },
 
         name_projectvalid: true,
@@ -142,7 +148,7 @@ class childModalProject extends Component {
           name_project: "",
           content_project: "",
           img_project: "",
-          link_project: "",
+          link_project: ""
         },
         errors: {
           ...this.state.errors,
@@ -160,10 +166,9 @@ class childModalProject extends Component {
     }
   }
   rendertypecategory = () => {
-    console.log(this.props.listtype)
     return this.props.listtype.map((item, index) => {
       return (
-        <option  key={index} value={item._id}>
+        <option key={index} value={item._id}>
           {item.name_category_project}
         </option>
       );
@@ -258,19 +263,6 @@ class childModalProject extends Component {
                 value={this.state.values.link_project}
               />
             </div>
-
-            <div className="form-group">
-              <label>Loại Dự án</label>
-              <select
-                className="form-control"
-                name="category_project"
-                onChange={this.handleOnChange}
-              >
-                <option>chon ban oi</option>
-                {this.rendertypecategory()}
-              </select>
-            </div>
-
             {this.state.errors.link_project !== "" ? (
               <div className="Form_err errform">
                 (*) {this.state.errors.link_project}
@@ -278,6 +270,26 @@ class childModalProject extends Component {
             ) : (
               ""
             )}
+            <div className="form-group">
+              <label>Loại Dự án</label>
+              <select
+                className="form-control"
+                name="category_project"
+                onChange={this.handdleonchange}
+                value={this.state.values.category_project}
+              >
+                <option value="">Vui lòng chọn</option>
+                {this.rendertypecategory()}
+              </select>
+            </div>
+            {this.state.errors.category_project !== "" ? (
+              <div className="Form_err errform">
+                (*) {this.state.errors.category_project}
+              </div>
+            ) : (
+              ""
+            )}
+
             {this.props.userEdit === null ? (
               ""
             ) : (
