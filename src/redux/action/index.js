@@ -14,6 +14,17 @@ export const actGetListFeatureAPI = () => {
       .catch(err => console.log(err.response.data));
   };
 };
+
+export const getCateServiceApi = () => {
+  return dispatch => {
+    CallAPI("category-service/api/findAll").then(rs => {
+      dispatch({
+        type: Actiontype.GET_CATEGORY_SERVICE,
+        dataCategoryService: rs.data
+      });
+    });
+  };
+};
 export const getListServiceApi = () => {
   return dispatch => {
     CallAPI("service/api/findAll")
@@ -197,7 +208,7 @@ export const actPutTeam = data => {
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  
+
   return dispatch => {
     CallAPI(`team/api/update`, "PUT", data, headers)
       .then(res => {
@@ -206,15 +217,15 @@ export const actPutTeam = data => {
       .catch(err => console.log("ko dc"));
   };
 };
-export const deleteTeam=(data)=>{
+export const deleteTeam = data => {
   let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  console.log(data)
-  let data1={
-    id:data._id
-  }
+  console.log(data);
+  let data1 = {
+    id: data._id
+  };
 
   return dispatch => {
     CallAPI(`team/api/delete`, "DELETE", data1, headers)
@@ -223,7 +234,7 @@ export const deleteTeam=(data)=>{
       })
       .catch(err => console.log("ko dc"));
   };
-}
+};
 // customer
 export const actGetCustomer = () => {
   return dispatch => {
@@ -494,6 +505,7 @@ export const addServiceApi = data => {
 };
 
 export const editServiceApi = data => {
+  console.log(data);
   let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
@@ -501,6 +513,7 @@ export const editServiceApi = data => {
   return dispatch => {
     CallAPI(`service/api/update`, "PUT", { ...data, id: data._id }, headers)
       .then(rs => {
+        console.log(rs);
         setTimeout(() => {
           swal({
             title: "Good job!",
@@ -544,23 +557,23 @@ export const deleteServiceApi = id => {
 };
 
 // project
-export const actPostProject=(data)=>{
-  console.log(data)
-}
+export const actPostProject = data => {
+  console.log(data);
+};
 
-export const actPutProject=(data)=>{
-  console.log(data)
-}
+export const actPutProject = data => {
+  console.log(data);
+};
 
-export const deleteProject=(data)=>{
+export const deleteProject = data => {
   let userLocal = JSON.parse(localStorage.getItem("userAdmin"));
   let headers = {
     Authorization: `jwt ${userLocal.message.access_token}`
   };
-  console.log(data)
-  let data1={
-    id:data
-  }
+  console.log(data);
+  let data1 = {
+    id: data
+  };
 
   return dispatch => {
     CallAPI(`project/api/delete`, "DELETE", data1, headers)
@@ -569,17 +582,16 @@ export const deleteProject=(data)=>{
       })
       .catch(err => console.log("ko dc"));
   };
-}
-// 
+};
+//
 export const setloading = () => {
   return dispatch => {
     dispatch({ type: Actiontype.LOADDINGADMIN, loadding: null });
   };
 };
 export const getloading = () => {
-  console.log("memay")
+  console.log("memay");
   return dispatch => {
     dispatch({ type: Actiontype.LOADDINGADMIN, loadding: "ok" });
   };
 };
-

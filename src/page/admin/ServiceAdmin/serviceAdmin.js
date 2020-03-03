@@ -18,6 +18,7 @@ class serviceAdmin extends Component {
   }
   componentDidMount() {
     this.props.getListServiceApi();
+    this.props.getCateServiceApi();
   }
 
   renderTbody = () => {
@@ -98,6 +99,9 @@ const mapDispatchToProps = dispatch => {
     },
     onAdd: () => {
       dispatch(action.editService(null));
+    },
+    getCateServiceApi: () => {
+      dispatch(action.getCateServiceApi());
     }
   };
 };

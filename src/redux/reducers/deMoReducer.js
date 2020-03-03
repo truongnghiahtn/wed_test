@@ -17,11 +17,15 @@ let initialState = {
   editBlog: null,
   editCate: "",
   editService: "",
+  dataCategoryService: []
 };
 const deMoReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_FEATURE:
       state.feature = action.feature.data;
+      return { ...state };
+    case ActionType.GET_CATEGORY_SERVICE:
+      state.dataCategoryService = action.dataCategoryService;
       return { ...state };
     case ActionType.GET_SERVICES:
       state.listService = action.listService;
