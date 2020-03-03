@@ -6,9 +6,9 @@ class Pricing extends Component {
     this.props.getPricesApi();
   }
   renderPricingWebsite = () => {
-    console.log(this.props.dataPrices);
     return this.props.dataPrices.map((item, index) => {
-      return (
+      console.log(item);
+      return item.name_service ? (
         <div className="col-lg-4 col-md-6 col-sm-6" key={index}>
           <div className="single-pricing-box bg-f6f5fb">
             <div className="price">
@@ -34,6 +34,8 @@ class Pricing extends Component {
             </ul>
           </div>
         </div>
+      ) : (
+        ""
       );
     });
   };

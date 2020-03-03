@@ -4,7 +4,7 @@ import swal from "sweetalert";
 
 export const actGetListFeatureAPI = () => {
   return dispatch => {
-    CallAPI(`feature/api/find`, "GET", null, null)
+    CallAPI(`feature/api/findAll`, "GET", null, null)
       .then(res =>
         dispatch({
           type: Actiontype.GET_LIST_FEATURE,
