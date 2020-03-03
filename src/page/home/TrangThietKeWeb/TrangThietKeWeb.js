@@ -4,11 +4,67 @@ import Subcribe from "../../../components/Subcribe/Subcribe";
 import Pricing from "../../../components/Pricing";
 import { connect } from "react-redux";
 import * as action from "../../../redux/action/index";
+import * as $ from "jquery";
 class TrangThietKeWeb extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataShow: []
+    };
+  }
   componentDidMount() {
     this.props.getListServiceApi();
+    this.props.getCateServiceApi();
   }
-
+  componentDidUpdate(nextProps) {
+    let { listService } = this.props;
+    if (nextProps.listService !== listService) {
+      this.setState({
+        dataShow: [...this.props.listService]
+      });
+    }
+  }
+  renderFilterMenu = () => {
+    return this.props.dataCategoryService.map((item, index) => {
+      return (
+        <li
+          className={`filter cate-service-${item._id}`}
+          key={index}
+          onClick={() => {
+            this.handleOnSelect(
+              `.cate-service-${item._id}`,
+              item.name_category_service
+            );
+          }}
+        >
+          {item.name_category_service}
+        </li>
+      );
+    });
+  };
+  handleOnSelect = (id, name) => {
+    $(".filter").removeClass("show");
+    $(id).addClass("show");
+    $(".e-project").addClass("active");
+    setTimeout(() => {
+      $(".e-project").removeClass("active");
+    }, 500);
+    if (id === "cate-service-all") {
+      $(".cate-service-all").addClass("show");
+      this.setState({
+        dataShow: [...this.props.listService]
+      });
+    } else {
+      let dataShow = this.props.listService.filter(item =>
+        item.category_service
+          ? item.category_service.name_category_service === name
+          : false
+      );
+      this.setState({
+        dataShow
+      });
+    }
+  };
   renderContent = () => {
     let color = ["bg-b5a2f8", "bg-f27e19", "bg-1db294", "bg-e80d82"];
     return (
@@ -18,12 +74,25 @@ class TrangThietKeWeb extends Component {
             <span>Thiết kế</span>
             <h3>Thiết kế website giá rẻ</h3>
           </div>
-          <div className="row">
-            {this.props.listService.slice(0, 4).map((item, index) => {
+          <ul className="filter-menu">
+            <li
+              className="filter cate-service-all show"
+              onClick={() => {
+                this.handleOnSelect(`cate-service-all`, null);
+              }}
+            >
+              Tất cả
+            </li>
+            {this.props.dataCategoryService ? this.renderFilterMenu() : ""}
+          </ul>
+          <div className="row e-project">
+            {this.state.dataShow.map((item, index) => {
               return (
                 <div className="col-lg-3 col-md-6 col-sm-6 " key={index}>
                   <div
-                    className={`single-features-item fs-tkw ${color[index]}`}
+                    className={`single-features-item fs-tkw ${
+                      color[index % 4]
+                    }`}
                     style={{ backgroundImage: item.img_service }}
                   >
                     <div className="icon">
@@ -54,13 +123,17 @@ class TrangThietKeWeb extends Component {
 
 const mapStateToProps = state => {
   return {
-    listService: state.deMoReducer.listService
+    listService: state.deMoReducer.listService,
+    dataCategoryService: state.deMoReducer.dataCategoryService
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     getListServiceApi: () => {
       dispatch(action.getListServiceApi());
+    },
+    getCateServiceApi: () => {
+      dispatch(action.getCateServiceApi());
     }
   };
 };

@@ -11,15 +11,21 @@ class childModal extends Component {
         img_service: "",
         name_service: "",
         content_service: "",
-        category_service: "",
+        category_service_id: "",
         createdAt: "",
         updatedAt: "",
         __v: 0
       },
-      errors: { name_service: "", content_service: "", category_service: "" },
+      errors: {
+        name_service: "",
+        content_service: "",
+        category_service_id: "",
+        img_service: ""
+      },
       formValid: false,
       nameValid: false,
       contentValid: false,
+      imgValid: false,
       cateValid: false
     };
   }
@@ -32,8 +38,8 @@ class childModal extends Component {
           name_service: nextProps.editService.name_service,
           content_service: nextProps.editService.content_service,
           img_service: nextProps.editService.img_service,
-          category_service: nextProps.editService.category_service
-            ? nextProps.editService.category_service.name_category_service
+          category_service_id: nextProps.editService.category_service
+            ? nextProps.editService.category_service._id
             : "",
           _id: nextProps.editService._id,
           createdAt: nextProps.editService.createdAt,
@@ -43,12 +49,14 @@ class childModal extends Component {
           ...this.state.errors,
           name_service: "",
           content_service: "",
-          category_service: ""
+          category_service_id: "",
+          img_service: ""
         },
-        namevalid: true,
+        formValid: true,
         nameValid: true,
         contentValid: true,
-        cateValid: true
+        cateValid: true,
+        imgValid: true
       });
     } else {
       //ADD
@@ -59,13 +67,14 @@ class childModal extends Component {
           img_service: "",
           name_service: "",
           content_service: "",
-          category_service: "",
+          category_service_id: "",
           createdAt: "",
           updatedAt: ""
         },
         nameValid: false,
         contentValid: false,
         cateValid: false,
+        imgValid: false,
         formValid: false
       });
     }
@@ -77,21 +86,27 @@ class childModal extends Component {
         [event.target.name]: event.target.value
       }
     });
+    if (event.target.name === "category_service_id") {
+      this.handleErrors(event);
+    }
   };
 
   handleErrors = event => {
     let { name, value } = event.target;
     let message = value === "" ? "Do not be empty" : "";
-    let { namevalid, contentValid, cateValid } = this.state;
+    let { nameValid, contentValid, cateValid, imgValid } = this.state;
     switch (name) {
       case "name_service":
-        namevalid = message !== "" ? false : true;
+        nameValid = message !== "" ? false : true;
         break;
-      case "category_service":
+      case "category_service_id":
         cateValid = message !== "" ? false : true;
         break;
       case "content_service":
         contentValid = message !== "" ? false : true;
+        break;
+      case "img_service":
+        imgValid = message !== "" ? false : true;
         break;
       default:
         break;
@@ -99,9 +114,10 @@ class childModal extends Component {
     this.setState(
       {
         errors: { ...this.state.errors, [name]: message },
-        namevalid,
+        nameValid,
         contentValid,
-        cateValid
+        cateValid,
+        imgValid
       },
       () => {
         this.FormValidation();
@@ -111,7 +127,10 @@ class childModal extends Component {
   FormValidation = () => {
     this.setState({
       formValid:
-        this.state.namevalid && this.state.contentValid && this.state.cateValid
+        this.state.nameValid &&
+        this.state.contentValid &&
+        this.state.cateValid &&
+        this.state.imgValid
     });
   };
   handleSubmit = event => {
@@ -119,6 +138,16 @@ class childModal extends Component {
     !this.props.editService
       ? this.props.addServiceApi(this.state.values)
       : this.props.editServiceApi(this.state.values);
+  };
+
+  rendertypecategory = () => {
+    return this.props.dataCategoryService.map((item, index) => {
+      return (
+        <option key={index} value={item._id}>
+          {item.name_category_service}
+        </option>
+      );
+    });
   };
   render() {
     return (
@@ -182,22 +211,42 @@ class childModal extends Component {
                 ""
               )}
             </div>
-            <div className="form-group m-0">
-              <label>Danh Mục</label>
+            <div className="form-group">
+              <label>Hình Ảnh</label>
+
               <input
                 type="text"
                 className="form-control"
-                placeholder="Danh Muc"
+                placeholder="Hình Ảnh"
                 onChange={this.handdleonchange}
                 onBlur={this.handleErrors}
                 onKeyUp={this.handleErrors}
-                name="category_service"
-                value={this.state.values.category_service}
+                name="img_service"
+                value={this.state.values.img_service}
               />
+              {this.state.errors.img_service !== "" ? (
+                <div className="Form_err errform">
+                  (*) {this.state.errors.img_service}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
-            {this.state.errors.category_service !== "" ? (
+            <div className="form-group">
+              <label>Loại Dịch vụ</label>
+              <select
+                className="form-control"
+                name="category_service_id"
+                onChange={this.handdleonchange}
+                value={this.state.values.category_service_id}
+              >
+                <option value="">Vui lòng chọn</option>
+                {this.rendertypecategory()}
+              </select>
+            </div>
+            {this.state.errors.category_service_id !== "" ? (
               <div className="Form_err errform">
-                (*) {this.state.errors.category_service}
+                (*) {this.state.errors.category_service_id}
               </div>
             ) : (
               ""
@@ -244,7 +293,8 @@ class childModal extends Component {
 
 const mapStateToProps = state => {
   return {
-    editService: state.deMoReducer.editService
+    editService: state.deMoReducer.editService,
+    dataCategoryService: state.deMoReducer.dataCategoryService
   };
 };
 

@@ -4,13 +4,12 @@ import PageTitleArea from "../../../components/PageTitleArea/PageTitleArea";
 import { connect } from "react-redux";
 import * as actions from "../../../redux/action/index";
 import * as $ from "jquery";
-// import Moment from "react-moment";
+import Moment from "react-moment";
 
 class TrangBlog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataBlog: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
       pageNumberCurrent: 1
     };
   }
@@ -18,7 +17,7 @@ class TrangBlog extends Component {
     this.props.getBlogApi();
   }
   renderContentBlog = () => {
-    return this.state.dataBlog
+    return this.props.dataBlog
       .slice(
         6 * (this.state.pageNumberCurrent - 1),
         6 * (this.state.pageNumberCurrent - 1) + 6
@@ -34,20 +33,17 @@ class TrangBlog extends Component {
                 </a>
               </div>
               <div className="single-blog-item">
-                {/* <ul className="date">
+                <ul className="date">
                   <li>
-                    <Moment format="DD">{this.props.date}</Moment>
+                    <Moment format="DD">{item.created_at}</Moment>
                   </li>
                   <li>
-                    <Moment format="MMMM">{this.props.date}</Moment>
+                    <Moment format="MMMM">{item.created_at}</Moment>
                   </li>
-                </ul> */}
+                </ul>
                 <ul className="blog-list">
                   <li>
-                    <i className="fa fa-user-alt" /> By admin
-                  </li>
-                  <li>
-                    <i className="far fa-comments" /> 3 Comments
+                    <i class="fa fa-user" aria-hidden="true"></i> By admin
                   </li>
                 </ul>
                 <div className="blog-content">
@@ -64,7 +60,7 @@ class TrangBlog extends Component {
       });
   };
   renderPagination = () => {
-    if (this.state.dataBlog && this.state.dataBlog.length > 6) {
+    if (this.props.dataBlog && this.props.dataBlog.length > 6) {
       return (
         <div className="col-lg-12 col-md-12">
           <div className="pagination-area">
@@ -76,7 +72,7 @@ class TrangBlog extends Component {
             >
               <i className="fas fa-angle-double-left" />
             </a>
-            {this.state.dataBlog.map((item, index) => {
+            {this.props.dataBlog.map((item, index) => {
               return index % 6 === 0 ? (
                 <a
                   className={
@@ -97,7 +93,7 @@ class TrangBlog extends Component {
             <a
               className="next page-numbers"
               onClick={() => {
-                this.handlePageNumber(this.state.dataBlog.length - 1);
+                this.handlePageNumber(this.props.dataBlog.length - 1);
               }}
             >
               <i className="fas fa-angle-double-right" />

@@ -71,6 +71,7 @@ export default class Dashboard extends Component {
         break;
       case "service":
         dulieu = "service";
+        break;
       case "price":
         dulieu = "price";
         break;
