@@ -27,10 +27,13 @@ class Project extends Component {
     return this.props.dataCategoryProjects.map((item, index) => {
       return (
         <li
-          className={classnames(`filter cate-${item.id}`)}
+          className={classnames(`filter cate-${item._id}`)}
           key={index}
           onClick={() => {
-            this.handleOnSelect(`cate-${item.id}`, item.name_category_project);
+            this.handleOnSelect(
+              `.cate-${item._id}`,
+              item.name_category_project
+            );
           }}
         >
           {item.name_category_project}
@@ -40,12 +43,13 @@ class Project extends Component {
   };
   handleOnSelect = (id, name) => {
     $(".filter").removeClass("show");
-    $(`.${id}`).addClass("show");
+    $(id).addClass("show");
     $(".e-project").addClass("active");
     setTimeout(() => {
       $(".e-project").removeClass("active");
     }, 500);
     if (id === "cate-all") {
+      $(".cate-all").addClass("show");
       this.setState({
         dataShow: [...this.props.dataProjects]
       });
