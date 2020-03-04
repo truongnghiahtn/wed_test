@@ -120,7 +120,7 @@ class childModal extends Component {
                 name="name_category_project"
                 value={this.state.values.name_category_project}
               />
-              {this.state.errors.name_category_project !== "" ? (
+              {this.state.errors.name_category_project ? (
                 <div className="Form_err errform">
                   (*) {this.state.errors.name_category_project}
                 </div>
