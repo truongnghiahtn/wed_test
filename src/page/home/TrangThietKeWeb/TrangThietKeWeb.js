@@ -5,6 +5,7 @@ import Pricing from "../../../components/Pricing";
 import { connect } from "react-redux";
 import * as action from "../../../redux/action/index";
 import * as $ from "jquery";
+import { NavLink } from "react-router-dom";
 class TrangThietKeWeb extends Component {
   constructor(props) {
     super(props);
@@ -88,18 +89,24 @@ class TrangThietKeWeb extends Component {
           <div className="row e-project">
             {this.state.dataShow.map((item, index) => {
               return (
-                <div className="col-lg-3 col-md-6 col-sm-6 " key={index}>
-                  <div
-                    className={`single-features-item fs-tkw ${
-                      color[index % 4]
-                    }`}
-                    style={{ backgroundImage: item.img_service }}
-                  >
-                    <div className="icon">
-                      <i className="flaticon-seo" />
+                <div key={index} className="col-lg-4 col-md-6">
+                  <div className="single-project-box fix-style">
+                    {/* <img src={item.hinhAnh} alt="image" /> */}
+                    <img src="./assets/img/services-details-image/1.jpg" />
+                    <div className="project-content">
+                      <div>
+                        <h3>{item.name_service}</h3>
+                        <p>{item.content_service}</p>
+                      </div>
                     </div>
-                    <h3>{item.name_service}</h3>
-                    <p>{item.content_service}</p>
+                    <div className="project-hover-content">
+                      <h3>
+                        <NavLink to={`/Chi-tiet-mau-thiet-ke/${item._id}`}>
+                          {" "}
+                          Xem chi tiết
+                        </NavLink>
+                      </h3>
+                    </div>
                   </div>
                 </div>
               );

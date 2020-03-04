@@ -182,7 +182,7 @@ class childModal extends Component {
                 name="name_service"
                 value={this.state.values.name_service}
               />
-              {this.state.errors.name !== "" ? (
+              {this.state.errors.name_service !== "" ? (
                 <div className="Form_err errform">
                   (*) {this.state.errors.name}
                 </div>
